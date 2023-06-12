@@ -14,7 +14,8 @@ jobs:
           working-directory: ./services/ui
           record: true
           build: npm run build
-          start: npm run start
+          start: npm run start, npm run api
+          wait-on: http://localhost:3000
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
