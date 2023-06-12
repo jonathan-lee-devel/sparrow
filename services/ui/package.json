@@ -33,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "autoprefixer": "^10.4.14",
+    "cypress": "^12.14.0",
     "eslint": "^8.38.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-html": "^7.1.0",
