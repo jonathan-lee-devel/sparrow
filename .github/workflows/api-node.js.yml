@@ -10,6 +10,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'services/api'
 
     strategy:
       matrix:
@@ -22,5 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
       - run: npm install
       - run: npm run build --if-present
