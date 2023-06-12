@@ -99,6 +99,10 @@ services/api/node_modules
 services/ui/dist
 services/ui/node_modules
 
+services/ui/cypress/videos
+services/ui/cypress/screenshots
+services/ui/.angular
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
