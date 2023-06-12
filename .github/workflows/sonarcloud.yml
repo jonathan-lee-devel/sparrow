@@ -16,9 +16,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install dependencies
+      - name: Install API Dependencies
+        working-directory: ./services/api
         run: npm install
-      - name: Run Tests
+      - name: Run API Tests
+        working-directory: ./services/api
         run: npm run test
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
