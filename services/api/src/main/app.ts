@@ -42,6 +42,11 @@ app.use('/organizations', OrganizationsRouter);
 app.use('/notifications', NotificationsRouter);
 app.use('/deliveries', DeliveriesRouter);
 
+// Root 200 OK for Cypress server health-check
+app.get('/', (_req, res, _next) => {
+  return res.status(200).send();
+});
+
 app.use((_req, _res, next) => {
   next(createError(404));
 });
