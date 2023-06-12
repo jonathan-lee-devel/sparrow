@@ -34,5 +34,6 @@ jobs:
             -Dsonar.sources=services/api/src,services/ui/src
             -Dsonar.tests=services/api/src,services/ui/src
             -Dsonar.inclusions=**
+            -Dsonar.exclusions=**/*.spec.ts,**/index.ts
             -Dsonar.test.inclusions=src/**/*.spec.ts,src/**/*.spec.tsx,src/**/*.test.ts,src/**/*.test.tsx
             -Dsonar.javascript.lcov.reportPaths=services/api/coverage/lcov.info
