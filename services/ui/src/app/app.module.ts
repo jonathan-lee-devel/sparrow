@@ -16,9 +16,6 @@ import {
 import {
   ManageOrganizationsComponent,
 } from './components/pages/organizations/manage-organizations/manage-organizations.component';
-import {
-  ViewOrganizationsComponent,
-} from './components/pages/organizations/view-organizations/view-organizations.component';
 import {LoginComponent} from './components/pages/login/login.component';
 import {NgOptimizedImage} from '@angular/common';
 import {ResetPasswordComponent} from './components/pages/reset-password/reset-password.component';
@@ -28,6 +25,7 @@ import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spin
 import {DefaultModalComponent} from './components/modals/default-modal/default-modal.component';
 import {RegisterConfirmComponent} from './components/pages/register-confirm/register-confirm.component';
 import { ResetPasswordConfirmComponent } from './components/pages/reset-password-confirm/reset-password-confirm.component';
+import { OrganizationDashboardComponent } from './components/pages/organizations/:organization/organization-dashboard/organization-dashboard.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -38,7 +36,6 @@ import { ResetPasswordConfirmComponent } from './components/pages/reset-password
     DashboardComponent,
     CreateOrganizationComponent,
     ManageOrganizationsComponent,
-    ViewOrganizationsComponent,
     LoginComponent,
     ResetPasswordComponent,
     RegisterComponent,
@@ -47,6 +44,7 @@ import { ResetPasswordConfirmComponent } from './components/pages/reset-password
     LoadingSpinnerComponent,
     RegisterConfirmComponent,
     ResetPasswordConfirmComponent,
+    OrganizationDashboardComponent,
   ],
   imports: [
     BrowserModule,

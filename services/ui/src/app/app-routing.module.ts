@@ -7,9 +7,6 @@ import {
   CreateOrganizationComponent,
 } from './components/pages/organizations/create-organization/create-organization.component';
 import {
-  ViewOrganizationsComponent,
-} from './components/pages/organizations/view-organizations/view-organizations.component';
-import {
   ManageOrganizationsComponent,
 } from './components/pages/organizations/manage-organizations/manage-organizations.component';
 import {LoginComponent} from './components/pages/login/login.component';
@@ -19,20 +16,25 @@ import {RegisterConfirmComponent} from './components/pages/register-confirm/regi
 import {
   ResetPasswordConfirmComponent,
 } from './components/pages/reset-password-confirm/reset-password-confirm.component';
+import {
+  OrganizationDashboardComponent
+} from "./components/pages/organizations/:organization/organization-dashboard/organization-dashboard.component";
 
 const routes: Routes = [
+    /* ANONYMOUS ROUTES */
   {path: '', component: LandingPageComponent},
   {path: 'home', component: LandingPageComponent},
   {path: 'welcome', component: LandingPageComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'register/confirm/:tokenValue', component: RegisterConfirmComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
   {path: 'reset-password/confirm/:tokenValue', component: ResetPasswordConfirmComponent},
+    /* ORGANIZATION ROUTES */
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'organizations/create', component: CreateOrganizationComponent, canActivate: [AuthGuard]},
   {path: 'organizations/manage', component: ManageOrganizationsComponent, canActivate: [AuthGuard]},
-  {path: 'organizations/view', component: ViewOrganizationsComponent, canActivate: [AuthGuard]},
+  {path: 'organizations/dashboard/:organizationId', component: OrganizationDashboardComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
