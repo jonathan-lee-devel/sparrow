@@ -19,7 +19,7 @@ export const configurePassport =
       passport.use('google', new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: '/auth/google/redirect',
+        callbackURL: (process.env.NODE_ENV === 'production') ? 'https://api.sparrow.express/auth/google/redirect': 'http://localhost:3000/auth/google/redirect',
         userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
       }, async (accessToken, refreshToken, profile, done) => {
         const user = await UserModel.findOne({googleId: profile.id});
