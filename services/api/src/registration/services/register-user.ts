@@ -39,27 +39,7 @@ export const makeRegisterUser = (
         },
       };
     }
-    const registrationVerificationTokenContainer =
-            await generateRegistrationVerificationToken(
-                DEFAULT_TOKEN_SIZE,
-                DEFAULT_TOKEN_EXPIRY_TIME_MINUTES,
-                email,
-            );
-    const expiredPasswordResetVerificationTokenContainer =
-            await generatePasswordResetVerificationToken(
-                DEFAULT_TOKEN_SIZE,
-                0,
-                email,
-            );
-    if (registrationVerificationTokenContainer.status !== HttpStatus.CREATED ||
-            expiredPasswordResetVerificationTokenContainer.status !== HttpStatus.CREATED) {
-      return {
-        status: HttpStatus.INTERNAL_SERVER_ERROR,
-        data: {
-          status: RegistrationStatus[RegistrationStatus.FAILURE],
-        },
-      };
-    }
+
     const newUser: User = {
       email,
       firstName,
@@ -75,10 +55,31 @@ export const makeRegisterUser = (
       existingGoogleUser.password = newUser.password;
       existingGoogleUser.emailVerified = newUser.emailVerified;
       await existingGoogleUser.save();
-    } else {
+    }
+    const registrationVerificationTokenContainer =
+          await generateRegistrationVerificationToken(
+              DEFAULT_TOKEN_SIZE,
+              DEFAULT_TOKEN_EXPIRY_TIME_MINUTES,
+              email,
+          );
+    const expiredPasswordResetVerificationTokenContainer =
+          await generatePasswordResetVerificationToken(
+              DEFAULT_TOKEN_SIZE,
+              0,
+              email,
+          );
+    if (registrationVerificationTokenContainer.status !== HttpStatus.CREATED ||
+          expiredPasswordResetVerificationTokenContainer.status !== HttpStatus.CREATED) {
+      return {
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+        data: {
+          status: RegistrationStatus[RegistrationStatus.FAILURE],
+        },
+      };
+    }
+    if (!existingGoogleUser) {
       await new UserModel(newUser).save();
     }
-
     // Mail is slow to send and can be sent asynchronously, hence, no await
     sendMail(email, 'Registration Confirmation',
         // @ts-ignore

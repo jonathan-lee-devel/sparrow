@@ -17,10 +17,10 @@ export const makeHandleExistingUser = (
       await RegistrationVerificationTokenModel.deleteOne({userEmail: email});
       await PasswordResetVerificationTokenModel.deleteOne({userEmail: email});
     }
-    if (existingUser && existingUser.emailVerified && existingUser.password) {
+    if (existingUser && existingUser.emailVerified && existingUser.googleId && existingUser.password) {
       return true;
     }
-    if (existingUser && !existingUser.emailVerified) {
+    if (existingUser && !existingUser.emailVerified && !existingUser.googleId) {
       await UserModel.deleteOne({email});
       await RegistrationVerificationTokenModel.deleteOne({userEmail: email});
       await PasswordResetVerificationTokenModel.deleteOne({userEmail: email});

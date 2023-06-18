@@ -1,4 +1,4 @@
-import { defineConfig } from "cypress";
+import {defineConfig} from 'cypress';
 
 export default defineConfig({
   e2e: {
@@ -7,4 +7,5 @@ export default defineConfig({
     },
   },
   projectId: '9ep3gw',
+  defaultCommandTimeout: 10_000,
 });

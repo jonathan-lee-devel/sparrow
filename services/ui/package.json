@@ -8,7 +8,7 @@
     "build": "ng build",
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --headed --browser chrome",
     "cy:open": "cypress open"
   },
   "private": true,
