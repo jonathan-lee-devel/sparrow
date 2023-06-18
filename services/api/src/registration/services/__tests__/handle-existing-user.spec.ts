@@ -52,6 +52,8 @@ describe('Registration Service Handle Existing User Tests', () => {
           findOne: () => {
             return {
               emailVerified: true,
+              googleId: 'googleId',
+              password: 'password',
             };
           },
         },

@@ -62,7 +62,11 @@ describe('Registration Service Register User Tests', () => {
         },
         () => {
         },
-        {},
+        {
+          findOne: () => {
+            return null;
+          },
+        },
     );
 
     const result = await registerUser('test@mail.com', 'John', 'Doe', 'password');

@@ -26,5 +26,6 @@ export const makeHandleExistingUser = (
       await PasswordResetVerificationTokenModel.deleteOne({userEmail: email});
       return false;
     }
+    return false;
   };
 };
