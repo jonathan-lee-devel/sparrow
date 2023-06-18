@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -15,6 +16,8 @@ import {ProfileRouter} from '../profile/routes';
 import {OrganizationsRouter} from '../organizations/routes';
 import {NotificationsRouter} from '../notifications/routes';
 import {DeliveriesRouter} from '../deliveries/routes';
+
+dotenv.config();
 
 const logger = loggerConfig();
 
