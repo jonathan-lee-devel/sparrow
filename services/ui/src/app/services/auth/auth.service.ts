@@ -6,6 +6,7 @@ import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {LoginDto} from '../../dtos/auth/LoginDto';
 import {LogoutDto} from '../../dtos/auth/LogoutDto';
+import {ProfileService} from '../profile/profile.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,10 +31,12 @@ export class AuthService {
    * Standard constructor
    * @param {HttpClient} httpClient used to access backend API
    * @param {Router} router used to route accordingly
+   * @param {ProfileService} profileService used to obtain user data on Google sign-in
    */
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private profileService: ProfileService,
   ) {
   }
 
@@ -85,10 +88,7 @@ export class AuthService {
     })
         .subscribe((loginDto) => {
           if (loginDto.loginStatus === 'SUCCESS') {
-            this.setUserInfo(loginDto.user);
-            this.isLoggedIn.next(true);
-            this.userInfo.next(loginDto.user);
-            this.router.navigate(['/dashboard']).catch((reason) => window.alert(reason));
+            this.onSuccessfulLogin(loginDto.user);
           } else {
             window.alert('Login Failed');
           }
@@ -110,5 +110,22 @@ export class AuthService {
           this.router.navigate(['/login']).catch((reason) => window.alert(reason));
         },
     );
+  }
+
+  doGoogleLogin() {
+    window.location.href = `${environment.MAIN_API_URL}/auth/google`;
+  }
+
+  onSuccessfulGoogleLogin() {
+    this.profileService.getUserInfo().subscribe((userInfo) => {
+      this.onSuccessfulLogin(userInfo);
+    });
+  }
+
+  private onSuccessfulLogin(userInfo: UserDto) {
+    this.setUserInfo(userInfo);
+    this.isLoggedIn.next(true);
+    this.userInfo.next(userInfo);
+    this.router.navigate(['/dashboard']).catch((reason) => window.alert(reason));
   }
 }

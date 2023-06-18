@@ -15,6 +15,7 @@ export class OrganizationDashboardComponent implements OnInit {
     administratorEmails: [],
     memberEmails: [],
   };
+  isLoading: boolean = true;
 
   constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationService) {}
 
@@ -22,8 +23,47 @@ export class OrganizationDashboardComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.organizationService.getOrganizationById(params['organizationId'])
           .subscribe((organization) => {
-            this.organization = organization;
+            setTimeout(() => {
+              this.organization = organization;
+              this.isLoading = false;
+            }, 2000);
           });
     });
+  }
+
+  doAddAdministratorToMembers(administratorEmail: string) {
+    this.isLoading = true;
+    this.organizationService.addAdministratorAsMember(this.organization.id, administratorEmail)
+        .subscribe((organization) => {
+          this.organization = organization;
+          this.isLoading = false;
+        });
+  }
+
+  doAddMemberToAdministrators(memberEmail: string) {
+    this.isLoading = true;
+    this.organizationService.addMemberAsAdministrator(this.organization.id, memberEmail)
+        .subscribe((organization) => {
+          this.organization = organization;
+          this.isLoading = false;
+        });
+  }
+
+  doRemoveOrganizationAdministrator(administratorEmail: string) {
+    this.isLoading = true;
+    this.organizationService.removeOrganizationAdministrator(this.organization.id, administratorEmail)
+        .subscribe((organization) => {
+          this.organization = organization;
+          this.isLoading = false;
+        });
+  }
+
+  doRemoveOrganizationMember(memberEmail: string) {
+    this.isLoading = true;
+    this.organizationService.removeOrganizationMember(this.organization.id, memberEmail)
+        .subscribe((organization) => {
+          this.organization = organization;
+          this.isLoading = false;
+        });
   }
 }

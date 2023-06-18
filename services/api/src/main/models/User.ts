@@ -7,10 +7,11 @@ const {model, Schema} = mongoose;
  */
 export interface User {
     email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
+    firstName: string | undefined;
+    lastName: string | undefined;
+    password: string | undefined;
     emailVerified: boolean;
+    googleId: string | undefined;
 }
 
 const schema = new Schema<User>({
@@ -21,21 +22,26 @@ const schema = new Schema<User>({
   },
   firstName: {
     type: String,
-    required: true,
+    required: false,
   },
   lastName: {
     type: String,
-    required: true,
+    required: false,
   },
   password: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
   },
   emailVerified: {
     type: Boolean,
     required: true,
     unique: false,
+  },
+  googleId: {
+    type: String,
+    required: false,
+    unique: true,
   },
 });
 

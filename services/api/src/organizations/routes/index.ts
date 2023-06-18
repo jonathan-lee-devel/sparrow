@@ -34,9 +34,9 @@ configureRoute(router, HttpRequestMethod.GET, '/:organizationId', true, [], make
 
 configureRoute(router, HttpRequestMethod.GET, '/:organizationId/snippet', true, [], makeExpressCallback(logger, getOrganizationSnippetController));
 
-configureRoute(router, HttpRequestMethod.PUT, '/:organizationId/administrators/remove', true, removeOrganizationAdministratorValidationChain, makeExpressCallback(logger, removeOrganizationAdministratorController));
+configureRoute(router, HttpRequestMethod.PATCH, '/:organizationId/administrators/remove', true, removeOrganizationAdministratorValidationChain, makeExpressCallback(logger, removeOrganizationAdministratorController));
 
-configureRoute(router, HttpRequestMethod.PUT, '/:organizationId/members/remove', true, removeOrganizationMemberValidationChain, makeExpressCallback(logger, removeOrganizationMemberController));
+configureRoute(router, HttpRequestMethod.PATCH, '/:organizationId/members/remove', true, removeOrganizationMemberValidationChain, makeExpressCallback(logger, removeOrganizationMemberController));
 
 configureRoute(router, HttpRequestMethod.GET, '/requests-to-join/:organizationId', true, [], makeExpressCallback(logger, getRequestsToJoinOrganizationController));
 
@@ -48,6 +48,6 @@ configureRoute(router, HttpRequestMethod.POST, '/invite-to-join/:organizationId'
 
 configureRoute(router, HttpRequestMethod.GET, '/invitations/tokenValue/:organizationInvitationTokenValue', true, [], makeExpressCallback(logger, getOrganizationInvitationByTokenValueController));
 
-configureRoute(router, HttpRequestMethod.PUT, '/update-admin-join-as-member/:toJoinOrganizationId', true, [], makeExpressCallback(logger, updateAdministratorJoinAsMemberController));
+configureRoute(router, HttpRequestMethod.PATCH, '/update-admin-join-as-member/:toJoinOrganizationId', true, [], makeExpressCallback(logger, updateAdministratorJoinAsMemberController));
 
 export {router as OrganizationsRouter};

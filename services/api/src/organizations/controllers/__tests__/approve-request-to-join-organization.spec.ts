@@ -35,6 +35,7 @@ describe('Approve Request to Join Organization Controller tests', () => {
       firstName: 'John',
       lastName: 'Doe',
       password: 'password',
+      googleId: undefined,
     };
     const requestToJoinOrganizationId = '12345';
     const httpRequest: HttpRequest = {

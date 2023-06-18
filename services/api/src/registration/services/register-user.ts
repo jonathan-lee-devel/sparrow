@@ -66,8 +66,18 @@ export const makeRegisterUser = (
       lastName,
       password: await encodePassword(password),
       emailVerified: false,
+      googleId: undefined,
     };
-    await new UserModel(newUser).save();
+    const existingGoogleUser = await UserModel.findOne({email});
+    if (existingGoogleUser) {
+      existingGoogleUser.firstName = newUser.firstName;
+      existingGoogleUser.lastName = newUser.lastName;
+      existingGoogleUser.password = newUser.password;
+      existingGoogleUser.emailVerified = newUser.emailVerified;
+      await existingGoogleUser.save();
+    } else {
+      await new UserModel(newUser).save();
+    }
 
     // Mail is slow to send and can be sent asynchronously, hence, no await
     sendMail(email, 'Registration Confirmation',

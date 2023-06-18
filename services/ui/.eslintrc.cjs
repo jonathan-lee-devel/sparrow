@@ -26,11 +26,6 @@ module.exports = {
                 "ignoreTemplateLiterals": true
             }
         ],
-        "new-cap": [
-            "error",
-            {
-                "properties": false
-            }
-        ]
+        "new-cap": 0
     },
 };

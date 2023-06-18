@@ -1,9 +1,12 @@
 import passport from 'passport';
+import passportGoogle from 'passport-google-oauth20';
 import bcrypt from 'bcrypt';
 import {Strategy as LocalStrategy} from 'passport-local';
 import {HydratedDocument, Model} from 'mongoose';
 import {User} from '../../models/User';
 import bunyan from 'bunyan';
+
+const GoogleStrategy = passportGoogle.Strategy;
 
 /**
  * Passport configuration.
@@ -13,7 +16,33 @@ import bunyan from 'bunyan';
 export const configurePassport =
     (logger: bunyan, UserModel: Model<User>): passport.PassportStatic => {
       logger.info('Configuring passport with provided user model');
+      passport.use('google', new GoogleStrategy({
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: '/auth/google/redirect',
+        userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
+      }, async (accessToken, refreshToken, profile, done) => {
+        const user = await UserModel.findOne({googleId: profile.id});
+
+        if (!user) {
+          const newUser = await new UserModel({
+            email: profile.emails?.[0].value,
+            googleId: profile.id,
+            password: undefined,
+            firstName: profile.displayName,
+            lastName: undefined,
+            emailVerified: true,
+          })
+              .save();
+          if (newUser) {
+            done(null, newUser);
+          }
+        } else {
+          done(null, user);
+        }
+      }));
       passport.use(
+          'local',
           new LocalStrategy(async (username, password, done) => {
             try {
               const foundUser: HydratedDocument<User> =
@@ -23,6 +52,12 @@ export const configurePassport =
 
               if (!foundUser) {
                 return done(null, false, {message: 'Invalid username'});
+              }
+
+              if (!foundUser.password) {
+                return done(null, false, {
+                  message: 'User is not registered via e-mail',
+                });
               }
 
               if (!foundUser.emailVerified) {

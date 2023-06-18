@@ -17,11 +17,13 @@ import {
   ResetPasswordConfirmComponent,
 } from './components/pages/reset-password-confirm/reset-password-confirm.component';
 import {
-  OrganizationDashboardComponent
-} from "./components/pages/organizations/:organization/organization-dashboard/organization-dashboard.component";
+  OrganizationDashboardComponent,
+} from './components/pages/organizations/:organization/organization-dashboard/organization-dashboard.component';
+import {GoogleLoginSuccessComponent} from './components/pages/google-login-success/google-login-success.component';
+import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
 
 const routes: Routes = [
-    /* ANONYMOUS ROUTES */
+  /* ANONYMOUS ROUTES */
   {path: '', component: LandingPageComponent},
   {path: 'home', component: LandingPageComponent},
   {path: 'welcome', component: LandingPageComponent},
@@ -30,7 +32,11 @@ const routes: Routes = [
   {path: 'register/confirm/:tokenValue', component: RegisterConfirmComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
   {path: 'reset-password/confirm/:tokenValue', component: ResetPasswordConfirmComponent},
-    /* ORGANIZATION ROUTES */
+  /* ERROR ROUTES */
+  {path: 'error/server-error', component: ServerErrorComponent},
+  /* GOOGLE LOGIN ROUTES */
+  {path: 'google-login-success', component: GoogleLoginSuccessComponent},
+  /* ORGANIZATION ROUTES */
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'organizations/create', component: CreateOrganizationComponent, canActivate: [AuthGuard]},
   {path: 'organizations/manage', component: ManageOrganizationsComponent, canActivate: [AuthGuard]},

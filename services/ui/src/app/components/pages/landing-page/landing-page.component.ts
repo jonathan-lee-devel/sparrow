@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchResultDto} from '../../../dtos/SearchResultDto';
 import {CookiesNoticeService} from '../../../services/cookies-notice/cookies-notice.service';
+import {ModalService} from '../../../services/modal/modal.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,12 +13,18 @@ export class LandingPageComponent implements OnInit {
   searchResults: SearchResultDto[] = [];
   isLoading: boolean = false;
 
-  constructor(private cookiesNoticeService: CookiesNoticeService) {
+  constructor(private cookiesNoticeService: CookiesNoticeService, private modalService: ModalService) {
   }
 
 
   ngOnInit() {
     this.cookiesNoticeService.triggerIfNotAccepted();
+    this.modalService.showPopupModal('This is a test, you like?',
+        'Confirm',
+        'Cancel',
+        () => window.alert('Confirmed'),
+        () => window.alert('Canceled'),
+    );
   }
 
   search(queryParams: string) {

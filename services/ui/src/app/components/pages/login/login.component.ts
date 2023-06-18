@@ -23,4 +23,8 @@ export class LoginComponent implements OnInit {
   doLogin() {
     this.authService.doLogin(this.username, this.password);
   }
+
+  doGoogleLogin() {
+    this.authService.doGoogleLogin();
+  }
 }
