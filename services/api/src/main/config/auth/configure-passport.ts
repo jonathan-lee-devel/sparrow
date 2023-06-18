@@ -16,7 +16,6 @@ const GoogleStrategy = passportGoogle.Strategy;
 export const configurePassport =
     (logger: bunyan, UserModel: Model<User>): passport.PassportStatic => {
       logger.info('Configuring passport with provided user model');
-      logger.info(`clientID: ${process.env.GOOGLE_CLIENT_ID}`);
       passport.use('google', new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
