@@ -15,8 +15,9 @@ export const makeUpdateAdministratorJoinAsMember = (
   return async function updateAdministratorJoinAsMember(
       requestingUser: User,
       toJoinOrganizationId: string,
+      administratorEmailToUpdate: string,
   ) {
-    logger.info(`Request for user with e-mail: <${requestingUser.email}> (admin) to become member of organization with ID: ${toJoinOrganizationId}`);
+    logger.info(`Request for user with e-mail: <${administratorEmailToUpdate}> (admin) to become member of organization with ID: ${toJoinOrganizationId}`);
     const organizationModel = await OrganizationModel
         .findOne({id: toJoinOrganizationId}, {__v: 0});
     if (!organizationModel) {
@@ -25,13 +26,13 @@ export const makeUpdateAdministratorJoinAsMember = (
     if (!organizationModel.administratorEmails.includes(requestingUser.email)) {
       return returnForbidden();
     }
-    if (organizationModel.memberEmails.includes(requestingUser.email)) {
+    if (organizationModel.memberEmails.includes(administratorEmailToUpdate)) {
       return {
         status: HttpStatus.BAD_REQUEST,
         data: errorMessageToDto(`User is already a member of organization with ID: ${toJoinOrganizationId}`),
       };
     }
-    organizationModel.memberEmails.push(requestingUser.email);
+    organizationModel.memberEmails.push(administratorEmailToUpdate);
     await organizationModel.markModified('memberEmails');
     await organizationModel.save();
     return {

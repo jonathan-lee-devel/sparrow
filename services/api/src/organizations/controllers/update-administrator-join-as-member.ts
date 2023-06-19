@@ -19,6 +19,7 @@ export const makeUpdateAdministratorJoinAsMemberController = (
     const updateAdministratorJoinAsMemberContainer = await updateAdministratorJoinAsMember(
         httpRequest.user,
         httpRequest.params.toJoinOrganizationId,
+        httpRequest.body.administratorEmailToUpdate,
     );
     return {
       httpStatus: updateAdministratorJoinAsMemberContainer.status,

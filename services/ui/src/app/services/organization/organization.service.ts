@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {OrganizationDto} from '../../dtos/organization/OrganizationDto';
 import {Observable} from 'rxjs';
+import {OrganizationMembershipStatusDto} from '../../dtos/organization/OrganizationMembershipStatusDto';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,8 @@ export class OrganizationService {
     return this.httpClient.get<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`);
   }
 
-  addAdministratorAsMember(organizationId: string, administratorEmail: string): Observable<OrganizationDto> {
-    return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/update-admin-join-as-member/${organizationId}`, {email: administratorEmail});
+  addAdministratorAsMember(organizationId: string, administratorEmail: string): Observable<OrganizationMembershipStatusDto> {
+    return this.httpClient.patch<OrganizationMembershipStatusDto>(`${environment.MAIN_API_URL}/organizations/update-admin-join-as-member/${organizationId}`, {administratorEmailToUpdate: administratorEmail});
   }
 
   addMemberAsAdministrator(organizationId: string, memberEmail: string): Observable<OrganizationDto> {

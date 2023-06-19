@@ -9,4 +9,5 @@ import {ErrorDto} from '../../main/dtos/ErrorDto';
 export type UpdateAdministratorJoinAsMemberFunction = (
     requestingUser: User,
     toJoinOrganizationId: string,
+    administratorEmailToUpdate: string,
 ) => Promise<StatusDataContainer<OrganizationMembershipStatusDto | ErrorDto>>;

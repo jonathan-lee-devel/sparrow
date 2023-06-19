@@ -46,6 +46,12 @@ export const makeRemoveOrganizationAdministrator = (
         data: errorMessageToDto(`Organization with ID: ${organizationId} has no administrator: <${administratorEmailToRemove}>`),
       };
     }
+    if (organizationModel.administratorEmails.length === 1) {
+      return {
+        status: HttpStatus.BAD_REQUEST,
+        data: errorMessageToDto(`Organization with ID: ${organizationId} requires at least one administrator`),
+      };
+    }
     const indexOfAdministratorEmailToRemove =
             organizationModel.administratorEmails.indexOf(administratorEmailToRemove, 0);
     if (indexOfAdministratorEmailToRemove > -1) {
