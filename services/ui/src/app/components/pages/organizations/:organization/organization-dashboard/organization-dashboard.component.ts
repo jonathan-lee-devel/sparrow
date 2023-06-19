@@ -29,10 +29,8 @@ export class OrganizationDashboardComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.organizationService.getOrganizationById(params['organizationId'])
           .subscribe((organization) => {
-            setTimeout(() => {
-              this.organization = organization;
-              this.loadingService.onLoadingFinished();
-            }, 2000);
+            this.organization = organization;
+            this.loadingService.onLoadingFinished();
           });
     });
   }

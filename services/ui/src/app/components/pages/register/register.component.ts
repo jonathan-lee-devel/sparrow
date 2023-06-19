@@ -1,13 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegisterService} from '../../../services/register/register.service';
 import {AuthService} from '../../../services/auth/auth.service';
+import {CookiesNoticeService} from '../../../services/cookies-notice/cookies-notice.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   email: string = '';
   firstName: string = '';
   lastName: string = '';
@@ -15,8 +16,15 @@ export class RegisterComponent {
   confirmPassword: string = '';
   acceptTermsAndConditions: boolean = false;
 
-  constructor(private registerService: RegisterService,
-              private authService: AuthService) {
+  constructor(
+        private cookiesNoticeService: CookiesNoticeService,
+        private registerService: RegisterService,
+        private authService: AuthService,
+  ) {
+  }
+
+  ngOnInit() {
+    this.cookiesNoticeService.triggerIfNotAccepted();
   }
 
   doRegister() {
