@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchResultDto} from '../../../dtos/SearchResultDto';
 import {CookiesNoticeService} from '../../../services/cookies-notice/cookies-notice.service';
+import {LoadingService} from '../../../services/loading/loading.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,7 +13,11 @@ export class LandingPageComponent implements OnInit {
   searchResults: SearchResultDto[] = [];
   isLoading: boolean = false;
 
-  constructor(private cookiesNoticeService: CookiesNoticeService) {
+  constructor(private cookiesNoticeService: CookiesNoticeService, private loadingService: LoadingService) {
+    this.loadingService.isLoadingObservable()
+        .subscribe((isLoading) => {
+          this.isLoading = isLoading;
+        });
   }
 
 
@@ -21,12 +26,12 @@ export class LandingPageComponent implements OnInit {
   }
 
   search(queryParams: string) {
-    this.isLoading = true;
+    this.loadingService.onLoadingStart();
     setTimeout(() => {
       this.searchResults.push({
         title: queryParams,
       });
-      this.isLoading = false;
+      this.loadingService.onLoadingFinished();
     }, 1000);
   }
 }

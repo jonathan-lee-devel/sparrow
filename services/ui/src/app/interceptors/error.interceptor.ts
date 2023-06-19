@@ -3,10 +3,11 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {catchError, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {ModalService} from '../services/modal/modal.service';
+import {LoadingService} from '../services/loading/loading.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private modalService: ModalService) {
+  constructor(private router: Router, private modalService: ModalService, private loadingService: LoadingService) {
 
   }
 
@@ -19,6 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {
+    this.loadingService.onLoadingFinished();
     if (error.status === 0) {
       throw error;
     }

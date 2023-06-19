@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {OrganizationService} from '../../../../../services/organization/organization.service';
 import {OrganizationDto} from '../../../../../dtos/organization/OrganizationDto';
+import {LoadingService} from '../../../../../services/loading/loading.service';
 
 @Component({
   selector: 'app-organization-dashboard',
@@ -17,7 +18,12 @@ export class OrganizationDashboardComponent implements OnInit {
   };
   isLoading: boolean = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationService) {}
+  constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationService, private loadingService: LoadingService) {
+    this.loadingService.isLoadingObservable()
+        .subscribe((isLoading) => {
+          this.isLoading = isLoading;
+        });
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -25,47 +31,47 @@ export class OrganizationDashboardComponent implements OnInit {
           .subscribe((organization) => {
             setTimeout(() => {
               this.organization = organization;
-              this.isLoading = false;
+              this.loadingService.onLoadingFinished();
             }, 2000);
           });
     });
   }
 
   doAddAdministratorToMembers(administratorEmail: string) {
-    this.isLoading = true;
+    this.loadingService.onLoadingStart();
     this.organizationService.addAdministratorAsMember(this.organization.id, administratorEmail)
         .subscribe((organizationMembershipStatus) => {
           if (organizationMembershipStatus.status === 'SUCCESS') {
             this.organization.memberEmails.push(administratorEmail);
           }
-          this.isLoading = false;
+          this.loadingService.onLoadingFinished();
         });
   }
 
   doAddMemberToAdministrators(memberEmail: string) {
-    this.isLoading = true;
+    this.loadingService.onLoadingStart();
     this.organizationService.addMemberAsAdministrator(this.organization.id, memberEmail)
         .subscribe((organization) => {
           this.organization = organization;
-          this.isLoading = false;
+          this.loadingService.onLoadingFinished();
         });
   }
 
   doRemoveOrganizationAdministrator(administratorEmail: string) {
-    this.isLoading = true;
+    this.loadingService.onLoadingStart();
     this.organizationService.removeOrganizationAdministrator(this.organization.id, administratorEmail)
         .subscribe((organization) => {
           this.organization = organization;
-          this.isLoading = false;
+          this.loadingService.onLoadingFinished();
         });
   }
 
   doRemoveOrganizationMember(memberEmail: string) {
-    this.isLoading = true;
+    this.loadingService.onLoadingStart();
     this.organizationService.removeOrganizationMember(this.organization.id, memberEmail)
         .subscribe((organization) => {
           this.organization = organization;
-          this.isLoading = false;
+          this.loadingService.onLoadingFinished();
         });
   }
 }
