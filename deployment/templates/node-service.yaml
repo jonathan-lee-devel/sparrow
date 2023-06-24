@@ -1,22 +1,22 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "hello-world.fullname" . }}-node-service
+  name: {{ template "sparrow.fullname" . }}-node-service
   namespace: "{{ .Values.environment }}"
   labels:
-    app: {{ template "hello-world.fullname" . }}
-    chart: {{ template "hello-world.chart" . }}
-    component: "{{ .Values.node.name }}"
+    app: {{ template "sparrow.fullname" . }}
+    chart: {{ template "sparrow.chart" . }}
+    component: "{{ .Values.api.name }}"
     release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}  
+    heritage: {{ .Release.Service }}
 spec:
   ports:
   - name: http
     port: 3000
     targetPort: 3000
   selector:
-    app: {{ template "hello-world.fullname" . }}
-    component: "{{ .Values.node.name }}"
-    release: {{ .Release.Name }}      
+    app: {{ template "sparrow.fullname" . }}
+    component: "{{ .Values.api.name }}"
+    release: {{ .Release.Name }}
 status:
   loadBalancer: {}

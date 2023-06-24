@@ -8,16 +8,16 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-{{- if eq .Values.environment "staging" }} 
-    - host: staging.node-hello.com
-{{- end -}}      
+{{- if eq .Values.environment "staging" }}
+    - host: staging.sparrow.express
+{{- end -}}
 {{- if eq .Values.environment "production" }}
-    - host: node-hello.com
+    - host: sparrow.express
 {{- end }}
       http:
         paths:
-        - path: /         
+        - path: /
           backend:
-            serviceName: {{ template "hello-world.fullname" . }}-nginx-service
+            serviceName: {{ template "sparrow.fullname" . }}-nginx-service
             servicePort: 80
 {{- end -}}

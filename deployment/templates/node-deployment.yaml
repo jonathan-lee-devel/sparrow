@@ -1,19 +1,19 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "hello-world.fullname" . }}-node-deployment
+  name: {{ template "sparrow.fullname" . }}-node-deployment
   namespace: "{{ .Values.environment }}"
   labels:
-    app: {{ template "hello-world.fullname" . }}
-    chart: {{ template "hello-world.chart" . }}
+    app: {{ template "sparrow.fullname" . }}
+    chart: {{ template "sparrow.chart" . }}
     component: "{{ .Values.node.fullname }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "hello-world.fullname" . }}
-      component: "{{ .Values.node.name }}"
+      app: {{ template "sparrow.fullname" . }}
+      component: "{{ .Values.api.name }}"
       release: {{ .Release.Name }}
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -21,12 +21,12 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "hello-world.fullname" . }}
-        component: "{{ .Values.node.name }}"
+        app: {{ template "sparrow.fullname" . }}
+        component: "{{ .Values.api.name }}"
         release: {{ .Release.Name }}
     spec:
       containers:
-      - name: {{ template "hello-world.fullname" . }}-node
+      - name: {{ template "sparrow.fullname" . }}-node
         image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
         imagePullPolicy: "{{ .Values.node.image.pullPolicy }}"
         livenessProbe:
