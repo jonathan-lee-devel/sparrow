@@ -1,0 +1,20 @@
+replicaCount: 1
+
+environment: development
+
+ui:
+  name: ui
+  image:
+    repository: jonathanleedev/sparrow-ui
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: NodePort
+    nodePort: 3000
+
+api:
+  name: api
+  image:
+    repository: jonathanleedev/sparrow-api
+    tag: latest
+    pullPolicy: Always

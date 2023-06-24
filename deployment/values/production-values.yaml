@@ -1,0 +1,18 @@
+replicaCount: 2
+
+environment: production
+
+ui:
+  name: ui
+  image:
+    repository: jonathanleedev/sparrow-ui
+    tag: latest
+    pullPolicy: Always
+  service:
+
+api:
+  name: api
+  image:
+    repository: jonathanleedev/sparrow-api
+    tag: latest
+    pullPolicy: Always

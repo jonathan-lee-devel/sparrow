@@ -1,0 +1,17 @@
+replicaCount: 1
+
+environment: staging
+
+ui:
+  name: ui
+  image:
+    repository: jonathanleedev/sparrow-ui
+    tag: latest
+    pullPolicy: Always
+
+api:
+  name: api
+  image:
+    repository: jonathanleedev/sparrow-api
+    tag: latest
+    pullPolicy: Always
