@@ -11,7 +11,6 @@
     "cy:run": "cypress run --headed --browser chrome",
     "cy:open": "cypress open"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
     "@angular/common": "^15.2.0",
