@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "sparrow.fullname" . }}-configmap
-  namespace: "{{ .Values.environment }}"
+  namespace: sparrow-{{ .Values.environment }}
   labels:
     app: {{ template "sparrow.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}

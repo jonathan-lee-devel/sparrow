@@ -1,14 +1,18 @@
 FROM --platform=linux/x86_64 node:18-alpine3.17
 
-WORKDIR .
+WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package*.json /usr/src/app
 
 RUN npm install
 
-COPY . .
+COPY . /usr/src/app
 
 RUN npm run build
+
+RUN chown -R node:node /usr/src/app
+
+USER node
 
 EXPOSE 3000
 

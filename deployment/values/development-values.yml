@@ -7,14 +7,15 @@ ui:
   image:
     repository: jonathanleedev/sparrow-ui
     tag: latest
-    pullPolicy: Always
+    pullPolicy: Never
   service:
     type: NodePort
-    nodePort: 3000
+    nodePort: 30000
 
 api:
   name: api
   image:
     repository: jonathanleedev/sparrow-api
     tag: latest
-    pullPolicy: Always
+    pullPolicy: Never
+  session: keyboardcat

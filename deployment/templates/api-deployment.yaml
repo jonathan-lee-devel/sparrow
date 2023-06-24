@@ -1,12 +1,12 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "sparrow.fullname" . }}-node-deployment
-  namespace: "{{ .Values.environment }}"
+  namespace: sparrow-{{ .Values.environment }}
   labels:
     app: {{ template "sparrow.fullname" . }}
     chart: {{ template "sparrow.chart" . }}
-    component: "{{ .Values.node.fullname }}"
+    component: "{{ .Values.api.fullname }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -25,10 +25,17 @@ spec:
         component: "{{ .Values.api.name }}"
         release: {{ .Release.Name }}
     spec:
+      securityContext:
+        runAsUser: 1000
       containers:
       - name: {{ template "sparrow.fullname" . }}-node
-        image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
-        imagePullPolicy: "{{ .Values.node.image.pullPolicy }}"
+        image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
+        imagePullPolicy: "{{ .Values.api.image.pullPolicy }}"
+        env:
+          - name: "SESSION_SECRET"
+            value: keyboardcat
+          - name: "GOOGLE_CLIENT_ID"
+            value: test
         livenessProbe:
           httpGet:
             path: /healthz
