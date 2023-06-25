@@ -21,7 +21,7 @@ ui:
     pullPolicy: Never
   service:
     type: NodePort
-    nodePort: 30000
+    nodePort: 30001
   port: 80
 
 api:
@@ -32,5 +32,5 @@ api:
     pullPolicy: Never
   service:
     type: NodePort
-    nodePort: 30001
+    nodePort: 30002
   session: keyboardcat

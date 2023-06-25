@@ -15,7 +15,7 @@ spec:
     port: 80
     targetPort: 80
 {{- if eq .Values.environment "development" }}
-    nodePort: {{ .Values.ui.service.nodePort }}
+    nodePort: {{ .Values.nginx.service.nodePort }}
   type: NodePort
 {{- end }}
   selector:

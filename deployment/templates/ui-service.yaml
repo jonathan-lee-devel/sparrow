@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "sparrow.fullname" . }}-nginx-service
+  name: {{ template "sparrow.fullname" . }}-ui-service
   namespace: sparrow-{{ .Values.environment }}
   labels:
     app: {{ template "sparrow.fullname" . }}
