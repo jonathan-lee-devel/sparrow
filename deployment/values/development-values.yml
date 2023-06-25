@@ -2,15 +2,27 @@ replicaCount: 1
 
 environment: development
 
+nginx:
+  name: nginx
+  image:
+    repository: nginx
+    tag: stable-alpine3.17
+    pullPolicy: Always
+  service:
+    type: NodePort
+    nodePort: 30000
+  port: 80
+
 ui:
   name: ui
   image:
-    repository: jonathanleedev/sparrow-ui
+    repository: jonathanleedev/sparrow-express-ui
     tag: latest
     pullPolicy: Never
   service:
     type: NodePort
     nodePort: 30000
+  port: 80
 
 api:
   name: api
@@ -18,4 +30,7 @@ api:
     repository: jonathanleedev/sparrow-api
     tag: latest
     pullPolicy: Never
+  service:
+    type: NodePort
+    nodePort: 30001
   session: keyboardcat

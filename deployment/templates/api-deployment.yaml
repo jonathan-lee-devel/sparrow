@@ -36,13 +36,6 @@ spec:
             value: keyboardcat
           - name: "GOOGLE_CLIENT_ID"
             value: test
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 3000
-            scheme: HTTP
-          initialDelaySeconds: 30
-          timeoutSeconds: 5
         ports:
         - containerPort: 3000
         resources: {}

@@ -2,12 +2,24 @@ replicaCount: 1
 
 environment: staging
 
+nginx:
+  name: nginx
+  image:
+    repository: nginx
+    tag: stable-alpine3.17
+    pullPolicy: Always
+  service:
+    type: NodePort
+    nodePort: 30000
+  port: 80
+
 ui:
   name: ui
   image:
     repository: nginx
     tag: latest
     pullPolicy: Always
+  port: 80
 
 api:
   name: api
