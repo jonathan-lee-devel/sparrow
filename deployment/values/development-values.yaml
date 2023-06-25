@@ -1,17 +1,7 @@
+applicationName: sparrow-express
 replicaCount: 1
 
 environment: development
-
-nginx:
-  name: nginx
-  image:
-    repository: nginx
-    tag: stable-alpine3.17
-    pullPolicy: Always
-  service:
-    type: NodePort
-    nodePort: 30000
-  port: 80
 
 ui:
   name: ui

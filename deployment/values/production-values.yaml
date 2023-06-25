@@ -1,3 +1,4 @@
+applicationName: sparrow-express
 replicaCount: 2
 
 environment: production
@@ -5,8 +6,8 @@ environment: production
 nginx:
   name: nginx
   image:
-    repository: nginx
-    tag: stable-alpine3.17
+    repository: jonathanleedev/sparrow-express-ui
+    tag: latest
     pullPolicy: Always
   service:
     type: NodePort
