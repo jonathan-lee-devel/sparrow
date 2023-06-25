@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "sparrow.fullname" . }}-node-deployment
+  name: {{ template "sparrow.fullname" . }}-api-deployment
   namespace: sparrow-{{ .Values.environment }}
   labels:
     app: {{ template "sparrow.fullname" . }}
@@ -9,6 +9,9 @@ metadata:
     component: "{{ .Values.api.fullname }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
 spec:
   selector:
     matchLabels:
@@ -28,25 +31,25 @@ spec:
       securityContext:
         runAsUser: 1000
       containers:
-      - name: {{ template "sparrow.fullname" . }}-node
+      - name: {{ template "sparrow.fullname" . }}-api
         image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
         imagePullPolicy: "{{ .Values.api.image.pullPolicy }}"
         env:
-          - name: "SESSION_SECRET"
+          - name: SESSION_SECRET
             value: keyboardcat
-          - name: "GOOGLE_CLIENT_ID"
-            value: test
+          - name: GOOGLE_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-google-client-id
+                key: GOOGLE_CLIENT_ID
+          - name: GOOGLE_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-google-client-secret
+                key: GOOGLE_CLIENT_SECRET
         ports:
         - containerPort: 3000
         resources: {}
         workingDir: /usr/src/app
       restartPolicy: Always
 status: {}
-
-keel:
-  policy: force
-  trigger: poll
-  pollSchedule: "@every 1m"
-  images:
-    - repository: image.repository
-      tag: image.tag

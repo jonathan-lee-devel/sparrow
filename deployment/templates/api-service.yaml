@@ -12,6 +12,7 @@ metadata:
 spec:
   ports:
   - name: http
+    protocol: TCP
     port: 3000
     targetPort: 3000
 {{- if eq .Values.environment "development" }}
