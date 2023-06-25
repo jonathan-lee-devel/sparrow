@@ -3,29 +3,17 @@ replicaCount: 2
 
 environment: production
 
-nginx:
-  name: nginx
+ui:
+  name: ui
   image:
     repository: jonathanleedev/sparrow-express-ui
     tag: latest
     pullPolicy: Always
-  service:
-    type: NodePort
-    nodePort: 30000
   port: 80
-
-ui:
-  name: ui
-  image:
-    repository: nginx
-    tag: latest
-    pullPolicy: Always
-  port: 80
-  service:
 
 api:
   name: api
   image:
-    repository: node
+    repository: jonathanleedev/sparrow-express-api
     tag: latest
     pullPolicy: Always

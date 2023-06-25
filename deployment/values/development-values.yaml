@@ -17,7 +17,7 @@ ui:
 api:
   name: api
   image:
-    repository: jonathanleedev/sparrow-api
+    repository: jonathanleedev/sparrow-express-api
     tag: latest
     pullPolicy: Never
   service:
