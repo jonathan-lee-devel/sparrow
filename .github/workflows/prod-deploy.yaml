@@ -1,0 +1,22 @@
+name: '[PROD] Deploy'
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-22.04'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v3'
+      - name: 'Deploy'
+        uses: 'deliverybot/helm@master'
+        with:
+          token: '${{ github.token }}'
+          chart: 'sparrow-production'
+          namespace: sparrow-production
+          release: sparrow-express
+          value-files: './deployment/values/production-values.yml'
+        env:
+          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
