@@ -1,0 +1,29 @@
+applicationName: sparrow-express
+replicaCount: 1
+
+environment:
+  name: development
+  hostPrefix: development.
+
+ui:
+  name: ui
+  image:
+    repository: jonathanleedev/sparrow-express-ui
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+    nodePort: 30001
+  port: 80
+
+api:
+  name: api
+  image:
+    repository: jonathanleedev/sparrow-express-api
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+    nodePort: 30002
+  port: 3000
+  session: keyboardcat

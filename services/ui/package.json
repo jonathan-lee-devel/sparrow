@@ -7,6 +7,7 @@
     "api": "cd ../api && npm install && npm run start",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
+    "build:stage": "ng build --configuration stage",
     "watch": "ng build --watch --configuration development",
     "cy:run": "cypress run --headed --browser chrome",
     "cy:open": "cypress open"
@@ -22,9 +23,9 @@
     "@angular/router": "^15.2.0",
     "flowbite": "^1.6.5",
     "ngx-cookie-service": "^15.0.0",
-    "rxjs": "~7.8.0",
+    "rxjs": "~7.8.1",
     "tslib": "^2.5.3",
-    "zone.js": "~0.12.0"
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.6",
