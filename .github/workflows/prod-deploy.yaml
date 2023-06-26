@@ -11,11 +11,11 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v3'
       - name: 'Deploy'
-        uses: 'deliverybot/helm@master'
+        uses: 'deliverybot/helm@v1'
         with:
           token: '${{ github.token }}'
           chart: 'sparrow-production'
-          namespace: sparrow-production
+          namespace: 'default'
           release: sparrow-express
           value-files: './deployment/values/production-values.yml'
         env:
