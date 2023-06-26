@@ -8,7 +8,7 @@ ui:
   image:
     repository: jonathanleedev/sparrow-express-ui
     tag: latest
-    pullPolicy: Always
+    pullPolicy: Never
   port: 80
 
 api:
@@ -16,4 +16,4 @@ api:
   image:
     repository: jonathanleedev/sparrow-express-api
     tag: latest
-    pullPolicy: Always
+    pullPolicy: Never

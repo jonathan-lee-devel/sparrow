@@ -50,6 +50,11 @@ spec:
         ports:
         - containerPort: 3000
         resources: {}
-        workingDir: /usr/src/app
+        livenessProbe:
+          httpGet:
+            port: 3000
+            path: /
+          initialDelaySeconds: 3
+          periodSeconds: 3
       restartPolicy: Always
 status: {}
