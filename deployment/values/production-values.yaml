@@ -1,7 +1,9 @@
 applicationName: sparrow-express
-replicaCount: 2
+replicaCount: 1
 
-environment: production
+environment:
+  name: production
+  hostPrefix:
 
 ui:
   name: ui
@@ -17,3 +19,4 @@ api:
     repository: jonathanleedev/sparrow-express-api
     tag: latest
     pullPolicy: Always
+  port: 3000

@@ -1,7 +1,9 @@
 applicationName: sparrow-express
 replicaCount: 1
 
-environment: development
+environment:
+  name: development
+  hostPrefix: development.
 
 ui:
   name: ui
@@ -23,4 +25,5 @@ api:
   service:
     type: NodePort
     nodePort: 30002
+  port: 3000
   session: keyboardcat

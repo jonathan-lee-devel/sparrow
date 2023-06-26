@@ -1,14 +1,16 @@
 applicationName: sparrow-express
-
 replicaCount: 1
-environment: staging
+
+environment:
+  name: staging
+  hostPrefix: staging.
 
 ui:
   name: ui
   image:
     repository: jonathanleedev/sparrow-express-ui
     tag: latest
-    pullPolicy: Never
+    pullPolicy: Always
   port: 80
 
 api:
@@ -16,4 +18,5 @@ api:
   image:
     repository: jonathanleedev/sparrow-express-api
     tag: latest
-    pullPolicy: Never
+    pullPolicy: Always
+  port: 3000

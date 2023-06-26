@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "sparrow.fullname" . }}-api-deployment
-  namespace: sparrow-{{ .Values.environment }}
+  namespace: sparrow-{{ .Values.environment.name }}
   labels:
     app: {{ template "sparrow.fullname" . }}
     chart: {{ template "sparrow.chart" . }}
