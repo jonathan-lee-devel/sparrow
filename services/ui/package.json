@@ -7,6 +7,7 @@
     "api": "cd ../api && npm install && npm run start",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
+    "build:stage": "ng build --configuration stage",
     "watch": "ng build --watch --configuration development",
     "cy:run": "cypress run --headed --browser chrome",
     "cy:open": "cypress open"
