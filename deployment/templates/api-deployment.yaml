@@ -36,7 +36,30 @@ spec:
         imagePullPolicy: "{{ .Values.api.image.pullPolicy }}"
         env:
           - name: SESSION_SECRET
-            value: keyboardcat
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-session-secret
+                key: SESSION_SECRET
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-database-url
+                key: DATABASE_URL
+          - name: FRONT_END_URL
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-frontend-url
+                key: FRONT_END_URL
+          - name: EMAIL_USER
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-email-user
+                key: EMAIL_USER
+          - name: EMAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-email-password
+                key: EMAIL_PASSWORD
           - name: GOOGLE_CLIENT_ID
             valueFrom:
               secretKeyRef:
@@ -47,6 +70,11 @@ spec:
               secretKeyRef:
                 name: sparrow-google-client-secret
                 key: GOOGLE_CLIENT_SECRET
+          - name: GOOGLE_CALLBACK_URL
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-google-callback-url
+                key: GOOGLE_CALLBACK_URL
         ports:
         - containerPort: 3000
         resources: {}
