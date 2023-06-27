@@ -33,12 +33,12 @@ export const makeApproveRequestToJoinOrganization = (
   ) {
     logger.info(`Request to approve organization membership request with ID: ${organizationMembershipRequestId}`);
     const organizationMembershipRequestModel = await OrganizationMembershipRequestModel
-        .findOne({id: organizationMembershipRequestId}, {__v: 0});
+        .findOne({id: organizationMembershipRequestId}, {__v: 0}).exec();
     if (!organizationMembershipRequestModel) {
       return returnNotFound();
     }
     const organizationModel = await OrganizationModel
-        .findOne({id: organizationMembershipRequestModel.organizationId}, {__v: 0});
+        .findOne({id: organizationMembershipRequestModel.organizationId}, {__v: 0}).exec();
     if (!organizationModel) {
       logger.error(`Organization membership request with ID: ${organizationMembershipRequestId} references non-existent organization`);
       return {

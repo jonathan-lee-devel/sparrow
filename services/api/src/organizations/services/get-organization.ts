@@ -26,7 +26,7 @@ export const makeGetOrganization = (
       requestingUser: User,
       organizationId: string,
   ) {
-    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0});
+    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0}).exec();
     logger.info(`GET organization by ID: ${organizationId}`);
     if (!organizationModel) {
       return returnNotFound();

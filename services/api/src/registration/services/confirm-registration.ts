@@ -13,7 +13,7 @@ export const makeConfirmRegistration = (
 ): ConfirmRegistrationFunction => {
   return async function confirmRegistration(tokenValue: string) {
     const tokenModel = await RegistrationVerificationTokenModel
-        .findOne({value: tokenValue}, {__v: 0});
+        .findOne({value: tokenValue}, {__v: 0}).exec();
     if (!tokenModel) {
       return {
         status: HttpStatus.BAD_REQUEST,
@@ -23,7 +23,7 @@ export const makeConfirmRegistration = (
       };
     }
 
-    const userModel = await UserModel.findOne({email: tokenModel.userEmail});
+    const userModel = await UserModel.findOne({email: tokenModel.userEmail}).exec();
     if (!userModel) {
       logger.error(`No user found for registration verification token with userEmail: <${tokenModel.userEmail}>`);
       return {

@@ -21,7 +21,7 @@ export const makeResetPassword = (
   return async function resetPassword(
       email: string,
   ) {
-    const userModel = await UserModel.findOne({email}, {__v: 0});
+    const userModel = await UserModel.findOne({email}, {__v: 0}).exec();
     if (!userModel) {
       return {
         status: HttpStatus.OK,
@@ -35,7 +35,7 @@ export const makeResetPassword = (
 
     const passwordResetVerificationTokenModel =
                 await PasswordResetVerificationTokenModel
-                    .findOne({userEmail: email}, {__v: 0});
+                    .findOne({userEmail: email}, {__v: 0}).exec();
     if (!passwordResetVerificationTokenModel) {
       logger.error(`Password reset token does not exist for user: ${email}`);
       return {

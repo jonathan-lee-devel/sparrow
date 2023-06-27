@@ -15,7 +15,7 @@ export const makeGetNotificationById = (
       requestingUser: User,
       notificationId: string) {
     logger.info(`GET notification with ID: ${notificationId}`);
-    const notificationModel = await NotificationModel.findOne({id: notificationId}, {__v: 0});
+    const notificationModel = await NotificationModel.findOne({id: notificationId}, {__v: 0}).exec();
     if (!notificationModel) {
       return returnNotFound();
     }

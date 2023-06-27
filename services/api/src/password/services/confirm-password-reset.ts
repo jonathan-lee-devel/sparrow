@@ -25,7 +25,7 @@ export const makeConfirmPasswordReset = (
       tokenValue: string,
       password: string) {
     const tokenModel = await PasswordResetVerificationTokenModel
-        .findOne({value: tokenValue}, {__v: 0});
+        .findOne({value: tokenValue}, {__v: 0}).exec();
     if (!tokenModel) {
       logger.info(`No token exists with value: ${tokenValue}`);
       return {

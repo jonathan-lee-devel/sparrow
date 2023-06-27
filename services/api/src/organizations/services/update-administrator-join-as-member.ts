@@ -19,7 +19,7 @@ export const makeUpdateAdministratorJoinAsMember = (
   ) {
     logger.info(`Request for user with e-mail: <${administratorEmailToUpdate}> (admin) to become member of organization with ID: ${toJoinOrganizationId}`);
     const organizationModel = await OrganizationModel
-        .findOne({id: toJoinOrganizationId}, {__v: 0});
+        .findOne({id: toJoinOrganizationId}, {__v: 0}).exec();
     if (!organizationModel) {
       return returnNotFound();
     }

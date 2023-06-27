@@ -26,7 +26,7 @@ export const makeGetOrganizationSnippet = (
       requestingUser: User,
       organizationId: string,
   ) {
-    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0});
+    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0}).exec();
     logger.info(`GET organization snippet by ID: ${organizationId}`);
     if (!organizationModel) {
       return returnNotFound();

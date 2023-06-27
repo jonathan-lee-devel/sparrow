@@ -8,6 +8,7 @@ export const configureCors = (logger: bunyan) => {
   logger.info(`Configuring CORS origin set to: ${process.env.FRONT_END_URL}`);
   return cors({
     credentials: true,
+    optionsSuccessStatus: 200,
     origin: process.env.FRONT_END_URL,
   });
 };

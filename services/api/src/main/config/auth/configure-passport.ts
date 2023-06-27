@@ -22,7 +22,7 @@ export const configurePassport =
         callbackURL: process.env.GOOGLE_CALLBACK_URL,
         userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
       }, async (accessToken, refreshToken, profile, done) => {
-        const user = await UserModel.findOne({googleId: profile.id});
+        const user = await UserModel.findOne({googleId: profile.id}).exec();
 
         if (!user) {
           const newUser = await new UserModel({
@@ -45,10 +45,7 @@ export const configurePassport =
           'local',
           new LocalStrategy(async (username, password, done) => {
             try {
-              const foundUser: HydratedDocument<User> =
-                        await UserModel.findOne({
-                          email: username,
-                        });
+              const foundUser: HydratedDocument<User> = await UserModel.findOne({email: username}).exec();
 
               if (!foundUser) {
                 return done(null, false, {message: 'Invalid username'});

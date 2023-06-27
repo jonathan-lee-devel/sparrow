@@ -18,13 +18,13 @@ export const makeMarkDeliveryAsUndelivered = (
       deliveryId: string) {
     logger.info(`Request for user with e-mail: <${requestingUser.email}> to mark delivery with ID: ${deliveryId} as undelivered`);
     const deliveryModel = await DeliveryModel
-        .findOne({id: deliveryId}, {__v: 0});
+        .findOne({id: deliveryId}, {__v: 0}).exec();
     if (!deliveryModel) {
       return returnNotFound();
     }
 
     const organizationModel: Organization = await OrganizationModel
-        .findOne({id: deliveryModel.organizationId}, {__v: 0});
+        .findOne({id: deliveryModel.organizationId}, {__v: 0}).exec();
     if (!organizationModel) {
       return {
         status: HttpStatus.BAD_REQUEST,

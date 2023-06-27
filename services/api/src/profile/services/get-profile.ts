@@ -20,7 +20,7 @@ export const makeGetProfile = (
     if (requestingUser.email !== email) {
       return returnForbidden();
     }
-    const userModel = await UserModel.findOne({email}, {__v: 0});
+    const userModel = await UserModel.findOne({email}, {__v: 0}).exec();
     if (!userModel) {
       logger.error(`No user profile available for requesting user: ${email}`);
       return returnInternalServerError();

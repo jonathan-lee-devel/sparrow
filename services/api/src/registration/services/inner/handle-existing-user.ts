@@ -12,7 +12,7 @@ export const makeHandleExistingUser = (
     PasswordResetVerificationTokenModel: Model<PasswordResetVerificationToken>,
 ): HandleExistingUserFunction => {
   return async function handleExistingUser(email: string): Promise<boolean> {
-    const existingUser = await UserModel.findOne({email}, {__v: 0});
+    const existingUser = await UserModel.findOne({email}, {__v: 0}).exec();
     if (!existingUser) {
       await RegistrationVerificationTokenModel.deleteOne({userEmail: email});
       await PasswordResetVerificationTokenModel.deleteOne({userEmail: email});

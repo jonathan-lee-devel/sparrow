@@ -28,7 +28,7 @@ export const makeGetOrganizationInvitationByTokenValue = (
   ) {
     logger.info(`GET organization invitation by token value: ${organizationInvitationTokenValue}`);
     const organizationInvitationModel = await OrganizationInvitationModel.findOne(
-        {value: organizationInvitationTokenValue}, {__v: 0});
+        {value: organizationInvitationTokenValue}, {__v: 0}).exec();
     if (!organizationInvitationModel) {
       return returnNotFound();
     }

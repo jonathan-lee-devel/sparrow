@@ -22,7 +22,7 @@ export const makeCreateDelivery = (
       delivery: DeliveryRequestDto,
   ) {
     logger.info(`Request to create new delivery from user with e-mail: <${requestingUser.email}>`);
-    const organizationModel = await OrganizationModel.findOne({id: delivery.organizationId}, {__v: 0});
+    const organizationModel = await OrganizationModel.findOne({id: delivery.organizationId}, {__v: 0}).exec();
     if (!organizationModel) {
       return {
         status: HttpStatus.BAD_REQUEST,

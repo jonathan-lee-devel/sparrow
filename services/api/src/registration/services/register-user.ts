@@ -48,7 +48,7 @@ export const makeRegisterUser = (
       emailVerified: false,
       googleId: undefined,
     };
-    const existingGoogleUser = await UserModel.findOne({email});
+    const existingGoogleUser = await UserModel.findOne({email}).exec();
     if (existingGoogleUser) {
       existingGoogleUser.firstName = newUser.firstName;
       existingGoogleUser.lastName = newUser.lastName;
