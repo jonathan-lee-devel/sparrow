@@ -64,7 +64,7 @@ describe('Registration Service Register User Tests', () => {
         },
         {
           findOne: () => {
-            return null;
+            return {exec: () => {}};
           },
         },
     );
