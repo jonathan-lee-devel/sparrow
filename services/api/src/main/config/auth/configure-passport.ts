@@ -82,10 +82,10 @@ export const configurePassport =
         done(null, user.id);
       });
 
-      passport.deserializeUser((id, done) => {
-        UserModel.findById(id, (err: any, user: User) => {
+      passport.deserializeUser(async (id, done) => {
+        await UserModel.findById(id, (err: any, user: User) => {
           done(err, user);
-        });
+        }).exec();
       });
 
       return passport;
