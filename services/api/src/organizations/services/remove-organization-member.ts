@@ -30,7 +30,7 @@ export const makeRemoveOrganizationMember = (
       memberEmailToRemove: string,
   ) {
     logger.info(`Request to remove member <${memberEmailToRemove}> from organization with ID: ${organizationId}`);
-    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0});
+    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0}).exec();
     if (!organizationModel) {
       return {
         status: HttpStatus.BAD_REQUEST,

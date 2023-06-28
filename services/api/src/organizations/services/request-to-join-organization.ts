@@ -34,7 +34,7 @@ export const makeRequestToJoinOrganization = (
       organizationId: string) {
     logger.info(`Request to join organization with ID: ${organizationId}`);
 
-    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0});
+    const organizationModel = await OrganizationModel.findOne({id: organizationId}, {__v: 0}).exec();
     if (!organizationModel) {
       return {
         status: HttpStatus.BAD_REQUEST,
