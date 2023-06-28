@@ -10,7 +10,7 @@ COPY . /app
 
 RUN npm run build:prod
 
-FROM --platform=linux/x86_64 nginx:1.23.3-alpine
+FROM --platform=linux/x86_64 nginx:1.25.1-alpine
 
 COPY --from=build app/dist/sparrow-express-ui /usr/share/nginx/html
 
