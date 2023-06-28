@@ -83,9 +83,13 @@ export const configurePassport =
       });
 
       passport.deserializeUser(async (id, done) => {
-        await UserModel.findById(id, (err: any, user: User) => {
-          done(err, user);
-        }).exec();
+        UserModel.findById(id).exec()
+            .then((user: User) => {
+              done(null, user);
+            })
+            .catch((reason) => {
+              done(reason, null);
+            });
       });
 
       return passport;
