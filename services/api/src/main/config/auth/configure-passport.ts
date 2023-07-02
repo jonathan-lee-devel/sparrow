@@ -11,7 +11,8 @@ const GoogleStrategy = passportGoogle.Strategy;
 /**
  * Passport configuration.
  * @param {bunyan} logger used for logging
- * @param UserModel user model used to represent logged-in user
+ * @param {Model<User>} UserModel user model used to represent logged-in user
+ * @return {Passport} passport config
  */
 export const configurePassport =
     (logger: bunyan, UserModel: Model<User>): passport.PassportStatic => {
@@ -25,15 +26,14 @@ export const configurePassport =
         const user = await UserModel.findOne({googleId: profile.id}).exec();
 
         if (!user) {
-          const newUser = await new UserModel({
+          const newUser = await UserModel.create({
             email: profile.emails?.[0].value,
             googleId: profile.id,
             password: undefined,
             firstName: profile.displayName,
             lastName: undefined,
             emailVerified: true,
-          })
-              .save();
+          });
           if (newUser) {
             done(null, newUser);
           }
@@ -52,21 +52,14 @@ export const configurePassport =
               }
 
               if (!foundUser.password) {
-                return done(null, false, {
-                  message: 'User is not registered via e-mail',
-                });
+                return done(null, false, {message: 'User is not registered via e-mail'});
               }
 
               if (!foundUser.emailVerified) {
-                return done(null, false, {
-                  message: 'User\'s email not verified',
-                });
+                return done(null, false, {message: 'User\'s email not verified'});
               }
 
-              const validPassword = await bcrypt.compare(
-                  password,
-                  foundUser.password,
-              );
+              const validPassword = await bcrypt.compare(password, foundUser.password);
               if (!validPassword) {
                 return done(null, false, {message: 'Invalid password'});
               }
