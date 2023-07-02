@@ -1,5 +1,5 @@
-import {makeConfirmRegistrationController} from '../confirm-registration';
-import {HttpRequest} from '../../../main/types/http-request';
+import {makeConfirmRegistrationController} from '../confirm-registration.js';
+import {HttpRequest} from '../../../main/types/http-request.js';
 
 describe('Confirm Registration Controller tests', () => {
   it('When makeConfirmRegistrationController Then confirmRegistrationController', async () => {

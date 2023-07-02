@@ -1,4 +1,4 @@
-import {makeGenerateRegistrationVerificationToken} from '../generate-registration-verification-token';
+import {makeGenerateRegistrationVerificationToken} from '../generate-registration-verification-token.js';
 
 describe('Generate Registration Verification Token Tests', () => {
   it('When makeGenerateRegistrationVerificationToken Then generateRegistrationVerificationToken', async () => {

@@ -1,4 +1,4 @@
-import {makeHandleExistingUser} from '../inner/handle-existing-user';
+import {makeHandleExistingUser} from '../inner/handle-existing-user.js';
 
 describe('Registration Service Handle Existing User Tests', () => {
   it('When makeHandleExistingUser Then handleExistingUser', async () => {

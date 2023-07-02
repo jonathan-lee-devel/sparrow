@@ -1,6 +1,6 @@
-import {makeApproveRequestToJoinOrganizationController} from '../approve-request-to-join-organization';
-import {User} from '../../../main/models/User';
-import {HttpRequest} from '../../../main/types/http-request';
+import {makeApproveRequestToJoinOrganizationController} from '../approve-request-to-join-organization.js';
+import {User} from '../../../main/models/User.js';
+import {HttpRequest} from '../../../main/types/http-request.js';
 
 describe('Approve Request to Join Organization Controller tests', () => {
   it('When makeApproveRequestToJoinOrganizationController Then approveRequestToJoinOrganizationController',

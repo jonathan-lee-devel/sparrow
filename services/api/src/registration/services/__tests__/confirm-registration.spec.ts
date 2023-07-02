@@ -1,5 +1,5 @@
-import {makeConfirmRegistration} from '../confirm-registration';
-import {RegistrationStatus} from '../../enums/RegistrationStatus';
+import {makeConfirmRegistration} from '../confirm-registration.js';
+import {RegistrationStatus} from '../../enums/RegistrationStatus.js';
 
 describe('Registration Service Confirm Registration Tests', () => {
   it('When makeConfirmRegistration Then confirmRegistration', async () => {

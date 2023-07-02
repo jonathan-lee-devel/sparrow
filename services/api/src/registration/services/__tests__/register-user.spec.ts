@@ -1,5 +1,5 @@
-import {makeRegisterUser} from '../register-user';
-import {RegistrationStatus} from '../../enums/RegistrationStatus';
+import {makeRegisterUser} from '../register-user.js';
+import {RegistrationStatus} from '../../enums/RegistrationStatus.js';
 
 describe('Registration Service Register User Tests', () => {
   it('When makeRegisterUser Then registerUser', async () => {
