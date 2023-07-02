@@ -1,5 +1,6 @@
-import {makeConfirmRegistrationController} from '../confirm-registration.js';
-import {HttpRequest} from '../../../main/types/http-request.js';
+import {describe, it, expect} from '@jest/globals';
+import {makeConfirmRegistrationController} from '../confirm-registration';
+import {HttpRequest} from '../../../main/types/http-request';
 
 describe('Confirm Registration Controller tests', () => {
   it('When makeConfirmRegistrationController Then confirmRegistrationController', async () => {

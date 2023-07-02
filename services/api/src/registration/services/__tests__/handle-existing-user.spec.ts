@@ -1,4 +1,5 @@
-import {makeHandleExistingUser} from '../inner/handle-existing-user.js';
+import {describe, it, expect} from '@jest/globals';
+import {makeHandleExistingUser} from '../inner/handle-existing-user';
 
 describe('Registration Service Handle Existing User Tests', () => {
   it('When makeHandleExistingUser Then handleExistingUser', async () => {

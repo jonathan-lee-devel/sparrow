@@ -1,3 +1,4 @@
+import {describe, it, expect} from '@jest/globals';
 import {makeRegisterUserController} from '../register-user';
 import {HttpRequest} from '../../../main/types/http-request';
 
