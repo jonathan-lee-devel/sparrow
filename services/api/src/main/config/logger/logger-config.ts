@@ -1,6 +1,6 @@
 import bunyan from 'bunyan';
 
-const logger: bunyan = bunyan.createLogger({name: 'sparrow-express-api', src: true});
+const logger: bunyan = bunyan.createLogger({name: 'sparrow-express-api'});
 logger.info('Initializing application');
 
 /**
