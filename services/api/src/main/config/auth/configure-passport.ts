@@ -21,7 +21,7 @@ export const configurePassport =
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK_URL,
         userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
-      }, async (accessToken, refreshToken, profile, done) => {
+      }, async (accessToken, refreshToken, profile, done): Promise<void> => {
         const user = await UserModel.findOne({googleId: profile.id}).exec();
 
         if (!user) {
@@ -43,7 +43,7 @@ export const configurePassport =
       }));
       passport.use(
           'local',
-          new LocalStrategy(async (username, password, done) => {
+          new LocalStrategy(async (username, password, done): Promise<void> => {
             try {
               const foundUser: HydratedDocument<User> = await UserModel.findOne({email: username}).exec();
 
@@ -82,7 +82,7 @@ export const configurePassport =
         done(null, user.id);
       });
 
-      passport.deserializeUser(async (id, done) => {
+      passport.deserializeUser(async (id, done): Promise<void> => {
         UserModel.findById(id).exec()
             .then((user: User) => {
               done(null, user);
