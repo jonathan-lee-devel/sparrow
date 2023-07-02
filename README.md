@@ -13,4 +13,4 @@ Sparrow.Express is open source and is licensed under **[GPL-3](https://github.co
 ## Deployment
 Sparrow.Express is fully dockerized and deployed to a Kubernetes cluster hosted in the cloud.
 
-![]([image.png](https://github.com/jonathan-lee-devel/sparrow.express/blob/main/LICENSE)https://github.com/jonathan-lee-devel/sparrow.express/blob/main/sparrow-express-arch.png)
+![Architecture Diagram](https://github.com/jonathan-lee-devel/sparrow.express/blob/main/sparrow-express-arch.png?raw=true)
