@@ -1,4 +1,4 @@
-import {describe, it, expect} from '@jest/globals';
+import {describe, it, xit, expect} from '@jest/globals';
 import {makeHandleExistingUser} from '../inner/handle-existing-user';
 
 describe('Registration Service Handle Existing User Tests', () => {
