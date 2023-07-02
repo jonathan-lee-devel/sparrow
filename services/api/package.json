@@ -1,8 +1,8 @@
 {
   "name": "sparrow-express-api",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "API for food delivery service application",
-  "main": "dist/main/app.js",
+  "main": "dist/src/main/app.js",
   "type": "module",
   "scripts": {
     "prebuild": "eslint -c .eslintrc.cjs --fix",
@@ -22,7 +22,7 @@
     "url": "git+https://github.com/io-jonathanlee/sparrow-express-api.git"
   },
   "keywords": [
-    "split"
+    "sparrow"
   ],
   "author": "Jonathan Lee <jonathan.lee.devel@gmail.com>",
   "license": "GPL-3.0-or-later",

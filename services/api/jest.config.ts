@@ -3,7 +3,8 @@ import {jsWithTsESM as tsjPreset} from 'ts-jest/presets';
 
 const jestConfig: JestConfigWithTsJest = {
   collectCoverage: true,
-  preset: 'ts-jest/presets/js-with-ts',
+  testMatch: ['**/*.spec.ts'],
+  preset: 'ts-jest',
   transform: {
     ...tsjPreset.transform,
   },
