@@ -1,7 +1,7 @@
 module.exports = {
     preset: 'ts-jest/presets/default-esm',
     transform: {
-        '^.+\\.(ts|tsx)$': ['ts-jest', {'useESM': true}]
+        '^.+\\.(js|jsx)$': ['ts-jest', {'useESM': true}]
     },
     testEnvironment: 'node',
     collectCoverage: true,
