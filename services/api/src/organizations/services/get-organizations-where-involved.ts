@@ -1,10 +1,10 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Organization} from '../models/Organization';
-import {GetOrganizationsWhereInvolvedFunction} from '../types/get-organizations-where-involved';
-import {User} from '../../main/models/User';
-import {OrganizationDto} from '../dtos/OrganizationDto';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../models/Organization.js';
+import {GetOrganizationsWhereInvolvedFunction} from '../types/get-organizations-where-involved.js';
+import {User} from '../../main/models/User.js';
+import {OrganizationDto} from '../dtos/OrganizationDto.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which obtains organizations in which the requesting user is involved.

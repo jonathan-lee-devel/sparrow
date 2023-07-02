@@ -1,10 +1,10 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Organization} from '../models/Organization';
-import {User} from '../../main/models/User';
-import {GetOrganizationFunction} from '../types/get-organization';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../models/Organization.js';
+import {User} from '../../main/models/User.js';
+import {GetOrganizationFunction} from '../types/get-organization.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which gets organization data by ID.

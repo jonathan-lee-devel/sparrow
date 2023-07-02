@@ -1,18 +1,18 @@
 import bunyan from 'bunyan';
-import {Organization} from '../models/Organization';
+import {Organization} from '../models/Organization.js';
 import {Model} from 'mongoose';
-import {returnForbidden} from '../../common/use-cases/status-data-container';
-import {User} from '../../main/models/User';
-import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus';
-import {GenerateIdFunction} from '../../util/id/types/generate-id';
-import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length';
-import {InviteToJoinOrganizationFunction} from '../types/invite-to-join-organization';
-import {OrganizationInvitation} from '../models/OrganizationInvitation';
-import {SendMailFunction} from '../../util/email/types/send-mail';
-import {DEFAULT_TOKEN_SIZE} from '../../util/token/default-token-size';
+import {returnForbidden} from '../../common/use-cases/status-data-container/index.js';
+import {User} from '../../main/models/User.js';
+import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus.js';
+import {GenerateIdFunction} from '../../util/id/types/generate-id.js';
+import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length.js';
+import {InviteToJoinOrganizationFunction} from '../types/invite-to-join-organization.js';
+import {OrganizationInvitation} from '../models/OrganizationInvitation.js';
+import {SendMailFunction} from '../../util/email/types/send-mail.js';
+import {DEFAULT_TOKEN_SIZE} from '../../util/token/default-token-size.js';
 import {addDays} from 'date-fns';
-import {DEFAULT_TOKEN_EXPIRY_TIME_DAYS} from '../../util/token/default-token-expiry-time-days';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {DEFAULT_TOKEN_EXPIRY_TIME_DAYS} from '../../util/token/default-token-expiry-time-days.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for service function which invites a given user to join an organization.

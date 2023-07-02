@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import bunyan from 'bunyan';
-import {LoginStatus} from '../enums/login-status';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {LoginStatus} from '../enums/login-status.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Configuration for the user logout route.

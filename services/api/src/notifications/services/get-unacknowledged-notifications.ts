@@ -1,12 +1,12 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Notification} from '../models/Notification';
-import {User} from '../../main/models/User';
-import {returnInternalServerError} from '../../common/use-cases/status-data-container';
-import {GetUnacknowledgedNotificationsFunction} from '../types/get-unacknowledged-notifications';
-import {NotificationDto} from '../dto/NotificationDto';
-import {NotificationType} from '../enums/NotificationType';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Notification} from '../models/Notification.js';
+import {User} from '../../main/models/User.js';
+import {returnInternalServerError} from '../../common/use-cases/status-data-container/index.js';
+import {GetUnacknowledgedNotificationsFunction} from '../types/get-unacknowledged-notifications.js';
+import {NotificationDto} from '../dto/NotificationDto.js';
+import {NotificationType} from '../enums/NotificationType.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeGetUnacknowledgedNotifications = (
     logger: bunyan,

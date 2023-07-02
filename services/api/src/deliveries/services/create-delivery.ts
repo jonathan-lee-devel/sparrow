@@ -1,15 +1,15 @@
 import bunyan from 'bunyan';
-import {GenerateIdFunction} from '../../util/id/types/generate-id';
+import {GenerateIdFunction} from '../../util/id/types/generate-id.js';
 import {Model} from 'mongoose';
-import {Delivery} from '../models/Delivery';
-import {CreateDeliveryFunction} from '../types/create-delivery';
-import {DeliveryRequestDto} from '../dto/DeliveryRequestDto';
-import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length';
-import {returnForbidden} from '../../common/use-cases/status-data-container';
-import {User} from '../../main/models/User';
-import {Organization} from '../../organizations/models/Organization';
-import {errorMessageToDto} from '../../common/use-cases/errors';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Delivery} from '../models/Delivery.js';
+import {CreateDeliveryFunction} from '../types/create-delivery.js';
+import {DeliveryRequestDto} from '../dto/DeliveryRequestDto.js';
+import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length.js';
+import {returnForbidden} from '../../common/use-cases/status-data-container/index.js';
+import {User} from '../../main/models/User.js';
+import {Organization} from '../../organizations/models/Organization.js';
+import {errorMessageToDto} from '../../common/use-cases/errors/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeCreateDelivery = (
     logger: bunyan,

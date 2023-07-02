@@ -1,13 +1,13 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Organization} from '../models/Organization';
-import {OrganizationMembershipRequest} from '../models/OrganizationMembershipRequest';
-import {User} from '../../main/models/User';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {ApproveRequestToJoinOrganizationFunction} from '../types/approve-request-to-join-organization';
-import {errorMessageToDto} from '../../common/use-cases/errors';
-import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../models/Organization.js';
+import {OrganizationMembershipRequest} from '../models/OrganizationMembershipRequest.js';
+import {User} from '../../main/models/User.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {ApproveRequestToJoinOrganizationFunction} from '../types/approve-request-to-join-organization.js';
+import {errorMessageToDto} from '../../common/use-cases/errors/index.js';
+import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which approves a request to join an organization.

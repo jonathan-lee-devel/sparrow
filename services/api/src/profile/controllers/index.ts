@@ -1,6 +1,6 @@
-import {makeGetProfileController} from './get-profile';
-import {getProfile, updateProfile} from '../services';
-import {makeUpdateProfileController} from './update-profile';
+import {makeGetProfileController} from './get-profile.js';
+import {getProfile, updateProfile} from '../services/index.js';
+import {makeUpdateProfileController} from './update-profile.js';
 
 export const getProfileController =
     makeGetProfileController(getProfile);

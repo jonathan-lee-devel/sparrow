@@ -1,12 +1,12 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Organization} from '../../organizations/models/Organization';
-import {Delivery} from '../models/Delivery';
-import {MarkDeliveryAsDeliveredFunction} from '../types/mark-delivery-as-delivered';
-import {User} from '../../main/models/User';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {errorMessageToDto} from '../../common/use-cases/errors';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../../organizations/models/Organization.js';
+import {Delivery} from '../models/Delivery.js';
+import {MarkDeliveryAsDeliveredFunction} from '../types/mark-delivery-as-delivered.js';
+import {User} from '../../main/models/User.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {errorMessageToDto} from '../../common/use-cases/errors/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeMarkDeliveryAsDelivered = (
     logger: bunyan,

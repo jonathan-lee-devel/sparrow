@@ -1,11 +1,11 @@
-import {loggerConfig} from '../../main/config/logger/logger-config';
-import {makeCreateNotification} from './create-notification';
-import {generatedId} from '../../util/id/services';
-import {NotificationModel} from '../models/Notification';
-import {makeGetUnacknowledgedNotifications} from './get-unacknowledged-notifications';
-import {makeGetAllNotifications} from './get-all-notifications';
-import {makeGetNotificationById} from './get-notification-by-id';
-import {makeAcknowledgeNotification} from './acknowledge-notification';
+import {loggerConfig} from '../../main/config/logger/logger-config.js';
+import {makeCreateNotification} from './create-notification.js';
+import {generatedId} from '../../util/id/services/index.js';
+import {NotificationModel} from '../models/Notification.js';
+import {makeGetUnacknowledgedNotifications} from './get-unacknowledged-notifications.js';
+import {makeGetAllNotifications} from './get-all-notifications.js';
+import {makeGetNotificationById} from './get-notification-by-id.js';
+import {makeAcknowledgeNotification} from './acknowledge-notification.js';
 
 const logger = loggerConfig();
 

@@ -1,6 +1,6 @@
-import {confirmPasswordReset, resetPassword} from '../services';
-import {makeConfirmPasswordResetController} from './confirm-password-reset';
-import {makeResetPasswordController} from './reset-password';
+import {confirmPasswordReset, resetPassword} from '../services/index.js';
+import {makeConfirmPasswordResetController} from './confirm-password-reset.js';
+import {makeResetPasswordController} from './reset-password.js';
 
 export const confirmPasswordResetController =
     makeConfirmPasswordResetController(confirmPasswordReset);

@@ -1,8 +1,8 @@
-import {makeCreateDeliveryController} from './create-delivery';
-import {createDelivery, getAssignedDeliveries, markDeliveryAsDelivered, markDeliveryAsUndelivered} from '../services';
-import {makeGetAssignedDeliveriesController} from './get-assigned-deliveries';
-import {makeMarkDeliveryAsDeliveredController} from './mark-delivery-as-delivered';
-import {makeMarkDeliveryAsUndeliveredController} from './mark-delivery-as-undelivered';
+import {makeCreateDeliveryController} from './create-delivery.js';
+import {createDelivery, getAssignedDeliveries, markDeliveryAsDelivered, markDeliveryAsUndelivered} from '../services/index.js';
+import {makeGetAssignedDeliveriesController} from './get-assigned-deliveries.js';
+import {makeMarkDeliveryAsDeliveredController} from './mark-delivery-as-delivered.js';
+import {makeMarkDeliveryAsUndeliveredController} from './mark-delivery-as-undelivered.js';
 
 export const createDeliveryController = makeCreateDeliveryController(createDelivery);
 

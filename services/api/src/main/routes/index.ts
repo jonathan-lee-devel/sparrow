@@ -1,7 +1,7 @@
 import express from 'express';
-import {configureLoginRoute} from './login-route';
-import {configureLogoutRoute} from './logout-route';
-import {loggerConfig} from '../config/logger/logger-config';
+import {configureLoginRoute} from './login-route.js';
+import {configureLogoutRoute} from './logout-route.js';
+import {loggerConfig} from '../config/logger/logger-config.js';
 import passport from 'passport';
 
 const router = express.Router();

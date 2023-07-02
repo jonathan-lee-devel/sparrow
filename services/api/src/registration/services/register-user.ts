@@ -1,18 +1,18 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {User} from '../../main/models/User';
-import {RegisterUserFunction} from '../types/register-user';
-import {EncodePasswordFunction} from '../../password/types/encode-password';
-import {HandleExistingUserFunction} from '../types/inner/handle-existing-user';
-import {RegistrationStatus} from '../enums/RegistrationStatus';
-import {SendMailFunction} from '../../util/email/types/send-mail';
-import {DEFAULT_TOKEN_SIZE} from '../../util/token/default-token-size';
-import {DEFAULT_TOKEN_EXPIRY_TIME_MINUTES} from '../../util/token/default-token-expiry-time-minutes';
-import {GenerateRegistrationVerificationTokenFunction} from '../types/generate-registration-verification-token';
+import {User} from '../../main/models/User.js';
+import {RegisterUserFunction} from '../types/register-user.js';
+import {EncodePasswordFunction} from '../../password/types/encode-password.js';
+import {HandleExistingUserFunction} from '../types/inner/handle-existing-user.js';
+import {RegistrationStatus} from '../enums/RegistrationStatus.js';
+import {SendMailFunction} from '../../util/email/types/send-mail.js';
+import {DEFAULT_TOKEN_SIZE} from '../../util/token/default-token-size.js';
+import {DEFAULT_TOKEN_EXPIRY_TIME_MINUTES} from '../../util/token/default-token-expiry-time-minutes.js';
+import {GenerateRegistrationVerificationTokenFunction} from '../types/generate-registration-verification-token.js';
 import {
   GeneratePasswordResetVerificationTokenFunction,
-} from '../../password/types/generate-password-reset-verification-token';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+} from '../../password/types/generate-password-reset-verification-token.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeRegisterUser = (
     logger: bunyan,

@@ -1,10 +1,10 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Delivery} from '../models/Delivery';
-import {GetAssignedDeliveriesFunction} from '../types/get-assigned-deliveries';
-import {User} from '../../main/models/User';
-import {DeliveryDto} from '../dto/DeliveryDto';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Delivery} from '../models/Delivery.js';
+import {GetAssignedDeliveriesFunction} from '../types/get-assigned-deliveries.js';
+import {User} from '../../main/models/User.js';
+import {DeliveryDto} from '../dto/DeliveryDto.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeGetAssignedDeliveries = (
     logger: bunyan,

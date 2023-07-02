@@ -1,6 +1,6 @@
-import {GetProfileFunction} from '../types/get-profile';
-import {HttpController} from "../../main/types/http-controller";
-import {HttpRequest} from "../../main/types/http-request";
+import {GetProfileFunction} from '../types/get-profile.js';
+import {HttpController} from '../../main/types/http-controller.js';
+import {HttpRequest} from '../../main/types/http-request.js';
 
 /**
  * HTTP controller for processing requests to get user profile.

@@ -1,9 +1,9 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {UpdateProfileFunction} from '../types/update-profile';
-import {User} from '../../main/models/User';
-import {returnForbidden, returnInternalServerError} from '../../common/use-cases/status-data-container';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {UpdateProfileFunction} from '../types/update-profile.js';
+import {User} from '../../main/models/User.js';
+import {returnForbidden, returnInternalServerError} from '../../common/use-cases/status-data-container/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for function to update user profile.

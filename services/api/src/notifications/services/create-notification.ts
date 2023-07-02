@@ -1,12 +1,12 @@
 import bunyan from 'bunyan';
-import {GenerateIdFunction} from '../../util/id/types/generate-id';
+import {GenerateIdFunction} from '../../util/id/types/generate-id.js';
 import {Model} from 'mongoose';
-import {CreateNotificationFunction} from '../types/create-notification';
-import {NotificationRequestDto} from '../dto/NotificationRequestDto';
-import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length';
-import {Notification} from '../models/Notification';
-import {NotificationType} from '../enums/NotificationType';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {CreateNotificationFunction} from '../types/create-notification.js';
+import {NotificationRequestDto} from '../dto/NotificationRequestDto.js';
+import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length.js';
+import {Notification} from '../models/Notification.js';
+import {NotificationType} from '../enums/NotificationType.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeCreateNotification = (
     logger: bunyan,

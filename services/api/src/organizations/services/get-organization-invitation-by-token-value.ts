@@ -1,10 +1,10 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {OrganizationInvitation} from '../models/OrganizationInvitation';
-import {User} from '../../main/models/User';
-import {GetOrganizationInvitationByTokenValueFunction} from '../types/get-organization-invitation-by-token-value';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {OrganizationInvitation} from '../models/OrganizationInvitation.js';
+import {User} from '../../main/models/User.js';
+import {GetOrganizationInvitationByTokenValueFunction} from '../types/get-organization-invitation-by-token-value.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which gets organization invitation data by token value.

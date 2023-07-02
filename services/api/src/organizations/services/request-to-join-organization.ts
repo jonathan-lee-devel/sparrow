@@ -1,13 +1,13 @@
 import bunyan from 'bunyan';
-import {Organization} from '../models/Organization';
+import {Organization} from '../models/Organization.js';
 import {Model} from 'mongoose';
-import {RequestToJoinOrganizationFunction} from '../types/request-to-join-organization';
-import {User} from '../../main/models/User';
-import {OrganizationMembershipRequest} from '../models/OrganizationMembershipRequest';
-import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus';
-import {GenerateIdFunction} from '../../util/id/types/generate-id';
-import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {RequestToJoinOrganizationFunction} from '../types/request-to-join-organization.js';
+import {User} from '../../main/models/User.js';
+import {OrganizationMembershipRequest} from '../models/OrganizationMembershipRequest.js';
+import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus.js';
+import {GenerateIdFunction} from '../../util/id/types/generate-id.js';
+import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which makes a request for the requesting user to join a given organization by ID.

@@ -1,15 +1,15 @@
 import express from 'express';
-import {loggerConfig} from '../../main/config/logger/logger-config';
-import {configureRoute} from '../../main/routes/configure-route';
-import {HttpRequestMethod} from '../../main/enums/http-request-method';
-import {createDeliveryValidationChain} from '../validation-chains/create-delivery';
-import {makeExpressCallback} from '../../main/express-callbacks/express-callback';
+import {loggerConfig} from '../../main/config/logger/logger-config.js';
+import {configureRoute} from '../../main/routes/configure-route.js';
+import {HttpRequestMethod} from '../../main/enums/http-request-method.js';
+import {createDeliveryValidationChain} from '../validation-chains/create-delivery.js';
+import {makeExpressCallback} from '../../main/express-callbacks/express-callback.js';
 import {
   createDeliveryController,
   getAssignedDeliveriesController,
   markDeliveryAsDeliveredController,
   markDeliveryAsUndeliveredController,
-} from '../controllers';
+} from '../controllers/index.js';
 
 const router = express.Router();
 

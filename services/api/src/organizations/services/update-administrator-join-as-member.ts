@@ -1,12 +1,12 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Organization} from '../models/Organization';
-import {UpdateAdministratorJoinAsMemberFunction} from '../types/update-administrator-join-as-member';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {User} from '../../main/models/User';
-import {errorMessageToDto} from '../../common/use-cases/errors';
-import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../models/Organization.js';
+import {UpdateAdministratorJoinAsMemberFunction} from '../types/update-administrator-join-as-member.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {User} from '../../main/models/User.js';
+import {errorMessageToDto} from '../../common/use-cases/errors/index.js';
+import {OrganizationMembershipStatus} from '../enums/OrganizationMembershipStatus.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeUpdateAdministratorJoinAsMember = (
     logger: bunyan,

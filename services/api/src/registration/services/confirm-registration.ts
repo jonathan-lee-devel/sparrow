@@ -1,10 +1,10 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {RegistrationVerificationToken} from '../models/RegistrationVerificationToken';
-import {ConfirmRegistrationFunction} from '../types/confirm-registration';
-import {RegistrationStatus} from '../enums/RegistrationStatus';
-import {User} from '../../main/models/User';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {RegistrationVerificationToken} from '../models/RegistrationVerificationToken.js';
+import {ConfirmRegistrationFunction} from '../types/confirm-registration.js';
+import {RegistrationStatus} from '../enums/RegistrationStatus.js';
+import {User} from '../../main/models/User.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeConfirmRegistration = (
     logger: bunyan,

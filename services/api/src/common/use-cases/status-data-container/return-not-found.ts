@@ -1,5 +1,5 @@
-import {ReturnNotFoundFunction} from './types/return-not-found';
-import {HttpStatus} from '../../enums/HttpStatus';
+import {ReturnNotFoundFunction} from './types/return-not-found.js';
+import {HttpStatus} from '../../enums/HttpStatus.js';
 
 /**
  * Helper function for returning HTTP 404 Not Found errors.

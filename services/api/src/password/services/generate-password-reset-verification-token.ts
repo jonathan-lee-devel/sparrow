@@ -2,9 +2,9 @@ import bunyan from 'bunyan';
 import {Model} from 'mongoose';
 import {randomBytes} from 'crypto';
 import {addMinutes} from 'date-fns';
-import {PasswordResetVerificationToken} from '../models/PasswordResetVerificationToken';
-import {GeneratePasswordResetVerificationTokenFunction} from '../types/generate-password-reset-verification-token';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {PasswordResetVerificationToken} from '../models/PasswordResetVerificationToken.js';
+import {GeneratePasswordResetVerificationTokenFunction} from '../types/generate-password-reset-verification-token.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for generating password reset verification token.

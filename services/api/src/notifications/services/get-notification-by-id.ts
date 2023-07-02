@@ -1,11 +1,11 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Notification} from '../models/Notification';
-import {GetNotificationByIdFunction} from '../types/get-notification-by-id';
-import {User} from '../../main/models/User';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {NotificationType} from '../enums/NotificationType';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Notification} from '../models/Notification.js';
+import {GetNotificationByIdFunction} from '../types/get-notification-by-id.js';
+import {User} from '../../main/models/User.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {NotificationType} from '../enums/NotificationType.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeGetNotificationById = (
     logger: bunyan,

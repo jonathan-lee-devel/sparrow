@@ -1,8 +1,8 @@
-import {makeSendMailCallback} from './inner/send-mail-callback';
-import {transporterConfig} from '../config/Email';
-import {makeSendMail} from './send-mail';
-import {makeVerifyEmail} from './verify-email';
-import {loggerConfig} from '../../../main/config/logger/logger-config';
+import {makeSendMailCallback} from './inner/send-mail-callback.js';
+import {transporterConfig} from '../config/Email.js';
+import {makeSendMail} from './send-mail.js';
+import {makeVerifyEmail} from './verify-email.js';
+import {loggerConfig} from '../../../main/config/logger/logger-config.js';
 
 const logger = loggerConfig();
 

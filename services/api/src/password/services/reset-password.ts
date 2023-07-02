@@ -1,14 +1,14 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {ResetPasswordFunction} from '../types/reset-password';
-import {User} from '../../main/models/User';
-import {PasswordResetStatus} from '../enums/PasswordResetStatus';
-import {PasswordResetVerificationToken} from '../models/PasswordResetVerificationToken';
-import {GeneratePasswordResetVerificationTokenFunction} from '../types/generate-password-reset-verification-token';
-import {SendMailFunction} from '../../util/email/types/send-mail';
-import {DEFAULT_TOKEN_SIZE} from '../../util/token/default-token-size';
-import {DEFAULT_TOKEN_EXPIRY_TIME_MINUTES} from '../../util/token/default-token-expiry-time-minutes';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {ResetPasswordFunction} from '../types/reset-password.js';
+import {User} from '../../main/models/User.js';
+import {PasswordResetStatus} from '../enums/PasswordResetStatus.js';
+import {PasswordResetVerificationToken} from '../models/PasswordResetVerificationToken.js';
+import {GeneratePasswordResetVerificationTokenFunction} from '../types/generate-password-reset-verification-token.js';
+import {SendMailFunction} from '../../util/email/types/send-mail.js';
+import {DEFAULT_TOKEN_SIZE} from '../../util/token/default-token-size.js';
+import {DEFAULT_TOKEN_EXPIRY_TIME_MINUTES} from '../../util/token/default-token-expiry-time-minutes.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeResetPassword = (
     logger: bunyan,

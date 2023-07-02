@@ -1,8 +1,8 @@
 import {Router} from 'express';
 import {ValidationChain} from 'express-validator';
-import {RequestCallback} from '../types/request-callback';
-import {isLoggedIn} from '../config/auth/is-logged-in';
-import {HttpRequestMethod} from '../enums/http-request-method';
+import {RequestCallback} from '../types/request-callback.js';
+import {isLoggedIn} from '../config/auth/is-logged-in.js';
+import {HttpRequestMethod} from '../enums/http-request-method.js';
 
 /**
  * Route configuration design pattern.

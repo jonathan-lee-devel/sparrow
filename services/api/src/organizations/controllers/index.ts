@@ -1,4 +1,4 @@
-import {makeCreateOrganizationController} from './create-organization';
+import {makeCreateOrganizationController} from './create-organization.js';
 import {
   approveRequestToJoinOrganization,
   createOrganization,
@@ -12,18 +12,18 @@ import {
   removeOrganizationMember,
   requestToJoinOrganization,
   updateAdministratorJoinAsMember,
-} from '../services';
-import {makeGetOrganizationController} from './get-organization';
-import {makeRequestToJoinOrganizationController} from './request-to-join-organization';
-import {makeGetRequestsToJoinOrganizationController} from './get-requests-to-join-organization';
-import {makeRemoveOrganizationMemberController} from './remove-organization-member';
-import {makeApproveRequestToJoinOrganizationController} from './approve-request-to-join-organization';
-import {makeRemoveOrganizationAdministratorController} from './remove-organization-administrator';
-import {makeGetOrganizationsWhereInvolvedController} from './get-organizations-where-involved';
-import {makeGetOrganizationSnippetController} from './get-organization-snippet';
-import {makeInviteToJoinOrganizationController} from './invite-to-join-organization';
-import {makeGetOrganizationInvitationByTokenValueController} from './get-organization-invitation-by-token-value';
-import {makeUpdateAdministratorJoinAsMemberController} from './update-administrator-join-as-member';
+} from '../services/index.js';
+import {makeGetOrganizationController} from './get-organization.js';
+import {makeRequestToJoinOrganizationController} from './request-to-join-organization.js';
+import {makeGetRequestsToJoinOrganizationController} from './get-requests-to-join-organization.js';
+import {makeRemoveOrganizationMemberController} from './remove-organization-member.js';
+import {makeApproveRequestToJoinOrganizationController} from './approve-request-to-join-organization.js';
+import {makeRemoveOrganizationAdministratorController} from './remove-organization-administrator.js';
+import {makeGetOrganizationsWhereInvolvedController} from './get-organizations-where-involved.js';
+import {makeGetOrganizationSnippetController} from './get-organization-snippet.js';
+import {makeInviteToJoinOrganizationController} from './invite-to-join-organization.js';
+import {makeGetOrganizationInvitationByTokenValueController} from './get-organization-invitation-by-token-value.js';
+import {makeUpdateAdministratorJoinAsMemberController} from './update-administrator-join-as-member.js';
 
 export const createOrganizationController = makeCreateOrganizationController(createOrganization);
 

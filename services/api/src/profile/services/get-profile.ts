@@ -1,10 +1,10 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {GetProfileFunction} from '../types/get-profile';
-import {User} from '../../main/models/User';
+import {GetProfileFunction} from '../types/get-profile.js';
+import {User} from '../../main/models/User.js';
 // eslint-disable-next-line max-len
-import {returnForbidden, returnInternalServerError} from '../../common/use-cases/status-data-container';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {returnForbidden, returnInternalServerError} from '../../common/use-cases/status-data-container/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for function to get user profile.

@@ -8,7 +8,7 @@
     "prebuild": "eslint -c .eslintrc.cjs --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node --es-module-specifier-resolution=node dist/main/bin/www.js",
+    "start": "node dist/main/bin/www.js",
     "test": "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests",
     "sonar": "node sonar-project.cjs"
   },

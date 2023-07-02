@@ -1,11 +1,11 @@
 import bunyan from 'bunyan';
-import {GenerateIdFunction} from '../../util/id/types/generate-id';
+import {GenerateIdFunction} from '../../util/id/types/generate-id.js';
 import {Model} from 'mongoose';
-import {Organization} from '../models/Organization';
-import {User} from '../../main/models/User';
-import {CreateOrganizationFunction} from '../types/create-organization';
-import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../models/Organization.js';
+import {User} from '../../main/models/User.js';
+import {CreateOrganizationFunction} from '../types/create-organization.js';
+import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which creates an organization.

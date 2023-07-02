@@ -1,8 +1,8 @@
 import express from 'express';
-import {configureRoute} from '../../main/routes/configure-route';
-import {HttpRequestMethod} from '../../main/enums/http-request-method';
-import {makeExpressCallback} from '../../main/express-callbacks/express-callback';
-import {loggerConfig} from '../../main/config/logger/logger-config';
+import {configureRoute} from '../../main/routes/configure-route.js';
+import {HttpRequestMethod} from '../../main/enums/http-request-method.js';
+import {makeExpressCallback} from '../../main/express-callbacks/express-callback.js';
+import {loggerConfig} from '../../main/config/logger/logger-config.js';
 import {
   approveRequestToJoinOrganizationController,
   createOrganizationController,
@@ -16,12 +16,12 @@ import {
   removeOrganizationMemberController,
   requestToJoinOrganizationController,
   updateAdministratorJoinAsMemberController,
-} from '../controllers';
-import {createOrganizationValidationChain} from '../validation-chains/create-organization';
-import {removeOrganizationMemberValidationChain} from '../validation-chains/remove-organization-member';
-import {removeOrganizationAdministratorValidationChain} from '../validation-chains/remove-organization-administrator';
-import {inviteToJoinOrganizationValidationChain} from '../validation-chains/invite-to-join-organization';
-import {updateAdministratorJoinAsMemberValidationChain} from '../validation-chains/update-administrator-join-as-member';
+} from '../controllers/index.js';
+import {createOrganizationValidationChain} from '../validation-chains/create-organization.js';
+import {removeOrganizationMemberValidationChain} from '../validation-chains/remove-organization-member.js';
+import {removeOrganizationAdministratorValidationChain} from '../validation-chains/remove-organization-administrator.js';
+import {inviteToJoinOrganizationValidationChain} from '../validation-chains/invite-to-join-organization.js';
+import {updateAdministratorJoinAsMemberValidationChain} from '../validation-chains/update-administrator-join-as-member.js';
 
 const router = express.Router();
 

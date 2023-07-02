@@ -1,11 +1,11 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Organization} from '../models/Organization';
-import {User} from '../../main/models/User';
-import {RemoveOrganizationMemberFunction} from '../types/remove-organization-member';
-import {returnForbidden} from '../../common/use-cases/status-data-container';
-import {errorMessageToDto} from '../../common/use-cases/errors';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Organization} from '../models/Organization.js';
+import {User} from '../../main/models/User.js';
+import {RemoveOrganizationMemberFunction} from '../types/remove-organization-member.js';
+import {returnForbidden} from '../../common/use-cases/status-data-container/index.js';
+import {errorMessageToDto} from '../../common/use-cases/errors/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for the service function which removes an organization member.

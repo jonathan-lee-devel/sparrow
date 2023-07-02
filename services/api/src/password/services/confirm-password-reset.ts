@@ -1,12 +1,12 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {ConfirmPasswordResetFunction} from '../types/confirm-password-reset';
+import {ConfirmPasswordResetFunction} from '../types/confirm-password-reset.js';
 // eslint-disable-next-line max-len
-import {PasswordResetVerificationToken} from '../models/PasswordResetVerificationToken';
-import {PasswordResetStatus} from '../enums/PasswordResetStatus';
-import {User} from '../../main/models/User';
-import {EncodePasswordFunction} from '../types/encode-password';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {PasswordResetVerificationToken} from '../models/PasswordResetVerificationToken.js';
+import {PasswordResetStatus} from '../enums/PasswordResetStatus.js';
+import {User} from '../../main/models/User.js';
+import {EncodePasswordFunction} from '../types/encode-password.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Closure for confirm password reset functionality.

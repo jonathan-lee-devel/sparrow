@@ -1,11 +1,11 @@
 import express from 'express';
-import {loggerConfig} from '../../main/config/logger/logger-config';
-import {configureRoute} from '../../main/routes/configure-route';
-import {HttpRequestMethod} from '../../main/enums/http-request-method';
-import {makeExpressCallback} from '../../main/express-callbacks/express-callback';
-import {confirmRegistrationController, registerUserController} from '../controllers';
-import {registerUserValidationChain} from '../validation-chains/register-user';
-import {confirmRegistrationValidationChain} from '../validation-chains/confirm-registration';
+import {loggerConfig} from '../../main/config/logger/logger-config.js';
+import {configureRoute} from '../../main/routes/configure-route.js';
+import {HttpRequestMethod} from '../../main/enums/http-request-method.js';
+import {makeExpressCallback} from '../../main/express-callbacks/express-callback.js';
+import {confirmRegistrationController, registerUserController} from '../controllers/index.js';
+import {registerUserValidationChain} from '../validation-chains/register-user.js';
+import {confirmRegistrationValidationChain} from '../validation-chains/confirm-registration.js';
 
 const router = express.Router();
 

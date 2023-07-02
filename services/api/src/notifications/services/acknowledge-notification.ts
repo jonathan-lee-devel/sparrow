@@ -1,12 +1,12 @@
 import bunyan from 'bunyan';
 import {Model} from 'mongoose';
-import {Notification} from '../models/Notification';
-import {AcknowledgeNotificationFunction} from '../types/acknowledge-notification';
-import {User} from '../../main/models/User';
-import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container';
-import {NotificationType} from '../enums/NotificationType';
-import {errorMessageToDto} from '../../common/use-cases/errors';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {Notification} from '../models/Notification.js';
+import {AcknowledgeNotificationFunction} from '../types/acknowledge-notification.js';
+import {User} from '../../main/models/User.js';
+import {returnForbidden, returnNotFound} from '../../common/use-cases/status-data-container/index.js';
+import {NotificationType} from '../enums/NotificationType.js';
+import {errorMessageToDto} from '../../common/use-cases/errors/index.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 export const makeAcknowledgeNotification = (
     logger: bunyan,

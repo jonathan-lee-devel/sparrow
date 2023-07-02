@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-len
-import {ReturnInternalServerErrorFunction} from './types/return-internal-server-error';
-import {HttpStatus} from '../../enums/HttpStatus';
+import {ReturnInternalServerErrorFunction} from './types/return-internal-server-error.js';
+import {HttpStatus} from '../../enums/HttpStatus.js';
 
 /**
  * Helper function for returning HTTP 500 Internal Server Error errors.

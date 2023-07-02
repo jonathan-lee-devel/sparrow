@@ -1,6 +1,6 @@
-import {ReturnForbiddenFunction} from './types/return-forbidden';
+import {ReturnForbiddenFunction} from './types/return-forbidden.js';
 import bunyan from 'bunyan';
-import {HttpStatus} from '../../enums/HttpStatus';
+import {HttpStatus} from '../../enums/HttpStatus.js';
 
 /**
  * Helper function for returning HTTP 403 Forbidden errors.

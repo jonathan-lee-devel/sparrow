@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 node:18.16.1-alpine3.18
+FROM --platform=linux/x86_64 node:20-alpine3.18
 
 WORKDIR /usr/src/app
 
@@ -16,4 +16,4 @@ USER node
 
 EXPOSE 3000
 
-CMD [ "node", "--es-module-specifier-resolution=node", "dist/main/bin/www.js" ]
+CMD [ "node", "dist/main/bin/www.js" ]

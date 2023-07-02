@@ -1,9 +1,9 @@
 import {Router} from 'express';
 import passport from 'passport';
 import bunyan from 'bunyan';
-import {LoginStatus} from '../enums/login-status';
-import {User} from '../models/User';
-import {HttpStatus} from '../../common/enums/HttpStatus';
+import {LoginStatus} from '../enums/login-status.js';
+import {User} from '../models/User.js';
+import {HttpStatus} from '../../common/enums/HttpStatus.js';
 
 /**
  * Configuration for the user login route.

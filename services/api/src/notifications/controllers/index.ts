@@ -1,13 +1,13 @@
-import {makeGetUnacknowledgedNotificationsController} from './get-unacknowldged-notifications';
+import {makeGetUnacknowledgedNotificationsController} from './get-unacknowldged-notifications.js';
 import {
   acknowledgeNotification,
   getAllNotifications,
   getNotificationById,
   getUnacknowledgedNotifications,
-} from '../services';
-import {makeGetAllNotificationsController} from './get-all-notifications';
-import {makeGetNotificationByIdController} from './get-notification-by-id';
-import {makeAcknowledgeNotificationController} from './acknowledge-notification';
+} from '../services/index.js';
+import {makeGetAllNotificationsController} from './get-all-notifications.js';
+import {makeGetNotificationByIdController} from './get-notification-by-id.js';
+import {makeAcknowledgeNotificationController} from './acknowledge-notification.js';
 
 export const getUnacknowledgedNotificationsController =
     makeGetUnacknowledgedNotificationsController(getUnacknowledgedNotifications);

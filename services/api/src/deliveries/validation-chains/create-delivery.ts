@@ -1,5 +1,5 @@
 import {body, ValidationChain} from 'express-validator';
-import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length';
+import {DEFAULT_ID_LENGTH} from '../../util/id/constants/default-id-length.js';
 
 export const createDeliveryValidationChain: ValidationChain[] = [
   body('assignedDriverEmail', 'Must be a valid e-mail address')

@@ -1,14 +1,14 @@
 import express from 'express';
-import {loggerConfig} from '../../main/config/logger/logger-config';
-import {configureRoute} from '../../main/routes/configure-route';
-import {HttpRequestMethod} from '../../main/enums/http-request-method';
-import {makeExpressCallback} from '../../main/express-callbacks/express-callback';
+import {loggerConfig} from '../../main/config/logger/logger-config.js';
+import {configureRoute} from '../../main/routes/configure-route.js';
+import {HttpRequestMethod} from '../../main/enums/http-request-method.js';
+import {makeExpressCallback} from '../../main/express-callbacks/express-callback.js';
 import {
   acknowledgeNotificationController,
   getAllNotificationsController,
   getNotificationByIdController,
   getUnacknowledgedNotificationsController,
-} from '../controllers';
+} from '../controllers/index.js';
 
 const router = express.Router();
 
