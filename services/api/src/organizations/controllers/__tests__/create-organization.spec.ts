@@ -42,7 +42,6 @@ describe('Create Organization', () => {
     expect(passedRequestingUser).toStrictEqual({email});
     expect(passedName).toBeDefined();
     expect(passedName).toStrictEqual(name);
-    console.log(`HERE: ${JSON.stringify(result)}`);
     expect(result.httpStatus).toStrictEqual(httpStatus);
     expect(result.jsonBody).toStrictEqual(jsonBody);
   });
