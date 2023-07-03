@@ -25,6 +25,8 @@ export const configurePassport =
       }, async (accessToken, refreshToken, profile, done): Promise<void> => {
         const existingUser = await UserModel.findOne({email: profile.emails?.[0].value}).exec();
         if (existingUser?.emailVerified) {
+          existingUser.googleId = profile.id;
+          await existingUser.save();
           done(null, existingUser);
         }
 
