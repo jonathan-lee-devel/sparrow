@@ -40,6 +40,15 @@ export class AuthService {
   ) {
   }
 
+  public getCurrentUserInfo(): UserDto {
+    const userData = sessionStorage.getItem(AuthService.USER_DATA_KEY);
+    if (userData) {
+      return JSON.parse(userData);
+    }
+
+    return (userData) ? JSON.parse(userData) : AuthService.DEFAULT_USER;
+  }
+
   /**
    * Used to determine if a user is authenticated.
    * @return {Observable} boolean indicating if user is authenticated

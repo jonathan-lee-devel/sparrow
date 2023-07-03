@@ -19,7 +19,10 @@ export class OrganizationService {
     return this.httpClient.get<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`);
   }
 
-  addAdministratorAsMember(organizationId: string, administratorEmail: string): Observable<OrganizationMembershipStatusDto> {
+  addAdministratorAsMember(
+      organizationId: string,
+      administratorEmail: string,
+  ): Observable<OrganizationMembershipStatusDto> {
     return this.httpClient.patch<OrganizationMembershipStatusDto>(`${environment.MAIN_API_URL}/organizations/update-admin-join-as-member/${organizationId}`, {administratorEmailToUpdate: administratorEmail});
   }
 
@@ -33,5 +36,9 @@ export class OrganizationService {
 
   removeOrganizationMember(organizationId: string, memberEmail: string): Observable<OrganizationDto> {
     return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}/members/remove`, {memberEmailToRemove: memberEmail});
+  }
+
+  getOrganizationsWhereInvolved(): Observable<OrganizationDto[]> {
+    return this.httpClient.get<OrganizationDto[]>(`${environment.MAIN_API_URL}/organizations/where-involved`);
   }
 }
