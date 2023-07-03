@@ -24,7 +24,7 @@ export const configurePassport =
         userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
       }, async (accessToken, refreshToken, profile, done): Promise<void> => {
         const existingUser = await UserModel.findOne({email: profile.emails?.[0].value}).exec();
-        if (existingUser && existingUser.emailVerified) {
+        if (existingUser?.emailVerified) {
           done(null, existingUser);
         }
 
