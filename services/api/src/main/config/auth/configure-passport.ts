@@ -23,9 +23,12 @@ export const configurePassport =
         callbackURL: process.env.GOOGLE_CALLBACK_URL,
         userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
       }, async (accessToken, refreshToken, profile, done): Promise<void> => {
-        const user = await UserModel.findOne({googleId: profile.id}).exec();
+        const existingUser = await UserModel.findOne({email: profile.emails?.[0].value}).exec();
+        if (existingUser && existingUser.emailVerified) {
+          done(null, existingUser);
+        }
 
-        if (!user) {
+        if (!existingUser) {
           const newUser = await UserModel.create({
             email: profile.emails?.[0].value,
             googleId: profile.id,
@@ -34,11 +37,7 @@ export const configurePassport =
             lastName: undefined,
             emailVerified: true,
           });
-          if (newUser) {
-            done(null, newUser);
-          }
-        } else {
-          done(null, user);
+          done(null, newUser);
         }
       }));
       passport.use(
