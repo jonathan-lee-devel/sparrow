@@ -24,11 +24,15 @@ import {CookiesNoticeModalComponent} from './components/modals/cookies-notice-mo
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
 import {DefaultModalComponent} from './components/modals/default-modal/default-modal.component';
 import {RegisterConfirmComponent} from './components/pages/register-confirm/register-confirm.component';
-import { ResetPasswordConfirmComponent } from './components/pages/reset-password-confirm/reset-password-confirm.component';
-import { OrganizationDashboardComponent } from './components/pages/organizations/:organization/organization-dashboard/organization-dashboard.component';
-import { GoogleLoginSuccessComponent } from './components/pages/google-login-success/google-login-success.component';
-import { ServerErrorComponent } from './components/pages/error/server-error/server-error.component';
-import { PopupModalComponent } from './components/modals/popup-modal/popup-modal.component';
+import {
+  ResetPasswordConfirmComponent,
+} from './components/pages/reset-password-confirm/reset-password-confirm.component';
+import {
+  OrganizationDashboardComponent,
+} from './components/pages/organizations/per-organization/organization-dashboard/organization-dashboard.component';
+import {GoogleLoginSuccessComponent} from './components/pages/google-login-success/google-login-success.component';
+import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
+import {PopupModalComponent} from './components/modals/popup-modal/popup-modal.component';
 
 @NgModule({
   bootstrap: [AppComponent],

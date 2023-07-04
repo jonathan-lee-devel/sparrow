@@ -29,18 +29,15 @@ export const configurePassport =
           await existingUser.save();
           done(null, existingUser);
         }
-
-        if (!existingUser) {
-          const newUser = await UserModel.create({
-            email: profile.emails?.[0].value,
-            googleId: profile.id,
-            password: undefined,
-            firstName: profile.displayName,
-            lastName: undefined,
-            emailVerified: true,
-          });
-          done(null, newUser);
-        }
+        const newUser = await UserModel.create({
+          email: profile.emails?.[0].value,
+          googleId: profile.id,
+          password: undefined,
+          firstName: profile.displayName,
+          lastName: undefined,
+          emailVerified: true,
+        });
+        done(null, newUser);
       }));
       passport.use(
           'local',

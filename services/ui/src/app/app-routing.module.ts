@@ -18,7 +18,7 @@ import {
 } from './components/pages/reset-password-confirm/reset-password-confirm.component';
 import {
   OrganizationDashboardComponent,
-} from './components/pages/organizations/:organization/organization-dashboard/organization-dashboard.component';
+} from './components/pages/organizations/per-organization/organization-dashboard/organization-dashboard.component';
 import {GoogleLoginSuccessComponent} from './components/pages/google-login-success/google-login-success.component';
 import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
 
