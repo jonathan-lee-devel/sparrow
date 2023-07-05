@@ -7,11 +7,18 @@ import {initModals} from 'flowbite';
   templateUrl: './popup-modal.component.html',
   styleUrls: ['./popup-modal.component.css'],
 })
+/**
+ * Pop-up modal component.
+ */
 export class PopupModalComponent implements OnInit {
   modalPrompt: string = 'Prompt';
   modalConfirmButtonText: string = 'Confirm';
   modalCancelButtonText: string = 'Cancel';
 
+  /**
+   * Standard constructor.
+   * @param {ModalService} modalService used to initialize pop-up modal.
+   */
   constructor(private modalService: ModalService) {
     this.modalService.getPopupModalAttributes().subscribe((popupModalAttributes) => {
       this.modalPrompt = popupModalAttributes.modalPrompt;
@@ -34,19 +41,31 @@ export class PopupModalComponent implements OnInit {
     return;
   };
 
+  /**
+   * Init method which initializes tailwind modals.
+   */
   ngOnInit() {
     initModals();
   }
 
+  /**
+   * Action to close the prompt.
+   */
   closePrompt() {
     this.modalService.hidePopupModal();
   }
 
+  /**
+   * Action to confirm the prompt.
+   */
   onConfirm() {
     this.modalService.hidePopupModal();
     this.currentConfirmCallback();
   }
 
+  /**
+   * Action to cancel the prompt.
+   */
   onCancel() {
     this.modalService.hidePopupModal();
     this.currentCancelCallback();

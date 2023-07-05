@@ -7,10 +7,17 @@ import {ModalService} from '../../../services/modal/modal.service';
   templateUrl: './default-modal.component.html',
   styleUrls: ['./default-modal.component.css'],
 })
+/**
+ * Default modal component.
+ */
 export class DefaultModalComponent implements OnInit {
   modalHeading: string = 'Request Error';
   modalText: string = 'There was an error with the request';
 
+  /**
+   * Standard constructor.
+   * @param {ModalService} modalService used to initialize modal
+   */
   constructor(private modalService: ModalService) {
     this.modalService.getModalAttributes().subscribe((modalAttributes) => {
       this.modalHeading = modalAttributes.heading;
@@ -18,6 +25,9 @@ export class DefaultModalComponent implements OnInit {
     });
   }
 
+  /**
+   * Init method which initializes tailwind modals.
+   */
   ngOnInit() {
     initModals();
   }
