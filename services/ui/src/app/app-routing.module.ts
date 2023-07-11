@@ -21,6 +21,7 @@ import {
 } from './components/pages/organizations/per-organization/organization-dashboard/organization-dashboard.component';
 import {GoogleLoginSuccessComponent} from './components/pages/google-login-success/google-login-success.component';
 import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
+import {ManageAccountComponent} from './components/pages/manage-account/manage-account.component';
 
 const routes: Routes = [
   /* ANONYMOUS ROUTES */
@@ -36,8 +37,11 @@ const routes: Routes = [
   {path: 'error/server-error', component: ServerErrorComponent},
   /* GOOGLE LOGIN ROUTES */
   {path: 'google-login-success', component: GoogleLoginSuccessComponent},
-  /* ORGANIZATION ROUTES */
+  /* DASHBOARD ROUTES */
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  /* ACCOUNT ROUTES */
+  {path: 'account/manage', component: ManageAccountComponent, canActivate: [AuthGuard]},
+  /* ORGANIZATION ROUTES */
   {path: 'organizations/create', component: CreateOrganizationComponent, canActivate: [AuthGuard]},
   {path: 'organizations/manage', component: ManageOrganizationsComponent, canActivate: [AuthGuard]},
   {path: 'organizations/dashboard/:organizationId', component: OrganizationDashboardComponent, canActivate: [AuthGuard]},

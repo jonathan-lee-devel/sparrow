@@ -33,6 +33,7 @@ import {
 import {GoogleLoginSuccessComponent} from './components/pages/google-login-success/google-login-success.component';
 import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
 import {PopupModalComponent} from './components/modals/popup-modal/popup-modal.component';
+import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -55,6 +56,7 @@ import {PopupModalComponent} from './components/modals/popup-modal/popup-modal.c
     GoogleLoginSuccessComponent,
     ServerErrorComponent,
     PopupModalComponent,
+    ManageAccountComponent,
   ],
   imports: [
     BrowserModule,
