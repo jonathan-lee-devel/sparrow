@@ -27,4 +27,6 @@ const schema = new Schema<Organization>({
   administratorEmails: {},
 });
 
+schema.index({name: 'text'});
+
 export const OrganizationModel = model<Organization>('Organization', schema);

@@ -15,13 +15,18 @@ import {
   removeOrganizationAdministratorController,
   removeOrganizationMemberController,
   requestToJoinOrganizationController,
+  searchOrganizationsController,
   updateAdministratorJoinAsMemberController,
 } from '../controllers/index.js';
 import {createOrganizationValidationChain} from '../validation-chains/create-organization.js';
 import {removeOrganizationMemberValidationChain} from '../validation-chains/remove-organization-member.js';
-import {removeOrganizationAdministratorValidationChain} from '../validation-chains/remove-organization-administrator.js';
+import {
+  removeOrganizationAdministratorValidationChain,
+} from '../validation-chains/remove-organization-administrator.js';
 import {inviteToJoinOrganizationValidationChain} from '../validation-chains/invite-to-join-organization.js';
-import {updateAdministratorJoinAsMemberValidationChain} from '../validation-chains/update-administrator-join-as-member.js';
+import {
+  updateAdministratorJoinAsMemberValidationChain,
+} from '../validation-chains/update-administrator-join-as-member.js';
 
 const router = express.Router();
 
@@ -50,5 +55,7 @@ configureRoute(router, HttpRequestMethod.POST, '/invite-to-join/:organizationId'
 configureRoute(router, HttpRequestMethod.GET, '/invitations/tokenValue/:organizationInvitationTokenValue', true, [], makeExpressCallback(logger, getOrganizationInvitationByTokenValueController));
 
 configureRoute(router, HttpRequestMethod.PATCH, '/update-admin-join-as-member/:toJoinOrganizationId', true, updateAdministratorJoinAsMemberValidationChain, makeExpressCallback(logger, updateAdministratorJoinAsMemberController));
+
+configureRoute(router, HttpRequestMethod.GET, '/search/:searchString', false, [], makeExpressCallback(logger, searchOrganizationsController));
 
 export {router as OrganizationsRouter};

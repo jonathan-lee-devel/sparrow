@@ -2,14 +2,19 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {OrganizationDto} from '../../dtos/organization/OrganizationDto';
-import {Observable} from 'rxjs';
+import {EMPTY, Observable} from 'rxjs';
 import {OrganizationMembershipStatusDto} from '../../dtos/organization/OrganizationMembershipStatusDto';
+import {OrganizationSnippetDto} from '../../dtos/organization/OrganizationSnippetDto';
+import {ModalService} from '../modal/modal.service';
+import {LoadingService} from '../loading/loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrganizationService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private modalService: ModalService,
+              private loadingService: LoadingService) { }
 
   createOrganization(name: string): Observable<OrganizationDto> {
     return this.httpClient.post<OrganizationDto>(`${environment.MAIN_API_URL}/organizations`, {name});
@@ -40,5 +45,13 @@ export class OrganizationService {
 
   getOrganizationsWhereInvolved(): Observable<OrganizationDto[]> {
     return this.httpClient.get<OrganizationDto[]>(`${environment.MAIN_API_URL}/organizations/where-involved`);
+  }
+
+  searchOrganizations(searchString: string): Observable<OrganizationSnippetDto[]> {
+    if (searchString.length === 0) {
+      this.loadingService.onLoadingFinished();
+      return EMPTY;
+    }
+    return this.httpClient.get<OrganizationSnippetDto[]>(`${environment.MAIN_API_URL}/organizations/search/${searchString}`);
   }
 }

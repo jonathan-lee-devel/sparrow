@@ -16,6 +16,7 @@ import {OrganizationInvitationModel} from '../models/OrganizationInvitation.js';
 import {sendMail} from '../../util/email/exports/index.js';
 import {makeGetOrganizationInvitationByTokenValue} from './get-organization-invitation-by-token-value.js';
 import {makeUpdateAdministratorJoinAsMember} from './update-administrator-join-as-member.js';
+import {makeSearchOrganizations} from './search-organizations.js';
 
 const logger = loggerConfig();
 
@@ -83,6 +84,11 @@ export const getOrganizationInvitationByTokenValue = makeGetOrganizationInvitati
 );
 
 export const updateAdministratorJoinAsMember = makeUpdateAdministratorJoinAsMember(
+    logger,
+    OrganizationModel,
+);
+
+export const searchOrganizations = makeSearchOrganizations(
     logger,
     OrganizationModel,
 );

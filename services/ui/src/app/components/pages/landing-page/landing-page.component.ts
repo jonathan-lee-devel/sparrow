@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {SearchResultDto} from '../../../dtos/SearchResultDto';
 import {CookiesNoticeService} from '../../../services/cookies-notice/cookies-notice.service';
 import {LoadingService} from '../../../services/loading/loading.service';
+import {OrganizationService} from '../../../services/organization/organization.service';
+import {OrganizationSnippetDto} from '../../../dtos/organization/OrganizationSnippetDto';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,11 +10,14 @@ import {LoadingService} from '../../../services/loading/loading.service';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
-  queryParams: string = '';
-  searchResults: SearchResultDto[] = [];
-  isLoading: boolean = false;
+  queryParams = '';
+  searchResults: OrganizationSnippetDto[] = [];
+  isLoading = false;
+  isEmptySearchResults = false;
 
-  constructor(private cookiesNoticeService: CookiesNoticeService, private loadingService: LoadingService) {
+  constructor(private cookiesNoticeService: CookiesNoticeService,
+              private loadingService: LoadingService,
+              private organizationService: OrganizationService) {
     this.loadingService.isLoadingObservable()
         .subscribe((isLoading) => {
           this.isLoading = isLoading;
@@ -27,11 +31,16 @@ export class LandingPageComponent implements OnInit {
 
   search(queryParams: string) {
     this.loadingService.onLoadingStart();
-    setTimeout(() => {
-      this.searchResults.push({
-        title: queryParams,
-      });
-      this.loadingService.onLoadingFinished();
-    }, 1000);
+    this.isEmptySearchResults = false;
+    this.organizationService.searchOrganizations(queryParams)
+        .subscribe((organizationSearchResults) => {
+          setTimeout(() => {
+            this.searchResults = organizationSearchResults;
+            if (this.searchResults.length === 0) {
+              this.isEmptySearchResults = true;
+            }
+            this.loadingService.onLoadingFinished();
+          }, 1000);
+        });
   }
 }

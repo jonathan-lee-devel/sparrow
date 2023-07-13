@@ -11,6 +11,7 @@ import {
   removeOrganizationAdministrator,
   removeOrganizationMember,
   requestToJoinOrganization,
+  searchOrganizations,
   updateAdministratorJoinAsMember,
 } from '../services/index.js';
 import {makeGetOrganizationController} from './get-organization.js';
@@ -24,6 +25,7 @@ import {makeGetOrganizationSnippetController} from './get-organization-snippet.j
 import {makeInviteToJoinOrganizationController} from './invite-to-join-organization.js';
 import {makeGetOrganizationInvitationByTokenValueController} from './get-organization-invitation-by-token-value.js';
 import {makeUpdateAdministratorJoinAsMemberController} from './update-administrator-join-as-member.js';
+import {makeSearchOrganizationsController} from './search-organizations.js';
 
 export const createOrganizationController = makeCreateOrganizationController(createOrganization);
 
@@ -55,3 +57,6 @@ export const getOrganizationInvitationByTokenValueController =
 
 export const updateAdministratorJoinAsMemberController =
     makeUpdateAdministratorJoinAsMemberController(updateAdministratorJoinAsMember);
+
+export const searchOrganizationsController =
+    makeSearchOrganizationsController(searchOrganizations);
