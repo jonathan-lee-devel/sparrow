@@ -25,9 +25,15 @@ export const configurePassport =
       }, async (accessToken, refreshToken, profile, done): Promise<void> => {
         const existingUser = await UserModel.findOne({email: profile.emails?.[0].value}).exec();
         if (existingUser?.emailVerified) {
+          if (existingUser.googleId === profile.id) {
+            done(null, existingUser);
+            return;
+          }
           existingUser.googleId = profile.id;
+          existingUser.emailVerified = true;
           await existingUser.save();
           done(null, existingUser);
+          return;
         }
         const newUser = await UserModel.create({
           email: profile.emails?.[0].value,
