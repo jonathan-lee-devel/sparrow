@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {ModalService} from '../services/modal/modal.service';
 import {LoadingService} from '../services/loading/loading.service';
 import {RoutePaths} from '../app-routing.module';
+import {HttpStatus} from '../common/enums/HttpStatus';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -26,7 +27,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       throw error;
     }
 
-    if (error.status === 400) {
+    if (error.status === HttpStatus.BAD_REQUEST) {
       if (error.error.status) {
         let message: string;
         switch (error.error.status) {
@@ -45,23 +46,23 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
     }
 
-    if (error.status === 401) {
+    if (error.status === HttpStatus.UNAUTHORIZED) {
       this.modalService.showDefaultModal('Authentication Error', 'Invalid Login Credentials');
     }
 
-    if (error.status === 403) {
+    if (error.status === HttpStatus.FORBIDDEN) {
       this.modalService.showDefaultModal('Authorization Error', 'Access to that resource or action is denied');
     }
 
-    if (error.status === 404) {
+    if (error.status === HttpStatus.NOT_FOUND) {
       this.router.navigate([`/${RoutePaths.ERROR_NOT_FOUND}`]).catch((reason) => window.alert(reason));
     }
 
-    if (error.status === 409) {
+    if (error.status === HttpStatus.CONFLICT) {
       this.modalService.showDefaultModal('Request Conflict', 'That entity already exists, cannot perform request');
     }
 
-    if (error.status === 500) {
+    if (error.status === HttpStatus.INTERNAL_SERVER_ERROR) {
       this.router.navigate([`/${RoutePaths.SERVER_ERROR}`]).catch((reason) => window.alert(reason));
     }
 
