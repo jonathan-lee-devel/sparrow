@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {RegisterDto} from '../../dtos/register/RegisterDto';
 import {Router} from '@angular/router';
 import {ModalService} from '../modal/modal.service';
+import {RoutePaths} from '../../app-routing.module';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class RegisterService {
       confirmPassword,
       acceptTermsAndConditions,
     }).subscribe((registerDto) => {
-      this.router.navigate(['/login']).catch((reason) => {
+      this.router.navigate([`/${RoutePaths.LOGIN}`]).catch((reason) => {
         window.alert(reason);
       });
       let message: string;
@@ -57,7 +58,7 @@ export class RegisterService {
           }
           this.modalService.showDefaultModal('Registration Status', message);
           if (shouldRedirect) {
-            this.router.navigate(['/login']).catch((reason) => window.alert(reason));
+            this.router.navigate([`/${RoutePaths.LOGIN}`]).catch((reason) => window.alert(reason));
           }
         });
   }

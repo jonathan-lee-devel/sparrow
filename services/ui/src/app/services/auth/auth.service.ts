@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {LoginDto} from '../../dtos/auth/LoginDto';
 import {LogoutDto} from '../../dtos/auth/LogoutDto';
 import {ProfileService} from '../profile/profile.service';
+import {RoutePaths} from '../../app-routing.module';
 
 @Injectable({
   providedIn: 'root',
@@ -116,7 +117,7 @@ export class AuthService {
           if (logoutDto.logoutStatus !== 'SUCCESS') {
             window.alert('Logout failed');
           }
-          this.router.navigate(['/login']).catch((reason) => window.alert(reason));
+          this.router.navigate([`/${RoutePaths.LOGIN}`]).catch((reason) => window.alert(reason));
         },
     );
   }
@@ -135,6 +136,6 @@ export class AuthService {
     this.setUserInfo(userInfo);
     this.isLoggedIn.next(true);
     this.userInfo.next(userInfo);
-    this.router.navigate(['/dashboard']).catch((reason) => window.alert(reason));
+    this.router.navigate([`/${RoutePaths.DASHBOARD}`]).catch((reason) => window.alert(reason));
   }
 }

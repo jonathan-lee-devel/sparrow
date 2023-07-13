@@ -4,6 +4,7 @@ import {catchError, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {ModalService} from '../services/modal/modal.service';
 import {LoadingService} from '../services/loading/loading.service';
+import {RoutePaths} from '../app-routing.module';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -19,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         .pipe(catchError((err) => this.handleError(err)));
   }
 
-  private handleError(error: HttpErrorResponse): Observable<any> {
+  private handleError(error: HttpErrorResponse): Observable<HttpEvent<unknown>> {
     this.loadingService.onLoadingFinished();
     if (error.status === 0) {
       throw error;
@@ -53,7 +54,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     if (error.status === 404) {
-      this.router.navigate(['/error/not-found']).catch((reason) => window.alert(reason));
+      this.router.navigate([`/${RoutePaths.ERROR_NOT_FOUND}`]).catch((reason) => window.alert(reason));
     }
 
     if (error.status === 409) {
@@ -61,7 +62,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     if (error.status === 500) {
-      this.router.navigate(['/error/server-error']).catch((reason) => window.alert(reason));
+      this.router.navigate([`/${RoutePaths.SERVER_ERROR}`]).catch((reason) => window.alert(reason));
     }
 
     throw error;

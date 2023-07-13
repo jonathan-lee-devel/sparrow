@@ -34,6 +34,7 @@ import {GoogleLoginSuccessComponent} from './components/pages/google-login-succe
 import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
 import {PopupModalComponent} from './components/modals/popup-modal/popup-modal.component';
 import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
+import { ErrorNotFoundComponent } from './components/pages/error/error-not-found/error-not-found.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -57,6 +58,7 @@ import { ManageAccountComponent } from './components/pages/manage-account/manage
     ServerErrorComponent,
     PopupModalComponent,
     ManageAccountComponent,
+    ErrorNotFoundComponent,
   ],
   imports: [
     BrowserModule,

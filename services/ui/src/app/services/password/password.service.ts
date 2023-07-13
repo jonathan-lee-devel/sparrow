@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {ModalService} from '../modal/modal.service';
 import {PasswordResetDto} from '../../dtos/password/PasswordResetDto';
 import {Router} from '@angular/router';
+import {RoutePaths} from '../../app-routing.module';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +47,7 @@ export class PasswordService {
               message = 'An unknown error has occurred';
           }
           if (shouldRedirect) {
-            this.router.navigate(['/login']).catch((reason) => window.alert(reason));
+            this.router.navigate([`/${RoutePaths.LOGIN}`]).catch((reason) => window.alert(reason));
           }
           this.modalService.showDefaultModal('Password Reset Status', message);
         });
