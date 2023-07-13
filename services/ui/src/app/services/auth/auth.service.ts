@@ -123,6 +123,7 @@ export class AuthService {
 
   doGoogleLogin() {
     window.location.href = `${environment.MAIN_API_URL}/auth/google`;
+    window.location.href = 'hello';
   }
 
   onSuccessfulGoogleLogin() {

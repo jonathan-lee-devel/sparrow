@@ -10,7 +10,8 @@
     "build:stage": "ng build --configuration stage",
     "watch": "ng build --watch --configuration development",
     "cy:run": "cypress run --headed --browser chrome",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "^16.1.2",
@@ -29,13 +30,18 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.1.1",
+    "@angular-eslint/builder": "16.1.0",
+    "@angular-eslint/eslint-plugin": "^16.1.0",
+    "@angular-eslint/eslint-plugin-template": "16.1.0",
+    "@angular-eslint/schematics": "16.1.0",
+    "@angular-eslint/template-parser": "^16.1.0",
     "@angular/cli": "~16.1.1",
     "@angular/compiler-cli": "^16.1.2",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
     "autoprefixer": "^10.4.14",
     "cypress": "^12.16.0",
-    "eslint": "^8.43.0",
+    "eslint": "^8.44.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.27.5",
