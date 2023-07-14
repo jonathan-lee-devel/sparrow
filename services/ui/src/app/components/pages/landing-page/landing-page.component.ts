@@ -14,8 +14,9 @@ export class LandingPageComponent implements OnInit {
   searchResults: OrganizationSnippetDto[] = [];
   isLoading = false;
   isEmptySearchResults = false;
+  readonly allCategories: string = 'All Categories';
   readonly restaurants: string = 'Restaurants';
-  currentSearchCategory = 'All Categories';
+  currentSearchCategory = this.allCategories;
 
   constructor(private cookiesNoticeService: CookiesNoticeService,
               private loadingService: LoadingService,
