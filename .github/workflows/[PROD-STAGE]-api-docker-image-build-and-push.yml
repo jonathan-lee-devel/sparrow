@@ -1,14 +1,8 @@
 name: '[API] Docker Image Build & Push'
 
 on:
-  workflow_run:
-    workflows:
-      - '[API] Node.js CI'
-      - 'SonarCloud Analysis'
-      - 'Cypress Tests'
-    branches: [main]
-    types:
-      - completed
+  push:
+    branches: [ main ]
 
 jobs:
 

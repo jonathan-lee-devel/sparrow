@@ -1,14 +1,8 @@
 name: '[PROD-UI] Docker Image Build & Push'
 
 on:
-  workflow_run:
-    workflows:
-      - '[UI] Node.js CI'
-      - 'SonarCloud Analysis'
-      - 'Cypress Tests'
-    branches: [main]
-    types:
-      - completed
+  push:
+    branches: [ main ]
 
 jobs:
 
