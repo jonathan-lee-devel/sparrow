@@ -35,6 +35,7 @@ import {ServerErrorComponent} from './components/pages/error/server-error/server
 import {PopupModalComponent} from './components/modals/popup-modal/popup-modal.component';
 import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
 import { ErrorNotFoundComponent } from './components/pages/error/error-not-found/error-not-found.component';
+import { OrganizationPageComponent } from './components/pages/organizations/per-organization/organization-page/organization-page.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -59,6 +60,7 @@ import { ErrorNotFoundComponent } from './components/pages/error/error-not-found
     PopupModalComponent,
     ManageAccountComponent,
     ErrorNotFoundComponent,
+    OrganizationPageComponent,
   ],
   imports: [
     BrowserModule,

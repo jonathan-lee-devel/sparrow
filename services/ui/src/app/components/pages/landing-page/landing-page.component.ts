@@ -14,6 +14,8 @@ export class LandingPageComponent implements OnInit {
   searchResults: OrganizationSnippetDto[] = [];
   isLoading = false;
   isEmptySearchResults = false;
+  readonly restaurants: string = 'Restaurants';
+  currentSearchCategory = 'All Categories';
 
   constructor(private cookiesNoticeService: CookiesNoticeService,
               private loadingService: LoadingService,
@@ -42,5 +44,9 @@ export class LandingPageComponent implements OnInit {
             this.loadingService.onLoadingFinished();
           }, 1000);
         });
+  }
+
+  setSearchCategory(searchCategory: string) {
+    this.currentSearchCategory = searchCategory;
   }
 }

@@ -24,6 +24,10 @@ export class OrganizationService {
     return this.httpClient.get<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`);
   }
 
+  getOrganizationSnippetById(organizationId: string): Observable<OrganizationSnippetDto> {
+    return this.httpClient.get<OrganizationSnippetDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}/snippet`);
+  }
+
   addAdministratorAsMember(
       organizationId: string,
       administratorEmail: string,

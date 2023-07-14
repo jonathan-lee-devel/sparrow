@@ -38,7 +38,7 @@ configureRoute(router, HttpRequestMethod.GET, '/where-involved', true, [], makeE
 
 configureRoute(router, HttpRequestMethod.GET, '/:organizationId', true, [], makeExpressCallback(logger, getOrganizationController));
 
-configureRoute(router, HttpRequestMethod.GET, '/:organizationId/snippet', true, [], makeExpressCallback(logger, getOrganizationSnippetController));
+configureRoute(router, HttpRequestMethod.GET, '/:organizationId/snippet', false, [], makeExpressCallback(logger, getOrganizationSnippetController));
 
 configureRoute(router, HttpRequestMethod.PATCH, '/:organizationId/administrators/remove', true, removeOrganizationAdministratorValidationChain, makeExpressCallback(logger, removeOrganizationAdministratorController));
 

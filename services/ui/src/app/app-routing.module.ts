@@ -23,6 +23,9 @@ import {GoogleLoginSuccessComponent} from './components/pages/google-login-succe
 import {ServerErrorComponent} from './components/pages/error/server-error/server-error.component';
 import {ManageAccountComponent} from './components/pages/manage-account/manage-account.component';
 import {ErrorNotFoundComponent} from './components/pages/error/error-not-found/error-not-found.component';
+import {
+  OrganizationPageComponent,
+} from './components/pages/organizations/per-organization/organization-page/organization-page.component';
 
 export enum RoutePaths {
   /* ANONYMOUS ROUTES */
@@ -44,7 +47,8 @@ export enum RoutePaths {
   /* ORGANIZATION ROUTES */
   ORGANIZATIONS_CREATE = 'organizations/create',
   ORGANIZATIONS_MANAGE = 'organizations/manage',
-  ORGANIZATIONS_DASHBOARD_ID = 'organizations/dashboard/:organizationId'
+  ORGANIZATIONS_DASHBOARD_ID = 'organizations/dashboard/:organizationId',
+  ORGANIZATIONS_PAGE_ID = 'organizations/:organizationId',
 }
 
 const routes: Routes = [
@@ -68,6 +72,7 @@ const routes: Routes = [
   {path: RoutePaths.ORGANIZATIONS_CREATE, component: CreateOrganizationComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_MANAGE, component: ManageOrganizationsComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_DASHBOARD_ID, component: OrganizationDashboardComponent, canActivate: [AuthGuard]},
+  {path: RoutePaths.ORGANIZATIONS_PAGE_ID, component: OrganizationPageComponent},
 ];
 
 @NgModule({
