@@ -63,18 +63,18 @@ export class OrganizationService {
   }
 
   deleteOrganization(organizationId: string) {
-    this.loadingService.onLoadingStart();
     this.modalService.showPopupModal(
         'Delete Organization',
         'Delete',
         'Cancel',
         () => {
+          this.loadingService.onLoadingStart();
           this.httpClient.delete<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`)
               .subscribe((organization) => {
                 this.modalService.hidePopupModal();
                 this.modalService.showDefaultModal('Organization', `Organization with ID: ${organization.id} successfully deleted`);
                 this.loadingService.onLoadingFinished();
-                this.router.navigate([`/${RoutePaths.DASHBOARD}`]).catch((reason) => window.alert(reason));
+                this.router.navigate([`/${RoutePaths.ORGANIZATIONS_MANAGE}`]).catch((reason) => window.alert(reason));
               });
         },
         () => {
