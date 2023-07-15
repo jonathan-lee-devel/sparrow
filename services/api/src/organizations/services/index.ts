@@ -17,6 +17,7 @@ import {sendMail} from '../../util/email/exports/index.js';
 import {makeGetOrganizationInvitationByTokenValue} from './get-organization-invitation-by-token-value.js';
 import {makeUpdateAdministratorJoinAsMember} from './update-administrator-join-as-member.js';
 import {makeSearchOrganizations} from './search-organizations.js';
+import {makeDeleteOrganization} from './delete-organization.js';
 
 const logger = loggerConfig();
 
@@ -89,6 +90,11 @@ export const updateAdministratorJoinAsMember = makeUpdateAdministratorJoinAsMemb
 );
 
 export const searchOrganizations = makeSearchOrganizations(
+    logger,
+    OrganizationModel,
+);
+
+export const deleteOrganization = makeDeleteOrganization(
     logger,
     OrganizationModel,
 );

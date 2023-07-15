@@ -2,6 +2,7 @@ import {makeCreateOrganizationController} from './create-organization.js';
 import {
   approveRequestToJoinOrganization,
   createOrganization,
+  deleteOrganization,
   getOrganization,
   getOrganizationInvitationByTokenValue,
   getOrganizationSnippet,
@@ -26,6 +27,7 @@ import {makeInviteToJoinOrganizationController} from './invite-to-join-organizat
 import {makeGetOrganizationInvitationByTokenValueController} from './get-organization-invitation-by-token-value.js';
 import {makeUpdateAdministratorJoinAsMemberController} from './update-administrator-join-as-member.js';
 import {makeSearchOrganizationsController} from './search-organizations.js';
+import {makeDeleteOrganizationController} from './delete-organization.js';
 
 export const createOrganizationController = makeCreateOrganizationController(createOrganization);
 
@@ -60,3 +62,6 @@ export const updateAdministratorJoinAsMemberController =
 
 export const searchOrganizationsController =
     makeSearchOrganizationsController(searchOrganizations);
+
+export const deleteOrganizationController =
+    makeDeleteOrganizationController(deleteOrganization);

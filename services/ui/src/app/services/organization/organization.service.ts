@@ -7,6 +7,8 @@ import {OrganizationMembershipStatusDto} from '../../dtos/organization/Organizat
 import {OrganizationSnippetDto} from '../../dtos/organization/OrganizationSnippetDto';
 import {ModalService} from '../modal/modal.service';
 import {LoadingService} from '../loading/loading.service';
+import {Router} from '@angular/router';
+import {RoutePaths} from '../../app-routing.module';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,8 @@ import {LoadingService} from '../loading/loading.service';
 export class OrganizationService {
   constructor(private httpClient: HttpClient,
               private modalService: ModalService,
-              private loadingService: LoadingService) { }
+              private loadingService: LoadingService,
+              private router: Router) { }
 
   createOrganization(name: string): Observable<OrganizationDto> {
     return this.httpClient.post<OrganizationDto>(`${environment.MAIN_API_URL}/organizations`, {name});
@@ -57,5 +60,27 @@ export class OrganizationService {
       return EMPTY;
     }
     return this.httpClient.get<OrganizationSnippetDto[]>(`${environment.MAIN_API_URL}/organizations/search/${searchString}`);
+  }
+
+  deleteOrganization(organizationId: string) {
+    this.loadingService.onLoadingStart();
+    this.modalService.showPopupModal(
+        'Delete Organization',
+        'Delete',
+        'Cancel',
+        () => {
+          this.httpClient.delete<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`)
+              .subscribe((organization) => {
+                this.modalService.hidePopupModal();
+                this.modalService.showDefaultModal('Organization', `Organization with ID: ${organization.id} successfully deleted`);
+                this.loadingService.onLoadingFinished();
+                this.router.navigate([`/${RoutePaths.DASHBOARD}`]).catch((reason) => window.alert(reason));
+              });
+        },
+        () => {
+          this.loadingService.onLoadingFinished();
+          this.modalService.hidePopupModal();
+        },
+    );
   }
 }

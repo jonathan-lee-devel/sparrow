@@ -16,7 +16,7 @@ export class OrganizationDashboardComponent implements OnInit {
     administratorEmails: [],
     memberEmails: [],
   };
-  isLoading: boolean = true;
+  isLoading = true;
 
   constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationService, private loadingService: LoadingService) {
     this.loadingService.isLoadingObservable()
@@ -71,5 +71,9 @@ export class OrganizationDashboardComponent implements OnInit {
           this.organization = organization;
           this.loadingService.onLoadingFinished();
         });
+  }
+
+  doDeleteOrganization(organization: OrganizationDto) {
+    this.organizationService.deleteOrganization(organization.id);
   }
 }

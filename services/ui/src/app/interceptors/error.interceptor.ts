@@ -48,6 +48,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     if (error.status === HttpStatus.UNAUTHORIZED) {
       this.modalService.showDefaultModal('Authentication Error', 'Invalid Login Credentials');
+      this.router.navigate([`/${RoutePaths.LOGIN}`]).catch((reason) => window.alert(reason));
     }
 
     if (error.status === HttpStatus.FORBIDDEN) {

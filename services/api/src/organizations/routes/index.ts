@@ -6,6 +6,7 @@ import {loggerConfig} from '../../main/config/logger/logger-config.js';
 import {
   approveRequestToJoinOrganizationController,
   createOrganizationController,
+  deleteOrganizationController,
   getOrganizationController,
   getOrganizationInvitationByTokenValueController,
   getOrganizationSnippetController,
@@ -57,5 +58,7 @@ configureRoute(router, HttpRequestMethod.GET, '/invitations/tokenValue/:organiza
 configureRoute(router, HttpRequestMethod.PATCH, '/update-admin-join-as-member/:toJoinOrganizationId', true, updateAdministratorJoinAsMemberValidationChain, makeExpressCallback(logger, updateAdministratorJoinAsMemberController));
 
 configureRoute(router, HttpRequestMethod.GET, '/search/:searchString', false, [], makeExpressCallback(logger, searchOrganizationsController));
+
+configureRoute(router, HttpRequestMethod.DELETE, '/:organizationId', true, [], makeExpressCallback(logger, deleteOrganizationController));
 
 export {router as OrganizationsRouter};
