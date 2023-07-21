@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {OrganizationService} from '../../../../../services/organization/organization.service';
 import {LoadingService} from '../../../../../services/loading/loading.service';
 import {OrganizationSnippetDto} from '../../../../../dtos/organization/OrganizationSnippetDto';
+import {ProductDto} from '../../../../../dtos/products/ProductDto';
 
 @Component({
   selector: 'app-organization-page',
@@ -15,6 +16,10 @@ export class OrganizationPageComponent implements OnInit {
     name: 'Loading...',
   };
   isLoading = true;
+  isList = false;
+  products: ProductDto[] = [{
+    name: 'Burger',
+  }];
 
   constructor(private activatedRoute: ActivatedRoute,
               private organizationService: OrganizationService,
