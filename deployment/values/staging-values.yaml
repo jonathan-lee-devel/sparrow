@@ -9,7 +9,7 @@ ui:
   name: ui
   image:
     repository: jonathanleedev/sparrow-express-ui
-    tag: 0.1.1
+    tag: stage
     pullPolicy: Always
   port: 80
 
