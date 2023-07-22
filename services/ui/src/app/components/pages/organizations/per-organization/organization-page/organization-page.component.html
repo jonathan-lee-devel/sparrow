@@ -3,6 +3,9 @@
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{{organization.name}}</h1>
     </div>
     <div class="container mx-auto px-6 flex items-start justify-center">
+        <div *ngIf="products.length === 0">
+            <h3 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">No products currently available from {{organization.name}}</h3>
+        </div>
         <div *ngFor="let product of products" class="bg-white dark:bg-gray-800 shadow rounded xl:flex lg:flex w-full">
             <div class="w-full bg-gray-100 dark:bg-gray-800 py-8 flex justify-center items-center">
                 <div class="flex flex-col items-center">

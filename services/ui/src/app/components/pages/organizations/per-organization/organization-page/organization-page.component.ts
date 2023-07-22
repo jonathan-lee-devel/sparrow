@@ -4,6 +4,7 @@ import {OrganizationService} from '../../../../../services/organization/organiza
 import {LoadingService} from '../../../../../services/loading/loading.service';
 import {OrganizationSnippetDto} from '../../../../../dtos/organization/OrganizationSnippetDto';
 import {ProductDto} from '../../../../../dtos/products/ProductDto';
+import {ProductService} from '../../../../../services/product/product.service';
 
 @Component({
   selector: 'app-organization-page',
@@ -16,13 +17,11 @@ export class OrganizationPageComponent implements OnInit {
     name: 'Loading...',
   };
   isLoading = true;
-  isList = false;
-  products: ProductDto[] = [{
-    name: 'Burger',
-  }];
+  products: ProductDto[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private organizationService: OrganizationService,
+              private productService: ProductService,
               private loadingService: LoadingService) {
     this.loadingService.isLoadingObservable()
         .subscribe((isLoading) => {
@@ -34,7 +33,11 @@ export class OrganizationPageComponent implements OnInit {
       this.organizationService.getOrganizationSnippetById(params['organizationId'])
           .subscribe((organization) => {
             this.organization = organization;
-            this.loadingService.onLoadingFinished();
+            this.productService.getProducts(params['organizationId'])
+                .subscribe((products) => {
+                  this.products = products;
+                  this.loadingService.onLoadingFinished();
+                });
           });
     });
   }

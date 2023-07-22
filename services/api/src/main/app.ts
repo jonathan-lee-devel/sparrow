@@ -16,6 +16,7 @@ import {ProfileRouter} from '../profile/routes/index.js';
 import {OrganizationsRouter} from '../organizations/routes/index.js';
 import {NotificationsRouter} from '../notifications/routes/index.js';
 import {DeliveriesRouter} from '../deliveries/routes/index.js';
+import {ProductsRouter} from '../products/routes/index.js';
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use('/profile', ProfileRouter);
 app.use('/organizations', OrganizationsRouter);
 app.use('/notifications', NotificationsRouter);
 app.use('/deliveries', DeliveriesRouter);
+app.use('/product', ProductsRouter);
 
 // Root 200 OK for Cypress server health-check
 app.get('/', (_req, res, _next) => {
