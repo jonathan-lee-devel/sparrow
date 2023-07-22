@@ -26,6 +26,9 @@ import {ErrorNotFoundComponent} from './components/pages/error/error-not-found/e
 import {
   OrganizationPageComponent,
 } from './components/pages/organizations/per-organization/organization-page/organization-page.component';
+import {
+  CreateProductComponent,
+} from './components/pages/organizations/per-organization/create-product/create-product.component';
 
 export enum RoutePaths {
   /* ANONYMOUS ROUTES */
@@ -49,6 +52,8 @@ export enum RoutePaths {
   ORGANIZATIONS_MANAGE = 'organizations/manage',
   ORGANIZATIONS_DASHBOARD_ID = 'organizations/dashboard/:organizationId',
   ORGANIZATIONS_PAGE_ID = 'organizations/:organizationId',
+  /* PRODUCT ROUTES */
+  ORGANIZATIONS_PRODUCT_CREATE = 'organizations/dashboard/:organizationId/create-product',
 }
 
 const routes: Routes = [
@@ -73,6 +78,8 @@ const routes: Routes = [
   {path: RoutePaths.ORGANIZATIONS_MANAGE, component: ManageOrganizationsComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_DASHBOARD_ID, component: OrganizationDashboardComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_PAGE_ID, component: OrganizationPageComponent},
+  /* PRODUCT ROUTES */
+  {path: RoutePaths.ORGANIZATIONS_PRODUCT_CREATE, component: CreateProductComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
