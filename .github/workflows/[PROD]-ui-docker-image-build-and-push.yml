@@ -3,6 +3,8 @@ name: '[PROD-UI] Docker Image Build & Push'
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
 
@@ -26,4 +28,4 @@ jobs:
           context: "{{defaultContext}}:./services/ui/"
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-ui:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-ui:0.1.1

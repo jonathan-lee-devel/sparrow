@@ -3,6 +3,8 @@ name: '[API] Docker Image Build & Push'
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
 
@@ -26,4 +28,4 @@ jobs:
           context: "{{defaultContext}}:./services/api/"
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-api:0.1.1
