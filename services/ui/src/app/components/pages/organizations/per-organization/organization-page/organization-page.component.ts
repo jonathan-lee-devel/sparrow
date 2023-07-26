@@ -29,14 +29,17 @@ export class OrganizationPageComponent implements OnInit {
         });
   }
   ngOnInit() {
+    this.loadingService.onLoadingStart();
     this.activatedRoute.params.subscribe((params) => {
       this.organizationService.getOrganizationSnippetById(params['organizationId'])
           .subscribe((organization) => {
             this.organization = organization;
             this.productService.getProducts(params['organizationId'])
                 .subscribe((products) => {
-                  this.products = products;
-                  this.loadingService.onLoadingFinished();
+                  setTimeout(() => {
+                    this.products = products;
+                    this.loadingService.onLoadingFinished();
+                  }, 1000);
                 });
           });
     });
