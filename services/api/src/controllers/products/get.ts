@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { AuthenticatedRequest, Response } from 'express';
 import requestMiddleware from '../../middleware/request-middleware';
 import Product, { IProductModel } from '../../models/products/Product';
 import { HttpStatus } from '../../common/enums/HttpStatus';
 
-export const makeGetHandler = (ProductModel: IProductModel) => async (req: Request, res: Response) => {
+export const makeGetHandler = (ProductModel: IProductModel) => async (req: AuthenticatedRequest, res: Response) => {
   const { productId } = req.params;
 
   const product = await ProductModel.findOne({ id: productId }, { __v: 0, _id: 0 }).exec();
@@ -14,4 +14,5 @@ export const makeGetHandler = (ProductModel: IProductModel) => async (req: Reque
   return res.status(HttpStatus.OK).json(product.toJSON());
 };
 
-export default requestMiddleware(makeGetHandler(Product));
+// @ts-ignore
+export default requestMiddleware(makeGetHandler(Product), { requiresAuthentication: true });

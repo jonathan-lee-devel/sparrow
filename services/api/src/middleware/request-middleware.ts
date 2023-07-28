@@ -4,6 +4,7 @@ import {
 import Joi from 'joi';
 import BadRequest from '../errors/bad-request';
 import logger from '../logger';
+import { HttpStatus } from '../common/enums/HttpStatus';
 
 /**
  * Helper to get message from Joi
@@ -22,6 +23,7 @@ interface HandlerOptions {
   validation?: {
     body?: Joi.ObjectSchema
   }
+  requiresAuthentication: boolean
 }
 
 /**
@@ -31,14 +33,16 @@ interface HandlerOptions {
  * @param handler Request handler to check for error
  * @param options
  */
-// eslint-disable-next-line max-len
+// eslint-disable-next-line max-len,consistent-return
 export const requestMiddleware = (handler: RequestHandler, options?: HandlerOptions): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
+  if (options?.requiresAuthentication && !req.user) {
+    return res.status(HttpStatus.UNAUTHORIZED).send();
+  }
   if (options?.validation?.body) {
     // eslint-disable-next-line no-unsafe-optional-chaining
     const { error } = options?.validation?.body?.validate(req.body);
     if (error != null) {
-      next(new BadRequest(getMessageFromJoiError(error)));
-      return;
+      return next(new BadRequest(getMessageFromJoiError(error)));
     }
   }
 
