@@ -31,13 +31,11 @@ interface HandlerOptions {
  * @param handler Request handler to check for error
  * @param options
  */
-export const requestMiddleware = (
-  handler: RequestHandler,
-  options?: HandlerOptions,
-): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
+// eslint-disable-next-line max-len
+export const requestMiddleware = (handler: RequestHandler, options?: HandlerOptions): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
   if (options?.validation?.body) {
     // eslint-disable-next-line no-unsafe-optional-chaining
-    const { error } = options?.validation?.body.validate(req.body);
+    const { error } = options?.validation?.body?.validate(req.body);
     if (error != null) {
       next(new BadRequest(getMessageFromJoiError(error)));
       return;

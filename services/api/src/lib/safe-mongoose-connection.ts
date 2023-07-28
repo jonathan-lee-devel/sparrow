@@ -1,15 +1,18 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
 /** Callback for establishing or re-stablishing mongo connection */
-interface IOnConnectedCallback {
-  (mongoUrl: string): void;
-}
+type IOnConnectedCallback = (mongoUrl: string) => void;
 
 interface SafeMongooseConnectionOptions {
   mongoUrl: string;
   mongooseConnectionOptions?: ConnectOptions;
-  retryDelayMs?: number
-  debugCallback?: (collectionName: string, method: string, query: any, doc: string) => void;
+  retryDelayMs?: number;
+  debugCallback?: (
+    collectionName: string,
+    method: string,
+    query: any,
+    doc: string
+  ) => void;
   onStartConnection?: (mongoUrl: string) => void;
   onConnectionError?: (error: Error, mongoUrl: string) => void;
   onConnectionRetry?: (mongoUrl: string) => void;

@@ -2,9 +2,9 @@ name: SonarCloud Analysis
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -22,13 +22,13 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          cache-dependency-path: '**/yarn.lock'
       - name: Install API Dependencies
-        working-directory: ./services/api-old
-        run: npm install
+        working-directory: ./services/api
+        run: yarn install
       - name: Run API Tests
-        working-directory: ./services/api-old
-        run: npm run test
+        working-directory: ./services/api
+        run: yarn run test --coverage
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -38,9 +38,9 @@ jobs:
           args:
             -Dsonar.projectKey=jonathan-lee-devel_sparrow
             -Dsonar.organization=jonathan-lee-devel
-            -Dsonar.sources=services/api-old/src
-            -Dsonar.tests=services/api-old/src
+            -Dsonar.sources=services/api/src
+            -Dsonar.tests=services/api/src
             -Dsonar.inclusions=**
-            -Dsonar.exclusions=**/*.spec.ts,**/index.ts,**/validations-chains/*.ts
+            -Dsonar.exclusions=**/*.spec.ts,**/index.ts,**/src/app.ts,**/src/routes.ts,**/src/server.ts,**/src/middleware/request-middleware.ts
             -Dsonar.test.inclusions=src/**/*.spec.ts,src/**/*.spec.tsx,src/**/*.test.ts,src/**/*.test.tsx
-            -Dsonar.javascript.lcov.reportPaths=services/api-old/coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=services/api/coverage/lcov.info

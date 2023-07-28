@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import express, { NextFunction, Request, Response } from 'express';
+import helmet from 'helmet';
 import ApplicationError from './errors/application-error';
 import routes from './routes';
 import logger from './logger';
@@ -24,10 +25,9 @@ function logResponseTime(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+app.use(helmet.hidePoweredBy());
 app.use(logResponseTime);
-
 app.use(compression() as any);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
