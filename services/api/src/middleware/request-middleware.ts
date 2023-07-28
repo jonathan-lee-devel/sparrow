@@ -1,5 +1,5 @@
 import {
-  RequestHandler, Request, Response, NextFunction
+  NextFunction, Request, RequestHandler, Response
 } from 'express';
 import Joi from 'joi';
 import BadRequest from '../errors/bad-request';
@@ -22,19 +22,21 @@ interface HandlerOptions {
   validation?: {
     body?: Joi.ObjectSchema
   }
-};
+}
 
 /**
  * This router wrapper catches any error from async await
  * and throws it to the default express error handler,
  * instead of crashing the app
  * @param handler Request handler to check for error
+ * @param options
  */
 export const requestMiddleware = (
   handler: RequestHandler,
   options?: HandlerOptions,
 ): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
   if (options?.validation?.body) {
+    // eslint-disable-next-line no-unsafe-optional-chaining
     const { error } = options?.validation?.body.validate(req.body);
     if (error != null) {
       next(new BadRequest(getMessageFromJoiError(error)));
@@ -53,7 +55,7 @@ export const requestMiddleware = (
       });
     }
     next(err);
-  };
+  }
 };
 
 export default requestMiddleware;

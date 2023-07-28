@@ -17,7 +17,9 @@ export default class ConsoleLogTransport extends Transport {
   log(info: any, callback: { (): void }) {
     const label = info.consoleLoggerOptions?.label! || (info.level as string).toUpperCase();
     const finalMessage = `[${new Date().toISOString()}] [${label}] ${info.message}`;
+    // eslint-disable-next-line no-console
     console.log(levelStyleMap[info.level], finalMessage);
+    // eslint-disable-next-line no-unused-expressions,no-console
     info.stack && console.log('\t', info.stack);
     callback();
   }
