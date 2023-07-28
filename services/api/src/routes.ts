@@ -4,11 +4,16 @@ import yaml from 'js-yaml';
 import fs from 'fs';
 import path from 'path';
 
+import * as ProductController from './controllers/products';
+
 const swaggerUiOptions = {
   customCss: '.swagger-ui .topbar { display: none }'
 };
 
 const router = Router();
+
+// Product Routes
+router.get('/products/:productId', ProductController.get);
 
 const SWAGGER_YAML_FILEPATH = path.join(__dirname, '../openapi.yml');
 

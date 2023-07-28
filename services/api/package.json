@@ -8,6 +8,7 @@
     "lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts",
     "dev-server": "NODE_ENV=development nodemon",
     "ts-node-server": "ts-node src/server.ts",
+    "prestart": "yarn build",
     "start": "node dist/server.js",
     "test": "jest",
     "fix-lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts --fix"
