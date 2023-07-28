@@ -1,9 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
 /** Callback for establishing or re-stablishing mongo connection */
-interface IOnConnectedCallback {
-  (mongoUrl: string): void;
-}
+type IOnConnectedCallback = (mongoUrl: string) => void;
 
 interface SafeMongooseConnectionOptions {
   mongoUrl: string;
@@ -22,7 +20,7 @@ interface SafeMongooseConnectionOptions {
 
 const defaultMongooseConnectionOptions: ConnectOptions = {
   autoCreate: true,
-  autoIndex: true,
+  autoIndex: true
 };
 
 /**
