@@ -1,17 +1,20 @@
-name: Build & Test
+name: '[API] Build & Test'
+
 on:
   push:
-    branches-ignore:
-      - master
-      - staging
-  workflow_dispatch:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: 'services/api'
     strategy:
       matrix:
-        node-version: ['18']
+        node-version: ['20']
     name: Build using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout
@@ -27,10 +30,13 @@ jobs:
           CI: true
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: 'services/api'
     strategy:
       matrix:
-        node-version: ['18']
+        node-version: ['20']
     name: Test using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout

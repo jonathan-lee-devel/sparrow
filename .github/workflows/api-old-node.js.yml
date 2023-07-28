@@ -1,4 +1,4 @@
-name: '[API] Node.js CI'
+name: '[API-OLD] Node.js CI'
 
 on:
   push:
