@@ -23,11 +23,7 @@
     "url": "git+https://github.com/jonathan-lee-devel/sparrow.git"
   },
   "keywords": [
-    "TypeScript",
-    "express",
-    "nodejs",
-    "boilerplate",
-    "eslint"
+    "sparrow"
   ],
   "author": "Jonathan Lee <jonathan.lee.devel@gmail.com>",
   "license": "GPL-3.0-or-later",

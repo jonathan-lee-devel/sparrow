@@ -34,28 +34,28 @@ interface HandlerOptions {
  */
 export const requestMiddleware =
   (handler: RequestHandler, options?: HandlerOptions): RequestHandler =>
-  async (req: Request, res: Response, next: NextFunction) => {
-    if (options?.validation?.body) {
+    async (req: Request, res: Response, next: NextFunction) => {
+      if (options?.validation?.body) {
       // eslint-disable-next-line no-unsafe-optional-chaining
-      const { error } = options?.validation?.body.validate(req.body);
-      if (error != null) {
-        next(new BadRequest(getMessageFromJoiError(error)));
-        return;
+        const { error } = options?.validation?.body.validate(req.body);
+        if (error != null) {
+          next(new BadRequest(getMessageFromJoiError(error)));
+          return;
+        }
       }
-    }
 
-    try {
-      handler(req, res, next);
-    } catch (err) {
-      if (process.env.NODE_ENV === 'development') {
-        logger.log({
-          level: 'error',
-          message: 'Error in request handler',
-          error: err,
-        });
+      try {
+        handler(req, res, next);
+      } catch (err) {
+        if (process.env.NODE_ENV === 'development') {
+          logger.log({
+            level: 'error',
+            message: 'Error in request handler',
+            error: err,
+          });
+        }
+        next(err);
       }
-      next(err);
-    }
-  };
+    };
 
 export default requestMiddleware;
