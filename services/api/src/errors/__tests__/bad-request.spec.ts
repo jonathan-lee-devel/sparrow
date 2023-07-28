@@ -1,4 +1,4 @@
-import BadRequest from '../../src/errors/bad-request';
+import BadRequest from '../bad-request';
 
 describe('ApplicationError test suite', () => {
   test('sets default error message', () => {
