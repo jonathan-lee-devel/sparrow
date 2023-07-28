@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
-/** Callback for establishing or re-stablishing mongo connection */
+/** Callback for establishing or re-establishing mongo connection */
 type IOnConnectedCallback = (mongoUrl: string) => void;
 
 interface SafeMongooseConnectionOptions {
