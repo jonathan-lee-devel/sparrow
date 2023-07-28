@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args:
+          args: 
             -Dsonar.projectKey=jonathan-lee-devel_sparrow
             -Dsonar.organization=jonathan-lee-devel
             -Dsonar.sources=services/api-old/src
@@ -43,4 +43,4 @@ jobs:
             -Dsonar.inclusions=**
             -Dsonar.exclusions=**/*.spec.ts,**/index.ts
             -Dsonar.test.inclusions=src/**/*.spec.ts,src/**/*.spec.tsx,src/**/*.test.ts,src/**/*.test.tsx
-            -Dsonar.javascript.lcov.reportPaths=services/api/coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=services/api-old/coverage/lcov.info
