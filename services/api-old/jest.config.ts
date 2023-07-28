@@ -5,6 +5,7 @@ const jestConfig: JestConfigWithTsJest = {
   collectCoverage: true,
   testMatch: ['**/*.spec.ts'],
   preset: 'ts-jest',
+  testEnvironment: 'node',
   transform: {
     ...tsjPreset.transform,
   },

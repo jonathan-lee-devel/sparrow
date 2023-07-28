@@ -24,10 +24,10 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
       - name: Install API Dependencies
-        working-directory: ./services/api
+        working-directory: ./services/api-old
         run: npm install
       - name: Run API Tests
-        working-directory: ./services/api
+        working-directory: ./services/api-old
         run: npm run test
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
@@ -38,9 +38,9 @@ jobs:
           args:
             -Dsonar.projectKey=jonathan-lee-devel_sparrow
             -Dsonar.organization=jonathan-lee-devel
-            -Dsonar.sources=services/api/src
-            -Dsonar.tests=services/api/src
+            -Dsonar.sources=services/api-old/src
+            -Dsonar.tests=services/api-old/src
             -Dsonar.inclusions=**
             -Dsonar.exclusions=**/*.spec.ts,**/index.ts,**/validations-chains/*.ts
             -Dsonar.test.inclusions=src/**/*.spec.ts,src/**/*.spec.tsx,src/**/*.test.ts,src/**/*.test.tsx
-            -Dsonar.javascript.lcov.reportPaths=services/api/coverage/lcov.info
+            -Dsonar.javascript.lcov.reportPaths=services/api-old/coverage/lcov.info
