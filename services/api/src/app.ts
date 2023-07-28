@@ -34,6 +34,12 @@ app.use(routes);
 
 app.use(
   (err: ApplicationError, req: Request, res: Response, next: NextFunction) => {
+  (
+    err: ApplicationError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     if (res.headersSent) {
       return next(err);
     }

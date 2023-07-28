@@ -8,21 +8,18 @@ import logger from '../logger';
  * @param error Error form Joi
  * @returns Message from Joi, if available
  */
-const getMessageFromJoiError = (
-  error: Joi.ValidationError
-): string | undefined => {
+const getMessageFromJoiError = (error: Joi.ValidationError): string | undefined => {
   if (!error.details && error.message) {
     return error.message;
   }
   return error.details && error.details.length > 0 && error.details[0].message
-    ? `PATH: [${error.details[0].path}] ;; MESSAGE: ${error.details[0].message}`
-    : undefined;
+    ? `PATH: [${error.details[0].path}] ;; MESSAGE: ${error.details[0].message}` : undefined;
 };
 
 interface HandlerOptions {
   validation?: {
-    body?: Joi.ObjectSchema;
-  };
+    body?: Joi.ObjectSchema
+  }
 }
 
 /**
