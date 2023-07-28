@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: yarn
+          cache-dependency-path: '**/yarn.lock'
       - run: yarn
         working-directory: 'services/api'
       - run: yarn build
@@ -48,6 +49,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: yarn
+          cache-dependency-path: '**/yarn.lock'
       - run: yarn
         working-directory: 'services/api'
       - run: yarn test
