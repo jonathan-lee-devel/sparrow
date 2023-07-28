@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import path from 'path';
 import express, { NextFunction, Request, Response } from 'express';
 import ApplicationError from './errors/application-error';
 import routes from './routes';
@@ -17,7 +18,7 @@ function logResponseTime(req: Request, res: Response, next: NextFunction) {
     logger.log({
       level: 'debug',
       message,
-      consoleLoggerOptions: { label: 'API' },
+      consoleLoggerOptions: { label: 'API' }
     });
   });
 
@@ -30,10 +31,14 @@ app.use(compression() as any);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 })
+);
+
 app.use(routes);
 
 app.use(
-  (err: ApplicationError, req: Request, res: Response, next: NextFunction) => {
   (
     err: ApplicationError,
     req: Request,
@@ -45,7 +50,7 @@ app.use(
     }
 
     return res.status(err.status || 500).json({
-      error: err.message,
+      error: err.message
     });
   }
 );
