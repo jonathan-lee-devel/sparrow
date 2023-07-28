@@ -14,6 +14,4 @@ export const makeGetHandler = (ProductModel: IProductModel) => async (req: Reque
   return res.status(HttpStatus.OK).json(product.toJSON());
 };
 
-const getHandler = makeGetHandler(Product);
-
-export default requestMiddleware(getHandler);
+export default requestMiddleware(makeGetHandler(Product));
