@@ -1,4 +1,6 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import {
+  NextFunction, Request, RequestHandler, Response
+} from 'express';
 import Joi from 'joi';
 import BadRequest from '../errors/bad-request';
 import logger from '../logger';
@@ -29,30 +31,28 @@ interface HandlerOptions {
  * @param handler Request handler to check for error
  * @param options
  */
-export const requestMiddleware =
-  (handler: RequestHandler, options?: HandlerOptions): RequestHandler =>
-    async (req: Request, res: Response, next: NextFunction) => {
-      if (options?.validation?.body) {
-      // eslint-disable-next-line no-unsafe-optional-chaining
-        const { error } = options?.validation?.body.validate(req.body);
-        if (error != null) {
-          next(new BadRequest(getMessageFromJoiError(error)));
-          return;
-        }
-      }
+// eslint-disable-next-line max-len
+export const requestMiddleware = (handler: RequestHandler, options?: HandlerOptions): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
+  if (options?.validation?.body) {
+    const { error } = options?.validation?.body?.validate(req.body);
+    if (error != null) {
+      next(new BadRequest(getMessageFromJoiError(error)));
+      return;
+    }
+  }
 
-      try {
-        handler(req, res, next);
-      } catch (err) {
-        if (process.env.NODE_ENV === 'development') {
-          logger.log({
-            level: 'error',
-            message: 'Error in request handler',
-            error: err,
-          });
-        }
-        next(err);
-      }
-    };
+  try {
+    handler(req, res, next);
+  } catch (err) {
+    if (process.env.NODE_ENV === 'development') {
+      logger.log({
+        level: 'error',
+        message: 'Error in request handler',
+        error: err
+      });
+    }
+    next(err);
+  }
+};
 
 export default requestMiddleware;
