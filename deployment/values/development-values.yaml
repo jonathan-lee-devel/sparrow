@@ -17,9 +17,9 @@ ui:
   port: 80
 
 api:
-  name: api
+  name: api-old
   image:
-    repository: jonathanleedev/sparrow-express-api
+    repository: jonathanleedev/sparrow-express-api-old
     tag: latest
     pullPolicy: Never
   service:

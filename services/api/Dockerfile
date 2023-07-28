@@ -1,19 +1,31 @@
-FROM --platform=linux/x86_64 node:20-alpine3.18
+FROM --platform=linux/x86_64 node:20.5.0-alpine3.18 as base
 
-WORKDIR /usr/src/app
+# Add package file
+COPY package.json ./
+COPY yarn.lock ./
+COPY scripts/dev.sh ./scripts/dev.sh
 
-COPY package*.json /usr/src/app
+# Install deps
+RUN yarn install
 
-RUN npm install
+# Copy source
+COPY src ./src
+COPY tsconfig.json ./tsconfig.json
+COPY openapi.yml ./openapi.yml
 
-COPY . /usr/src/app
+# Build dist
+RUN yarn build
 
-RUN npm run build
+# Start production image build
+FROM --platform=linux/x86_64 node:20.5.0-alpine3.18
 
-RUN chown -R node:node /usr/src/app
+# Copy node modules and build directory
+COPY --from=base ./node_modules ./node_modules
+COPY --from=base /dist /dist
 
-USER node
+# Copy static files
+COPY src/public dist/src/public
 
+# Expose port 3000
 EXPOSE 3000
-
-CMD [ "node", "dist/src/main/bin/www.js" ]
+CMD ["dist/server.js"]
