@@ -26,29 +26,25 @@ if (process.env.NODE_ENV === 'development') {
 const safeMongooseConnection = new SafeMongooseConnection({
   mongoUrl: process.env.MONGO_URL ?? '',
   debugCallback,
-  onStartConnection: (mongoUrl) =>
-    logger.info(`Connecting to MongoDB at ${mongoUrl}`),
-  onConnectionError: (error, mongoUrl) =>
-    logger.log({
-      level: 'error',
-      message: `Could not connect to MongoDB at ${mongoUrl}`,
-      error,
-    }),
-  onConnectionRetry: (mongoUrl) =>
-    logger.info(`Retrying to MongoDB at ${mongoUrl}`),
+  onStartConnection: mongoUrl => logger.info(`Connecting to MongoDB at ${mongoUrl}`),
+  onConnectionError: (error, mongoUrl) => logger.log({
+    level: 'error',
+    message: `Could not connect to MongoDB at ${mongoUrl}`,
+    error
+  }),
+  onConnectionRetry: mongoUrl => logger.info(`Retrying to MongoDB at ${mongoUrl}`)
 });
 
-const serve = () =>
-  app.listen(PORT, () => {
-    logger.info(`🌏 Express server started at http://localhost:${PORT}`);
+const serve = () => app.listen(PORT, () => {
+  logger.info(`🌏 Express server started at http://localhost:${PORT}`);
 
-    if (process.env.NODE_ENV === 'development') {
-      // This route is only present in development mode
-      logger.info(
-        `⚙️  Swagger UI hosted at http://localhost:${PORT}/dev/api-docs`
-      );
-    }
-  });
+  if (process.env.NODE_ENV === 'development') {
+    // This route is only present in development mode
+    logger.info(
+      `⚙️  Swagger UI hosted at http://localhost:${PORT}/dev/api-docs`
+    );
+  }
+});
 
 if (process.env.MONGO_URL == null) {
   logger.error(
@@ -57,7 +53,7 @@ if (process.env.MONGO_URL == null) {
   );
   process.exit(1);
 } else {
-  safeMongooseConnection.connect((mongoUrl) => {
+  safeMongooseConnection.connect(mongoUrl => {
     logger.info(`Connected to MongoDB at ${mongoUrl}`);
     serve();
   });
@@ -75,7 +71,7 @@ process.on('SIGINT', async () => {
     logger.log({
       level: 'error',
       message: 'Error shutting closing mongo connection',
-      error: err,
+      error: err
     });
   }
   process.exit(0);
