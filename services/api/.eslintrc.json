@@ -3,7 +3,7 @@
   "parserOptions": {
     "jsx": true,
     "useJSXTextNode": true,
-    "ecmaVersion": 6,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "modules": true
@@ -72,10 +72,9 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.ts",
-          "**/*.spec.ts"
-        ]
+        "devDependencies": false,
+        "optionalDependencies": false,
+        "peerDependencies": false
       }
     ],
     "no-unused-vars": "off",
