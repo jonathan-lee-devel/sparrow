@@ -17,7 +17,7 @@ function logResponseTime(req: Request, res: Response, next: NextFunction) {
     logger.log({
       level: 'debug',
       message,
-      consoleLoggerOptions: { label: 'API' }
+      consoleLoggerOptions: { label: 'API' },
     });
   });
 
@@ -33,18 +33,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
 app.use(
-  (
-    err: ApplicationError,
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  (err: ApplicationError, req: Request, res: Response, next: NextFunction) => {
     if (res.headersSent) {
       return next(err);
     }
 
     return res.status(err.status || 500).json({
-      error: err.message
+      error: err.message,
     });
   }
 );

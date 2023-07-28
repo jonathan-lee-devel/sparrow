@@ -8,8 +8,13 @@ interface IOnConnectedCallback {
 interface SafeMongooseConnectionOptions {
   mongoUrl: string;
   mongooseConnectionOptions?: ConnectOptions;
-  retryDelayMs?: number
-  debugCallback?: (collectionName: string, method: string, query: any, doc: string) => void;
+  retryDelayMs?: number;
+  debugCallback?: (
+    collectionName: string,
+    method: string,
+    query: any,
+    doc: string
+  ) => void;
   onStartConnection?: (mongoUrl: string) => void;
   onConnectionError?: (error: Error, mongoUrl: string) => void;
   onConnectionRetry?: (mongoUrl: string) => void;
@@ -17,7 +22,7 @@ interface SafeMongooseConnectionOptions {
 
 const defaultMongooseConnectionOptions: ConnectOptions = {
   autoCreate: true,
-  autoIndex: true
+  autoIndex: true,
 };
 
 /**
@@ -47,7 +52,8 @@ export default class SafeMongooseConnection {
   private retryDelayMs: number = 2000;
 
   /** Mongo connection options to be passed Mongoose */
-  private readonly mongoConnectionOptions: ConnectOptions = defaultMongooseConnectionOptions;
+  private readonly mongoConnectionOptions: ConnectOptions =
+    defaultMongooseConnectionOptions;
 
   private connectionTimeout?: NodeJS.Timeout;
 
@@ -90,7 +96,9 @@ export default class SafeMongooseConnection {
     if (this.options.onStartConnection) {
       this.options.onStartConnection(this.options.mongoUrl);
     }
-    mongoose.connect(this.options.mongoUrl, this.mongoConnectionOptions).catch(() => { });
+    mongoose
+      .connect(this.options.mongoUrl, this.mongoConnectionOptions)
+      .catch(() => {});
   };
 
   /**
@@ -109,7 +117,9 @@ export default class SafeMongooseConnection {
   /** Handler called for mongo connection errors */
   private onError = () => {
     if (this.options.onConnectionError) {
-      const error = new Error(`Could not connect to MongoDB at ${this.options.mongoUrl}`);
+      const error = new Error(
+        `Could not connect to MongoDB at ${this.options.mongoUrl}`
+      );
       this.options.onConnectionError(error, this.options.mongoUrl);
     }
   };

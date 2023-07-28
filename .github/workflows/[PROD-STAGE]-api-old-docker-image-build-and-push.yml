@@ -28,4 +28,4 @@ jobs:
           context: "{{defaultContext}}:./services/api-old/"
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-api:0.1.3
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-api-old:0.1.3

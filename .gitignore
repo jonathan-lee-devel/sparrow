@@ -95,8 +95,8 @@ out
 .nuxt
 dist
 
-services/api/dist
-services/api/node_modules
+services/api-old/dist
+services/api-old/node_modules
 
 services/api-old/dist
 services/api-old/node_modules
