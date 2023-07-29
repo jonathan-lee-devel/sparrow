@@ -12,7 +12,7 @@ const schema = new Schema<IPasswordResetVerificationToken>({
   value: { type: String, required: true, unique: true },
   expiryDate: { type: Date, required: true, unique: false },
   userEmail: { type: String, required: true, unique: true }
-});
+}, { timestamps: true });
 
 const PasswordResetVerificationToken: IPasswordResetVerificationTokenModel = model<IPasswordResetVerificationToken, IPasswordResetVerificationTokenModel>('PasswordResetVerificationToken', schema);
 
