@@ -18,7 +18,7 @@ const schema = new Schema<IUser>({
   password: { type: String, required: false, unique: false },
   emailVerified: { type: Boolean, required: true, unique: false },
   googleId: { type: String, required: false, unique: true }
-});
+}, { timestamps: true });
 
 const User: IUserModel = model<IUser, IUserModel>('User', schema);
 
