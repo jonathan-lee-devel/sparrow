@@ -10,9 +10,15 @@ import passportGoogle from 'passport-google-oauth20';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import { HydratedDocument } from 'mongoose';
+import dotenv from 'dotenv';
 import routes from './routes';
 import logger from './logger';
 import User, { IUser } from './models/users/User';
+
+const result = dotenv.config();
+if (result.error) {
+  dotenv.config({ path: '.env.default' });
+}
 
 const app = express();
 
