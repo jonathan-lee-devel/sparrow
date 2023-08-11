@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 node:20.5.0-alpine3.18 as base
+FROM --platform=linux/x86_64 node:20.5.1-bookworm-slim as base
 
 # Add package file
 COPY package.json ./
@@ -17,7 +17,7 @@ COPY openapi.yml ./openapi.yml
 RUN yarn build
 
 # Start production image build
-FROM --platform=linux/x86_64 node:20.5.0-alpine3.18
+FROM --platform=linux/x86_64 node:20.5.1-bookworm-slim
 
 # Copy node modules and build directory
 COPY --from=base ./node_modules ./node_modules
