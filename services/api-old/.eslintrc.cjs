@@ -18,7 +18,7 @@ module.exports = {
         "max-len": [
             "error",
             {
-                "code": 120,
+                "code": 140,
                 "tabWidth": 2,
                 "ignoreComments": true,
                 "ignoreUrls": true,
@@ -26,11 +26,6 @@ module.exports = {
                 "ignoreTemplateLiterals": true
             }
         ],
-        "new-cap": [
-            "error",
-            {
-                "properties": false
-            }
-        ]
+        "new-cap": 0
     },
 };

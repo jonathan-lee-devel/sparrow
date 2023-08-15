@@ -1,5 +1,5 @@
 import compression from 'compression';
-import express, { NextFunction, Request, Response } from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import createError from 'http-errors';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -7,18 +7,13 @@ import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
 import passport from 'passport';
 import passportGoogle from 'passport-google-oauth20';
-import { Strategy as LocalStrategy } from 'passport-local';
+import {Strategy as LocalStrategy} from 'passport-local';
 import bcrypt from 'bcrypt';
-import { HydratedDocument } from 'mongoose';
-import dotenv from 'dotenv';
+import {HydratedDocument} from 'mongoose';
 import routes from './routes';
 import logger from './logger';
-import User, { IUser } from './models/users/User';
-
-const result = dotenv.config();
-if (result.error) {
-  dotenv.config({ path: '.env.default' });
-}
+import User, {IUser} from './models/users/User';
+import {environment} from './environment';
 
 const app = express();
 
@@ -32,7 +27,7 @@ function logResponseTime(req: Request, res: Response, next: NextFunction) {
     logger.log({
       level: 'debug',
       message,
-      consoleLoggerOptions: { label: 'API' }
+      consoleLoggerOptions: {label: 'API'},
     });
   });
 
@@ -42,92 +37,79 @@ function logResponseTime(req: Request, res: Response, next: NextFunction) {
 app.use(helmet.hidePoweredBy());
 app.use(logResponseTime);
 app.use(compression() as any);
-const frontEndUrl = process.env.FRONT_END_URL ?? undefined;
 app.use(cors({
   credentials: true,
   optionsSuccessStatus: 200,
-  origin: frontEndUrl
+  origin: environment.FRONT_END_URL,
 }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 // @ts-ignore
 app.use(cookieParser());
-const sessionSecret = process.env.SESSION_SECRET ?? undefined;
-if (!sessionSecret) {
-  throw new Error('Session secret must be defined');
-}
 // @ts-ignore
 app.use(expressSession({
-  secret: sessionSecret,
+  secret: environment.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
 }));
 const GoogleStrategy = passportGoogle.Strategy;
-const googleClientId = process.env.GOOGLE_CLIENT_ID ?? undefined;
-if (!googleClientId) {
-  throw new Error('Google client ID must be defined');
-}
-const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET ?? undefined;
-if (!googleClientSecret) {
-  throw new Error('Google client secret must be defined');
-}
 const configurePassport = (): passport.PassportStatic => {
   passport.use('google', new GoogleStrategy(
-    {
-      clientID: googleClientId,
-      clientSecret: googleClientSecret,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
-    },
-    async (
-      accessToken: string,
-      refreshToken: string,
-      profile: passportGoogle.Profile,
-      done: passportGoogle.VerifyCallback
-    ): Promise<void> => {
-      const existingUser = await User.findOne({ email: profile.emails?.[0].value }).exec();
-      if (existingUser?.emailVerified) {
-        if (existingUser.googleId === profile.id) {
+      {
+        clientID: environment.GOOGLE_CLIENT_ID,
+        clientSecret: environment.GOOGLE_CLIENT_SECRET,
+        callbackURL: environment.GOOGLE_CALLBACK_URL,
+        userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
+      },
+      async (
+          accessToken: string,
+          refreshToken: string,
+          profile: passportGoogle.Profile,
+          done: passportGoogle.VerifyCallback,
+      ): Promise<void> => {
+        const existingUser = await User.findOne({email: profile.emails?.[0].value}).exec();
+        if (existingUser?.emailVerified) {
+          if (existingUser.googleId === profile.id) {
+            done(null, existingUser);
+            return;
+          }
+          existingUser.googleId = profile.id;
+          existingUser.emailVerified = true;
+          await existingUser.save();
           done(null, existingUser);
           return;
         }
-        existingUser.googleId = profile.id;
-        existingUser.emailVerified = true;
-        await existingUser.save();
-        done(null, existingUser);
-        return;
-      }
-      const newUser = await User.create({
-        email: profile.emails?.[0].value,
-        googleId: profile.id,
-        password: undefined,
-        firstName: profile.displayName,
-        lastName: undefined,
-        emailVerified: true
-      });
-      done(null, newUser);
-    }
+        const newUser = await User.create({
+          email: profile.emails?.[0].value,
+          googleId: profile.id,
+          password: undefined,
+          firstName: profile.displayName,
+          lastName: undefined,
+          emailVerified: true,
+        });
+        done(null, newUser);
+      },
   ));
   passport.use('local', new LocalStrategy(async (username, password, done): Promise<void> => {
     try {
       // @ts-ignore
-      const foundUser: HydratedDocument<IUser> = await User.findOne({ email: username }).exec();
+      const foundUser: HydratedDocument<IUser> = await User.findOne({email: username}).exec();
 
       if (!foundUser) {
-        return done(null, false, { message: 'Invalid username' });
+        return done(null, false, {message: 'Invalid username'});
       }
 
       if (!foundUser.password) {
-        return done(null, false, { message: 'User is not registered via e-mail' });
+        return done(null, false, {message: 'User is not registered via e-mail'});
       }
 
       if (!foundUser.emailVerified) {
-        return done(null, false, { message: 'User\'s e-mail not verified' });
+        return done(null, false, {message: 'User\'s e-mail not verified'});
       }
 
       const validPassword = await bcrypt.compare(password, foundUser.password);
       if (!validPassword) {
-        return done(null, false, { message: 'Invalid password' });
+        return done(null, false, {message: 'Invalid password'});
       }
 
       return done(null, foundUser);
@@ -143,12 +125,12 @@ const configurePassport = (): passport.PassportStatic => {
 
   passport.deserializeUser(async (id, done): Promise<void> => {
     User.findById(id).exec()
-      .then(user => {
-        done(null, user);
-      })
-      .catch(reason => {
-        done(reason, null);
-      });
+        .then((user) => {
+          done(null, user);
+        })
+        .catch((reason) => {
+          done(reason, null);
+        });
   });
   return passport;
 };
@@ -161,13 +143,13 @@ app.use(configuredPassport.session());
 app.use(routes);
 
 app.get('/auth/google', passport.authenticate('google', {
-  scope: ['email', 'profile']
+  scope: ['email', 'profile'],
 }));
 
 app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
   // @ts-ignore
   logger.info(`Successful Google authentication for: <${req.user.email}>`);
-  res.redirect(`${frontEndUrl}/google-login-success`);
+  res.redirect(`${environment.FRONT_END_URL}/google-login-success`);
 });
 
 // Root 200 OK for Cypress server health-check
@@ -178,25 +160,25 @@ app.use((_req, _res, next) => {
 });
 
 app.use(
-  (
-    err: { message: string; status: string },
-    req: any,
-    res: {
+    (
+        err: { message: string; status: string },
+        req: any,
+        res: {
       locals: { message: any; error: any };
       status: (arg0: any) => void;
       json: (arg0: { error: any }) => void;
     },
-    _: any,
-  ) => {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+        _: any,
+    ) => {
+      res.locals.message = err.message;
+      res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    logger.error(
-      `Error at ${req.url}: {"status":"${err.status}", "message":"${err.message}"}`,
-    );
-    res.status(err.status || 500);
-    res.json({ error: err });
-  },
+      logger.error(
+          `Error at ${req.url}: {"status":"${err.status}", "message":"${err.message}"}`,
+      );
+      res.status(err.status || 500);
+      res.json({error: err});
+    },
 );
 
 export default app;

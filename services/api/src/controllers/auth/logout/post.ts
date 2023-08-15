@@ -1,7 +1,7 @@
 import { AuthenticatedRequest, NextFunction, Response } from 'express';
 import requestMiddleware from '../../../middleware/request-middleware';
 import logger from '../../../logger';
-import { HttpStatus } from '../../../common/enums/HttpStatus';
+import { HttpStatus } from '../../../lib/enums/HttpStatus';
 
 export const makePostHandler = () => async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   // eslint-disable-next-line consistent-return
