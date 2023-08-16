@@ -11,12 +11,13 @@ export const makeMakeCreateOrganizationEndpoint = <TBody, TQuery>(
       callback: AuthenticatedEndpointCallback<TBody, TQuery>,
   ) {
     return (req: Request, res: Response) => {
-      returnBasedOnAuthenticationAndSafeParseResult(
-          bodySchema.safeParse(req.body),
-          querySchema.safeParse(req.query),
-          callback,
-          req,
-          res,
+      returnBasedOnAuthenticationAndSafeParseResult({
+        bodyParseResult: bodySchema.safeParse(req.body),
+        queryParseResult: querySchema.safeParse(req.query),
+        callback,
+        req,
+        res,
+      },
       );
     };
   };

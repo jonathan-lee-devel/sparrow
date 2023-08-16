@@ -2,59 +2,47 @@ import {AuthenticatedRequest, Request, Response} from 'express';
 import {SafeParseError, SafeParseSuccess} from 'zod';
 import {HttpStatus} from './enums/HttpStatus';
 
+export interface EndpointInformation<TBody, TQuery> {
+  bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>;
+  queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>;
+  callback: AuthenticatedEndpointCallback<TBody, TQuery>;
+  req: Request;
+  res: Response;
+}
+
 const returnBasedOnSafeParseResult = <TBody, TQuery>(
-  bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>,
-  queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>,
-  callback: AuthenticatedEndpointCallback<TBody, TQuery>,
-  req: Request,
-  res: Response,
+  endpointInformation: EndpointInformation<TBody, TQuery>,
 ) => {
-  if (!bodyParseResult.success) {
-    return res.status(HttpStatus.BAD_REQUEST).json(bodyParseResult.error);
-  } else if (!queryParseResult.success) {
-    return res.status(HttpStatus.BAD_REQUEST).json(queryParseResult.error);
+  if (!endpointInformation.bodyParseResult.success) {
+    return endpointInformation.res.status(HttpStatus.BAD_REQUEST).json(endpointInformation.bodyParseResult.error);
+  } else if (!endpointInformation.queryParseResult.success) {
+    return endpointInformation.res.status(HttpStatus.BAD_REQUEST).json(endpointInformation.queryParseResult.error);
   }
-  return callback(req as any, res);
+  return endpointInformation.callback(endpointInformation.req as any, endpointInformation.res);
 };
 
 export type AnonymousEndpointCallback<TBody, TQuery> = (req: Request<any, any, TBody, TQuery>, res: Response) => void;
 
 export type ReturnAnonymouslyBasedOnSafeParseResultFunction<TBody, TQuery> = (
-  bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>,
-  queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>,
-  callback: AuthenticatedEndpointCallback<TBody, TQuery>,
-  req: Request,
-  res: Response,
+  endpointInformation: EndpointInformation<TBody, TQuery>,
 ) => void;
 
 export const returnAnonymouslyBasedOnSafeParseResult = <TBody, TQuery>(
-  bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>,
-  queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>,
-  callback: AuthenticatedEndpointCallback<TBody, TQuery>,
-  req: Request,
-  res: Response,
+  endpointInformation: EndpointInformation<TBody, TQuery>,
 ) => {
-  return returnBasedOnSafeParseResult(bodyParseResult, queryParseResult, callback, req, res);
+  return returnBasedOnSafeParseResult(endpointInformation);
 };
 
 export type AuthenticatedEndpointCallback<TBody, TQuery> = (req: AuthenticatedRequest<any, any, TBody, TQuery>, res: Response) => void;
 
 export type ReturnBasedOnAuthenticationAndSafeParseResultFunction<TBody, TQuery> = (
-  bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>,
-  queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>,
-  callback: AuthenticatedEndpointCallback<TBody, TQuery>,
-  req: Request,
-  res: Response,
+  endpointInformation: EndpointInformation<TBody, TQuery>,
 ) => void;
 
 export const returnBasedOnAuthenticationAndSafeParseResult = <TBody, TQuery>(
-  bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>,
-  queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>,
-  callback: AuthenticatedEndpointCallback<TBody, TQuery>,
-  req: Request,
-  res: Response,
+  endpointInformation: EndpointInformation<TBody, TQuery>,
 ) => {
-  return (req.user) ?
-    returnBasedOnSafeParseResult(bodyParseResult, queryParseResult, callback, req, res) :
-    res.status(HttpStatus.UNAUTHORIZED).send();
+  return (endpointInformation.req.user) ?
+    returnBasedOnSafeParseResult(endpointInformation) :
+    endpointInformation.res.status(HttpStatus.UNAUTHORIZED).send();
 };

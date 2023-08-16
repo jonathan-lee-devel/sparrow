@@ -13,7 +13,7 @@ export const makeCreateOrganizationCallback = (
     generateId: GenerateIdFunction,
     transform: ModelTransformFunction,
 ): AuthenticatedEndpointCallback<CreateOrganizationRequestBody, CreateOrganizationRequestQuery> => {
-  return async function createOrganizationCallback(req, res) {
+  return async (req, res) => {
     const requestingUserEmail: string = req.user.email;
     const {name} = req.body;
     logger.info(`Request to from <${requestingUserEmail}> create organization with name: ${name}`);
