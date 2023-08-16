@@ -1,6 +1,7 @@
 import {HttpController} from '../../main/types/http-controller';
 import {HttpRequest} from '../../main/types/http-request';
 import {GetOrganizationSnippetFunction} from '../types/get-organization-snippet';
+import {HttpControllerResult} from '../../main/types/http-controller-result';
 
 /**
  * Closure for the HTTP controller which gets organization snippet data by ID.
@@ -15,7 +16,7 @@ export const makeGetOrganizationSnippetController = (
      * @param {HttpRequest} httpRequest HTTP request to be processed
      * @return {Promise<HttpControllerResult>} HTTP status and JSON body obtained from the called service
      */
-  return async function getOrganizationSnippetController(httpRequest: HttpRequest) {
+  return async function getOrganizationSnippetController(httpRequest: HttpRequest): Promise<HttpControllerResult> {
     const organizationContainer = await getOrganizationSnippet(
         httpRequest.user,
         httpRequest.params.organizationId,
