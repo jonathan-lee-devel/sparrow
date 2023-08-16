@@ -12,21 +12,19 @@ export const makeCreateOrganizationCallback = (
     Organization: IOrganizationModel,
     generateId: GenerateIdFunction,
     transform: ModelTransformFunction,
-): AuthenticatedEndpointCallback<CreateOrganizationRequestBody, CreateOrganizationRequestQuery> => {
-  return async (req, res) => {
-    const requestingUserEmail: string = req.user.email;
-    const {name} = req.body;
-    logger.info(`Request to from <${requestingUserEmail}> create organization with name: ${name}`);
+): AuthenticatedEndpointCallback<CreateOrganizationRequestBody, CreateOrganizationRequestQuery> => async (req, res) => {
+  const requestingUserEmail: string = req.user.email;
+  const {name} = req.body;
+  logger.info(`Request to from <${requestingUserEmail}> create organization with name: ${name}`);
 
-    const organization = await Organization.create({
-      id: await generateId(DEFAULT_ID_LENGTH),
-      name,
-      administratorEmails: [requestingUserEmail],
-      memberEmails: [],
-    });
+  const organization = await Organization.create({
+    id: await generateId(DEFAULT_ID_LENGTH),
+    name,
+    administratorEmails: [requestingUserEmail],
+    memberEmails: [],
+  });
 
-    logger.info(`User <${requestingUserEmail}> created organization with ID: ${organization.id}`);
+  logger.info(`User <${requestingUserEmail}> created organization with ID: ${organization.id}`);
 
-    return res.status(HttpStatus.CREATED).json(organization.toJSON({transform}));
-  };
+  return res.status(HttpStatus.CREATED).json(organization.toJSON({transform}));
 };
