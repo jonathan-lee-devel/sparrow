@@ -126,7 +126,7 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 |   |   |   +-- add.ts
 |   |   |   +-- all.ts
 |   |   |   +-- get.ts
-|   |   |   +-- index.ts
+|   |   |   +-- handler.ts
 |   |   |   +-- remove.ts
 |   |   |   +-- search.ts
 |   +-- errors

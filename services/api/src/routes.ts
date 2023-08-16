@@ -3,7 +3,7 @@ import {Router} from 'express';
 import * as LoginController from './controllers/auth/login';
 import * as LogoutController from './controllers/auth/logout';
 import * as ProductController from './controllers/products';
-import {createOrganizationHandler} from './controllers/organizations/create-organization/handler';
+import {createOrganizationHandler} from './controllers/organizations';
 
 const router = Router();
 

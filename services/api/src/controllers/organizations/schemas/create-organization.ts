@@ -6,6 +6,6 @@ export const CreateOrganizationRequestBodySchema = z.object({
 
 export type CreateOrganizationRequestBody = z.infer<typeof CreateOrganizationRequestBodySchema>;
 
-export const CreateOrganizationRequestQuerySchema = z.any();
+export const CreateOrganizationRequestQuerySchema = z.undefined();
 
 export type CreateOrganizationRequestQuery = z.infer<typeof CreateOrganizationRequestQuerySchema>;

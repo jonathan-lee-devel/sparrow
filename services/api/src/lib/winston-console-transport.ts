@@ -10,7 +10,7 @@ const levelStyleMap: { [key: string]: string } = {
   info: '\x1b[94m%s\x1b[0m',
   verbose: '\x1b[35m%s\x1b[0m',
   debug: '\x1b[32m%s\x1b[0m',
-  silly: '\x1b[36m%s\x1b[0m'
+  silly: '\x1b[36m%s\x1b[0m',
 };
 
 export default class ConsoleLogTransport extends Transport {
