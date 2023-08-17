@@ -4,21 +4,20 @@ import {Request, Response} from 'express';
 
 export const makeMakeCreateOrganizationEndpoint = <TBody, TQuery>(
   returnBasedOnAuthenticationAndSafeParseResult: ReturnBasedOnAuthenticationAndSafeParseResultFunction<TBody, TQuery>,
-) => {
-  return function(
-      bodySchema: z.Schema<TBody>,
-      querySchema: z.Schema<TQuery>,
-      callback: AuthenticatedEndpointCallback<TBody, TQuery>,
-  ) {
-    return (req: Request, res: Response) => {
-      returnBasedOnAuthenticationAndSafeParseResult({
-        bodyParseResult: bodySchema.safeParse(req.body),
-        queryParseResult: querySchema.safeParse(req.query),
-        callback,
-        req,
-        res,
-      },
-      );
+) =>
+    (
+        bodySchema: z.Schema<TBody>,
+        querySchema: z.Schema<TQuery>,
+        callback: AuthenticatedEndpointCallback<TBody, TQuery>,
+    ) => {
+      return (req: Request, res: Response) => {
+        returnBasedOnAuthenticationAndSafeParseResult({
+          bodyParseResult: bodySchema.safeParse(req.body),
+          queryParseResult: querySchema.safeParse(req.query),
+          callback,
+          req,
+          res,
+        },
+        );
+      };
     };
-  };
-};
