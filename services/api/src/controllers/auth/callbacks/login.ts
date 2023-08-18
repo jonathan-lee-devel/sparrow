@@ -4,11 +4,9 @@ import {User} from '../../../models/users/User';
 import {AnonymousEndpointCallback} from '../../../lib/endpoint-util';
 import {LoginRequestBody, LoginRequestQuery} from '../schemas/login';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
-import {Model} from 'mongoose';
 
 export const makeLoginCallback = (
     logger: winston.Logger,
-    User: Model<User>,
 ): AnonymousEndpointCallback<LoginRequestBody, LoginRequestQuery> => async (req, res, next) => {
   passport.authenticate('local', (err: any, user: User, _: any) => {
     if (!next) {
