@@ -3,7 +3,7 @@ import {Router} from 'express';
 import * as LoginController from './controllers/auth/login';
 import * as LogoutController from './controllers/auth/logout';
 import * as ProductController from './controllers/products';
-import {createOrganizationHandler, getOrganizationSnippetHandler} from './controllers/organizations';
+import {createOrganizationHandler, getOrganizationSnippetHandler, searchOrganizationsHandler} from './controllers/organizations';
 
 const router = Router();
 
@@ -16,6 +16,7 @@ router.get('/products/:productId', ProductController.get);
 
 // Organization Routes
 router.get('/organizations/:organizationId/snippet', getOrganizationSnippetHandler);
+router.get('/organizations/search/:searchString', searchOrganizationsHandler);
 router.post('/organizations', createOrganizationHandler);
 
 export default router;

@@ -2,14 +2,15 @@ import winston from 'winston';
 import {AuthenticatedEndpointCallback} from '../../../lib/endpoint-util';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {CreateOrganizationRequestBody, CreateOrganizationRequestQuery} from '../schemas/create-organization';
-import {IOrganizationModel} from '../../../models/organizations/Organization';
 import {GenerateIdFunction} from '../../../lib/generate-id';
 import {DEFAULT_ID_LENGTH} from '../../../constants/auth';
 import {ModelTransformFunction} from '../../../lib/model-transform';
+import {Organization} from '../../../models/organizations/Organization';
+import {Model} from 'mongoose';
 
 export const makeCreateOrganizationCallback = (
     logger: winston.Logger,
-    Organization: IOrganizationModel,
+    Organization: Model<Organization>,
     generateId: GenerateIdFunction,
     transform: ModelTransformFunction,
 ): AuthenticatedEndpointCallback<CreateOrganizationRequestBody, CreateOrganizationRequestQuery> => async (req, res) => {
