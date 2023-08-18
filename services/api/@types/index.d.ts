@@ -1,5 +1,5 @@
-import {IUser} from './models/users/User';
 import * as core from 'express-serve-static-core';
+import {User} from '../src/models/users/User';
 
 declare module 'express' {
   export interface AuthenticatedRequest<
@@ -9,6 +9,6 @@ declare module 'express' {
     ReqQuery = core.Query,
     Locals extends Record<string, any> = Record<string, any>
   > extends core.Request<P, ResBody, ReqBody, ReqQuery, Locals> {
-    user: IUser
+    user: User
   }
 }
