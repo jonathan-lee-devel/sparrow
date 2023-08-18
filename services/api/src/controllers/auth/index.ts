@@ -1,3 +1,4 @@
+import passport from 'passport';
 import {makeMakeLoginEndpoint} from './endpoints/login';
 import {returnAnonymouslyBasedOnSafeParseResult, returnBasedOnAuthenticationAndSafeParseResult} from '../../lib/endpoint-util';
 import {LoginRequestBodySchema, LoginRequestQuerySchema} from './schemas/login';
@@ -10,7 +11,7 @@ import {makeLogoutCallback} from './callbacks/logout';
 export const loginHandler = makeMakeLoginEndpoint(returnAnonymouslyBasedOnSafeParseResult)(
     LoginRequestBodySchema,
     LoginRequestQuerySchema,
-    makeLoginCallback(logger),
+    makeLoginCallback(passport, logger),
 );
 
 export const logoutHandler = makeMakeLogoutEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(

@@ -6,6 +6,7 @@ import {LoginRequestBody, LoginRequestQuery} from '../schemas/login';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
 
 export const makeLoginCallback = (
+    passport: passport.PassportStatic,
     logger: winston.Logger,
 ): AnonymousEndpointCallback<LoginRequestBody, LoginRequestQuery> => async (req, res, next) => {
   passport.authenticate('local', (err: any, user: User, _: any) => {
