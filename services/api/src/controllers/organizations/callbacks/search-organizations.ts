@@ -4,8 +4,8 @@ import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {SearchOrganizationsRequestBody, SearchOrganizationsRequestQuery} from '../schemas/search-organizations';
 import {Model} from 'mongoose';
 import {Organization} from '../../../models/organizations/Organization';
-import {ModelTransformFunction} from '../../../lib/model-transform';
 import {OrganizationSnippetDto} from '../../../dtos/organizations/OrganizationSnippetDto';
+import {ModelTransformFunction} from '../../../lib/model-transform/default-model-transform';
 
 export const makeSearchOrganizationsCallback =(
     logger: winston.Logger,

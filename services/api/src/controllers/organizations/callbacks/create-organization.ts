@@ -4,9 +4,9 @@ import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {CreateOrganizationRequestBody, CreateOrganizationRequestQuery} from '../schemas/create-organization';
 import {GenerateIdFunction} from '../../../lib/generate-id';
 import {DEFAULT_ID_LENGTH} from '../../../constants/auth';
-import {ModelTransformFunction} from '../../../lib/model-transform';
 import {Organization} from '../../../models/organizations/Organization';
 import {Model} from 'mongoose';
+import {ModelTransformFunction} from '../../../lib/model-transform/default-model-transform';
 
 export const makeCreateOrganizationCallback = (
     logger: winston.Logger,

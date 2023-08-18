@@ -1,10 +1,10 @@
 import winston from 'winston';
-import {ModelTransformFunction} from '../../../lib/model-transform';
 import {AnonymousEndpointCallback} from '../../../lib/endpoint-util';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {GetOrganizationSnippetRequestBody, GetOrganizationSnippetRequestQuery} from '../schemas/get-organization-snippet';
 import {Model} from 'mongoose';
 import {Organization} from '../../../models/organizations/Organization';
+import {ModelTransformFunction} from '../../../lib/model-transform/default-model-transform';
 
 export const makeGetOrganizationSnippetCallback = (
     logger: winston.Logger,

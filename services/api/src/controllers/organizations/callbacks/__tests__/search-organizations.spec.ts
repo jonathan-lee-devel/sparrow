@@ -1,6 +1,6 @@
 import {HttpStatus} from '../../../../lib/enums/HttpStatus';
 import {makeSearchOrganizationsCallback} from '../search-organizations';
-import {ModelTransformFunction} from '../../../../lib/model-transform';
+import {ModelTransformFunction} from '../../../../lib/model-transform/default-model-transform';
 
 describe('Get Organization Snippet Callback Unit Tests', () => {
   const organizationId = '12345';
