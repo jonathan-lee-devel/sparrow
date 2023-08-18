@@ -1,6 +1,6 @@
-import { model, Model, Schema } from 'mongoose';
+import {model, Schema} from 'mongoose';
 
-export interface IDelivery extends Document {
+export interface Delivery {
   id: string;
   creatorEmail: string;
   assignedDriverEmail: string;
@@ -11,19 +11,15 @@ export interface IDelivery extends Document {
   isDelivered: boolean;
 }
 
-export interface IDeliveryModel extends Model<IDelivery> {}
+const schema = new Schema<Delivery>({
+  id: {type: String, required: true, unique: true},
+  creatorEmail: {type: String, required: true, unique: false},
+  assignedDriverEmail: {type: String, required: true, unique: false},
+  organizationId: {type: String, required: true, unique: false},
+  productId: {type: String, required: true, unique: false},
+  customerId: {type: String, required: true, unique: false},
+  details: {type: String, required: true, unique: false},
+  isDelivered: {type: Boolean, required: true, unique: false},
+}, {timestamps: true});
 
-const schema = new Schema<IDelivery>({
-  id: { type: String, required: true, unique: true },
-  creatorEmail: { type: String, required: true, unique: false },
-  assignedDriverEmail: { type: String, required: true, unique: false },
-  organizationId: { type: String, required: true, unique: false },
-  productId: { type: String, required: true, unique: false },
-  customerId: { type: String, required: true, unique: false },
-  details: { type: String, required: true, unique: false },
-  isDelivered: { type: Boolean, required: true, unique: false }
-}, { timestamps: true });
-
-const Delivery: IDeliveryModel = model<IDelivery, IDeliveryModel>('Delivery', schema);
-
-export default Delivery;
+export const DeliveryModel = model<Delivery>('Delivery', schema);

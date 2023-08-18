@@ -1,13 +1,13 @@
 import {NextFunction, Request, Response} from 'express';
 import passport from 'passport';
-import {IUser} from '../../../models/users/User';
 import logger from '../../../logger';
 import requestMiddleware from '../../../middleware/request-middleware';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
+import {User} from '../../../models/users/User';
 
 export const makePostHandler = () => async (req: Request, res: Response, next: NextFunction) => {
   // eslint-disable-next-line consistent-return
-  passport.authenticate('local', (err: any, user: IUser, _: any) => {
+  passport.authenticate('local', (err: any, user: User, _: any) => {
     if (err) {
       return next(err);
     }

@@ -12,8 +12,8 @@ import bcrypt from 'bcrypt';
 import {HydratedDocument} from 'mongoose';
 import routes from './routes';
 import logger from './logger';
-import User, {IUser} from './models/users/User';
 import {environment} from './environment';
+import {User, UserModel} from './models/users/User';
 
 const app = express();
 
@@ -67,7 +67,7 @@ const configurePassport = (): passport.PassportStatic => {
           profile: passportGoogle.Profile,
           done: passportGoogle.VerifyCallback,
       ): Promise<void> => {
-        const existingUser = await User.findOne({email: profile.emails?.[0].value}).exec();
+        const existingUser = await UserModel.findOne({email: profile.emails?.[0].value}).exec();
         if (existingUser?.emailVerified) {
           if (existingUser.googleId === profile.id) {
             done(null, existingUser);
@@ -79,7 +79,7 @@ const configurePassport = (): passport.PassportStatic => {
           done(null, existingUser);
           return;
         }
-        const newUser = await User.create({
+        const newUser = await UserModel.create({
           email: profile.emails?.[0].value,
           googleId: profile.id,
           password: undefined,
@@ -92,8 +92,7 @@ const configurePassport = (): passport.PassportStatic => {
   ));
   passport.use('local', new LocalStrategy(async (username, password, done): Promise<void> => {
     try {
-      // @ts-ignore
-      const foundUser: HydratedDocument<IUser> = await User.findOne({email: username}).exec();
+      const foundUser: HydratedDocument<User> | null = await UserModel.findOne({email: username}).exec();
 
       if (!foundUser) {
         return done(null, false, {message: 'Invalid username'});
@@ -124,7 +123,7 @@ const configurePassport = (): passport.PassportStatic => {
   });
 
   passport.deserializeUser(async (id, done): Promise<void> => {
-    User.findById(id).exec()
+    UserModel.findById(id).exec()
         .then((user) => {
           done(null, user);
         })
