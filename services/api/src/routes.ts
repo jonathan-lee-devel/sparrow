@@ -1,6 +1,11 @@
 import {Router} from 'express';
 import * as ProductController from './controllers/products';
-import {createOrganizationHandler, getOrganizationSnippetHandler, searchOrganizationsHandler} from './controllers/organizations';
+import {
+  createOrganizationHandler,
+  getOrganizationSnippetHandler,
+  getOrganizationsWhereInvolvedHandler,
+  searchOrganizationsHandler,
+} from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
 
 const router = Router();
@@ -16,5 +21,6 @@ router.get('/products/:productId', ProductController.get);
 router.get('/organizations/:organizationId/snippet', getOrganizationSnippetHandler);
 router.get('/organizations/search/:searchString', searchOrganizationsHandler);
 router.post('/organizations', createOrganizationHandler);
+router.get('/organizations/where-involved', getOrganizationsWhereInvolvedHandler);
 
 export default router;

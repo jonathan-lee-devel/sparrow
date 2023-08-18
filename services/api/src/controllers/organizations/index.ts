@@ -13,6 +13,12 @@ import {makeSearchOrganizationsCallback} from './callbacks/search-organizations'
 import {OrganizationModel} from '../../models/organizations/Organization';
 import {defaultModelTransform} from '../../lib/model-transform/default-model-transform';
 import {organizationSnippetModelTransform} from '../../lib/model-transform/organization-snippet-model-transform';
+import {makeMakeGetOrganizationsWhereInvolvedEndpoint} from './endpoints/get-organizations-where-involved';
+import {
+  GetOrganizationsWhereInvolvedRequestBodySchema,
+  GetOrganizationsWhereInvolvedRequestQuerySchema,
+} from './schemas/get-organizations-where-involved';
+import {makeGetOrganizationsWhereInvolvedCallback} from './callbacks/get-organizations-where-involved';
 
 export const getOrganizationSnippetHandler = makeMakeGetOrganizationSnippetEndpoint(returnAnonymouslyBasedOnSafeParseResult)(
     GetOrganizationSnippetRequestBodySchema,
@@ -30,4 +36,11 @@ export const searchOrganizationsHandler = makeMakeSearchOrganizationEndpoint(ret
     SearchOrganizationsRequestBodySchema,
     SearchOrganizationsRequestQuerySchema,
     makeSearchOrganizationsCallback(logger, OrganizationModel, organizationSnippetModelTransform),
+);
+
+export const getOrganizationsWhereInvolvedHandler = makeMakeGetOrganizationsWhereInvolvedEndpoint(
+    returnBasedOnAuthenticationAndSafeParseResult)(
+    GetOrganizationsWhereInvolvedRequestBodySchema,
+    GetOrganizationsWhereInvolvedRequestQuerySchema,
+    makeGetOrganizationsWhereInvolvedCallback(logger, OrganizationModel, defaultModelTransform),
 );
