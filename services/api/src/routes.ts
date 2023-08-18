@@ -1,15 +1,13 @@
 import {Router} from 'express';
-
-import * as LoginController from './controllers/auth/login';
-import * as LogoutController from './controllers/auth/logout';
 import * as ProductController from './controllers/products';
 import {createOrganizationHandler, getOrganizationSnippetHandler, searchOrganizationsHandler} from './controllers/organizations';
+import {loginHandler, logoutHandler} from './controllers/auth';
 
 const router = Router();
 
 // Auth Routes
-router.post('/auth/login', LoginController.post);
-router.post('/auth/logout', LogoutController.post);
+router.post('/auth/login', loginHandler);
+router.post('/auth/logout', logoutHandler);
 
 // Product Routes
 router.get('/products/:productId', ProductController.get);

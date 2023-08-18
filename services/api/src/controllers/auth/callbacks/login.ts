@@ -1,13 +1,18 @@
-import {NextFunction, Request, Response} from 'express';
+import winston from 'winston';
 import passport from 'passport';
-import logger from '../../../logger';
-import requestMiddleware from '../../../middleware/request-middleware';
-import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {User} from '../../../models/users/User';
+import {AnonymousEndpointCallback} from '../../../lib/endpoint-util';
+import {LoginRequestBody, LoginRequestQuery} from '../schemas/login';
+import {HttpStatus} from '../../../lib/enums/HttpStatus';
 
-export const makePostHandler = () => async (req: Request, res: Response, next: NextFunction) => {
-  // eslint-disable-next-line consistent-return
+export const makeLoginCallback = (
+    passport: passport.PassportStatic,
+    logger: winston.Logger,
+): AnonymousEndpointCallback<LoginRequestBody, LoginRequestQuery> => async (req, res, next) => {
   passport.authenticate('local', (err: any, user: User, _: any) => {
+    if (!next) {
+      throw Error('No next function provided for passport authentication');
+    }
     if (err) {
       return next(err);
     }
@@ -31,5 +36,3 @@ export const makePostHandler = () => async (req: Request, res: Response, next: N
     });
   })(req, res, next);
 };
-
-export default requestMiddleware(makePostHandler(), {requiresAuthentication: false});
