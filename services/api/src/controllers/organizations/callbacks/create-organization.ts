@@ -3,7 +3,6 @@ import {AuthenticatedEndpointCallback} from '../../../lib/endpoint-util';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {CreateOrganizationRequestBody, CreateOrganizationRequestQuery} from '../schemas/create-organization';
 import {GenerateIdFunction} from '../../../lib/generate-id';
-import {DEFAULT_ID_LENGTH} from '../../../constants/auth';
 import {Organization} from '../../../models/organizations/Organization';
 import {Model} from 'mongoose';
 import {ModelTransformFunction} from '../../../lib/model-transform/default-model-transform';
@@ -14,12 +13,12 @@ export const makeCreateOrganizationCallback = (
     generateId: GenerateIdFunction,
     transform: ModelTransformFunction,
 ): AuthenticatedEndpointCallback<CreateOrganizationRequestBody, CreateOrganizationRequestQuery> => async (req, res) => {
-  const requestingUserEmail: string = req.user.email;
+  const requestingUserEmail = req.user.email;
   const {name} = req.body;
   logger.info(`Request to from <${requestingUserEmail}> create organization with name: ${name}`);
 
   const organization = await Organization.create({
-    id: await generateId(DEFAULT_ID_LENGTH),
+    id: await generateId(),
     name,
     administratorEmails: [requestingUserEmail],
     memberEmails: [],
