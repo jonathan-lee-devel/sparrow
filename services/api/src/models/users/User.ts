@@ -1,6 +1,6 @@
-import {model, Model, Schema} from 'mongoose';
+import {model, Schema} from 'mongoose';
 
-export interface IUser extends Document {
+export interface User {
   email: string;
   firstName: string | undefined;
   lastName: string | undefined;
@@ -9,9 +9,7 @@ export interface IUser extends Document {
   googleId: string | undefined;
 }
 
-export interface IUserModel extends Model<IUser> {}
-
-const schema = new Schema<IUser>({
+const schema = new Schema<User>({
   email: {type: String, required: true, unique: true},
   firstName: {type: String, required: false, unique: false},
   lastName: {type: String, required: false, unique: false},
@@ -20,6 +18,4 @@ const schema = new Schema<IUser>({
   googleId: {type: String, required: false, unique: true},
 }, {timestamps: true});
 
-const User: IUserModel = model<IUser, IUserModel>('User', schema);
-
-export default User;
+export const UserModel = model<User>('User', schema);

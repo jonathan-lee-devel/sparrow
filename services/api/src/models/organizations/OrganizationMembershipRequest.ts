@@ -1,6 +1,6 @@
-import { model, Model, Schema } from 'mongoose';
+import {model, Schema} from 'mongoose';
 
-export interface IOrganizationMembershipRequest extends Document {
+export interface OrganizationMembershipRequest {
   id: string;
   organizationId: string;
   requestingUserEmail: string;
@@ -8,16 +8,12 @@ export interface IOrganizationMembershipRequest extends Document {
   approvingAdministratorEmail?: string;
 }
 
-export interface IOrganizationMembershipRequestModel extends Model<IOrganizationMembershipRequest> {}
+const schema = new Schema<OrganizationMembershipRequest>({
+  id: {type: String, required: true, unique: true},
+  organizationId: {type: String, required: true, unique: false},
+  requestingUserEmail: {type: String, required: true, unique: false},
+  isApproved: {type: Boolean, required: true, unique: false},
+  approvingAdministratorEmail: {type: String, required: false, unique: false},
+}, {timestamps: true});
 
-const schema = new Schema<IOrganizationMembershipRequest>({
-  id: { type: String, required: true, unique: true },
-  organizationId: { type: String, required: true, unique: false },
-  requestingUserEmail: { type: String, required: true, unique: false },
-  isApproved: { type: Boolean, required: true, unique: false },
-  approvingAdministratorEmail: { type: String, required: false, unique: false }
-}, { timestamps: true });
-
-const OrganizationMembershipRequest: IOrganizationMembershipRequestModel = model<IOrganizationMembershipRequest, IOrganizationMembershipRequestModel>('OrganizationMembershipRequest', schema);
-
-export default OrganizationMembershipRequest;
+export const OrganizationMembershipRequestModel = model<OrganizationMembershipRequest>('OrganizationMembershipRequest', schema);
