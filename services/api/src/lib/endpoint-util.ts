@@ -1,4 +1,4 @@
-import {AuthenticatedRequest, Request, Response} from 'express';
+import {AuthenticatedRequest, NextFunction, Request, Response} from 'express';
 import {SafeParseError, SafeParseSuccess} from 'zod';
 import {HttpStatus} from './enums/HttpStatus';
 
@@ -8,6 +8,7 @@ export interface EndpointInformation<TBody, TQuery> {
   callback: AuthenticatedEndpointCallback<TBody, TQuery>;
   req: Request;
   res: Response;
+  next?: NextFunction;
 }
 
 const returnBasedOnSafeParseResult = <TBody, TQuery>(
@@ -18,10 +19,16 @@ const returnBasedOnSafeParseResult = <TBody, TQuery>(
   } else if (!endpointInformation.queryParseResult.success) {
     return endpointInformation.res.status(HttpStatus.BAD_REQUEST).json(endpointInformation.queryParseResult.error);
   }
-  return endpointInformation.callback(endpointInformation.req as any, endpointInformation.res);
+  return (endpointInformation.next) ?
+    endpointInformation.callback(endpointInformation.req as any, endpointInformation.res, endpointInformation.next) :
+    endpointInformation.callback(endpointInformation.req as any, endpointInformation.res);
 };
 
-export type AnonymousEndpointCallback<TBody, TQuery> = (req: Request<any, any, TBody, TQuery>, res: Response) => void;
+export type AnonymousEndpointCallback<TBody, TQuery> = (
+  req: Request<any, any, TBody, TQuery>,
+  res: Response,
+  next?: NextFunction
+) => void;
 
 export type ReturnAnonymouslyBasedOnSafeParseResultFunction<TBody, TQuery> = (
   endpointInformation: EndpointInformation<TBody, TQuery>,
@@ -33,7 +40,7 @@ export const returnAnonymouslyBasedOnSafeParseResult = <TBody, TQuery>(
   return returnBasedOnSafeParseResult(endpointInformation);
 };
 
-export type AuthenticatedEndpointCallback<TBody, TQuery> = (req: AuthenticatedRequest<any, any, TBody, TQuery>, res: Response) => void;
+export type AuthenticatedEndpointCallback<TBody, TQuery> = (req: AuthenticatedRequest<any, any, TBody, TQuery>, res: Response, next?: NextFunction) => void;
 
 export type ReturnBasedOnAuthenticationAndSafeParseResultFunction<TBody, TQuery> = (
   endpointInformation: EndpointInformation<TBody, TQuery>,
