@@ -9,9 +9,9 @@ import {environment} from './environment';
 import {logResponseTime} from './lib/log-response-time';
 import {configurePassport} from './lib/configure-passport';
 import {errorResponseHandler} from './lib/error-response-handler';
-import {registerGoogleAuthRoute, registerGoogleRedirectRoute} from './lib/register-google-login-routes';
 import passport from 'passport';
 import {notFoundCallback} from './lib/not-found-callback';
+import logger from './logger';
 
 const app = express();
 
@@ -30,8 +30,12 @@ const configuredPassport = configurePassport();
 app.use(configuredPassport.initialize());
 app.use(configuredPassport.session());
 app.use(routes);
-registerGoogleAuthRoute(app, passport);
-registerGoogleRedirectRoute(app, passport, environment);
+app.get('/auth/google', passport.authenticate('google', {scope: ['email', 'profile']}));
+app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
+  // @ts-ignore
+  logger.info(`Successful Google authentication for: <${req.user.email}>`);
+  res.redirect(`${environment.FRONT_END_URL}/google-login-success`);
+});
 app.use(notFoundCallback);
 app.use(errorResponseHandler);
 

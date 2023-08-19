@@ -8,6 +8,7 @@ import {
 } from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
 import {cypressHealthCheckHandler} from './controllers/cypress';
+import {getProfileHandler} from './controllers/profile';
 
 const router = Router();
 
@@ -17,6 +18,9 @@ router.get('/', cypressHealthCheckHandler);
 // Auth Routes
 router.post('/auth/login', loginHandler);
 router.post('/auth/logout', logoutHandler);
+
+// User Routes
+router.get('/profile', getProfileHandler);
 
 // Product Routes
 router.get('/products/:productId', ProductController.get);
