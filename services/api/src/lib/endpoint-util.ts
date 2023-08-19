@@ -6,7 +6,7 @@ export interface EndpointInformation<TBody, TQuery> {
   bodyParseResult: SafeParseSuccess<TBody> | SafeParseError<TBody>;
   queryParseResult: SafeParseSuccess<TQuery> | SafeParseError<TQuery>;
   callback: AuthenticatedEndpointCallback<TBody, TQuery>;
-  req: Request;
+  req: Request | AuthenticatedRequest;
   res: Response;
   next?: NextFunction;
 }
@@ -53,7 +53,10 @@ export type ReturnBasedOnAuthenticationAndSafeParseResultFunction<TBody, TQuery>
 export const returnBasedOnAuthenticationAndSafeParseResult = <TBody, TQuery>(
   endpointInformation: EndpointInformation<TBody, TQuery>,
 ) => {
-  return (endpointInformation.req.user) ?
+  return (
+    endpointInformation.req.user &&
+    (endpointInformation.req as AuthenticatedRequest).user.emailVerified
+  ) ?
     returnBasedOnSafeParseResult(endpointInformation) :
     endpointInformation.res.status(HttpStatus.UNAUTHORIZED).send();
 };
