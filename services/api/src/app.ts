@@ -31,7 +31,7 @@ app.use(configuredPassport.initialize());
 app.use(configuredPassport.session());
 app.use(routes);
 registerGoogleAuthRoute(app, passport);
-registerGoogleRedirectRoute(app, passport);
+registerGoogleRedirectRoute(app, passport, environment);
 app.use(notFoundCallback);
 app.use(errorResponseHandler);
 

@@ -18,3 +18,5 @@ const environmentVariables = z.object({
 });
 
 export const environment = environmentVariables.parse(process.env);
+
+export type Environment = z.infer<typeof environmentVariables>;
