@@ -12,7 +12,8 @@ import {OrganizationSnippetDto} from '../../../dtos/organization/OrganizationSni
 export class LandingPageComponent implements OnInit {
   queryParams = '';
   searchResults: OrganizationSnippetDto[] = [];
-  isLoading = false;
+  isLoadingMap = new Map<string, boolean>();
+  readonly landingPageSearchResultsLoadingKey = 'landing-page-search-results-loading';
   isEmptySearchResults = false;
   readonly allCategories: string = 'All Categories';
   readonly restaurants: string = 'Restaurants';
@@ -21,9 +22,9 @@ export class LandingPageComponent implements OnInit {
   constructor(private cookiesNoticeService: CookiesNoticeService,
               private loadingService: LoadingService,
               private organizationService: OrganizationService) {
-    this.loadingService.isLoadingObservable()
-        .subscribe((isLoading) => {
-          this.isLoading = isLoading;
+    this.loadingService.isLoadingMapObservable()
+        .subscribe((isLoadingMap) => {
+          this.isLoadingMap = isLoadingMap;
         });
   }
 
@@ -33,16 +34,16 @@ export class LandingPageComponent implements OnInit {
   }
 
   search(queryParams: string) {
-    this.loadingService.onLoadingStart();
+    this.loadingService.onKeyLoadingStart(this.landingPageSearchResultsLoadingKey);
     this.isEmptySearchResults = false;
-    this.organizationService.searchOrganizations(queryParams)
+    this.organizationService.searchOrganizations(queryParams, this.landingPageSearchResultsLoadingKey)
         .subscribe((organizationSearchResults) => {
           setTimeout(() => {
             this.searchResults = organizationSearchResults;
             if (this.searchResults.length === 0) {
               this.isEmptySearchResults = true;
             }
-            this.loadingService.onLoadingFinished();
+            this.loadingService.onKeyLoadingFinished(this.landingPageSearchResultsLoadingKey);
           }, 1000);
         });
   }

@@ -54,31 +54,31 @@ export class OrganizationService {
     return this.httpClient.get<OrganizationDto[]>(`${environment.MAIN_API_URL}/organizations/where-involved`);
   }
 
-  searchOrganizations(searchString: string): Observable<OrganizationSnippetDto[]> {
+  searchOrganizations(searchString: string, landingPageSearchResultsLoadingKey: string): Observable<OrganizationSnippetDto[]> {
     if (searchString.length === 0) {
-      this.loadingService.onLoadingFinished();
+      this.loadingService.onKeyLoadingFinished(landingPageSearchResultsLoadingKey);
       return EMPTY;
     }
     return this.httpClient.get<OrganizationSnippetDto[]>(`${environment.MAIN_API_URL}/organizations/search/${searchString}`);
   }
 
-  deleteOrganization(organizationId: string) {
+  deleteOrganization(organizationId: string, deleteOrganizationLoadingKey: string) {
     this.modalService.showPopupModal(
         'Delete Organization',
         'Delete',
         'Cancel',
         () => {
-          this.loadingService.onLoadingStart();
+          this.loadingService.onKeyLoadingStart(deleteOrganizationLoadingKey);
           this.httpClient.delete<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`)
               .subscribe((organization) => {
                 this.modalService.hidePopupModal();
                 this.modalService.showDefaultModal('Organization', `Organization with ID: ${organization.id} successfully deleted`);
-                this.loadingService.onLoadingFinished();
+                this.loadingService.onKeyLoadingFinished(deleteOrganizationLoadingKey);
                 this.router.navigate([`/${RoutePaths.ORGANIZATIONS_MANAGE}`]).catch((reason) => window.alert(reason));
               });
         },
         () => {
-          this.loadingService.onLoadingFinished();
+          this.loadingService.onKeyLoadingFinished(deleteOrganizationLoadingKey);
           this.modalService.hidePopupModal();
         },
     );

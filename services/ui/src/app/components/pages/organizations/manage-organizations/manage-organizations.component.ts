@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {OrganizationService} from '../../../../services/organization/organization.service';
 import {OrganizationDto} from '../../../../dtos/organization/OrganizationDto';
 import {LoadingService} from '../../../../services/loading/loading.service';
-import {AuthService} from "../../../../services/auth/auth.service";
-import {UserDto} from "../../../../dtos/auth/UserDto";
+import {AuthService} from '../../../../services/auth/auth.service';
+import {UserDto} from '../../../../dtos/auth/UserDto';
 
 @Component({
   selector: 'app-manage-organizations',
@@ -12,7 +12,8 @@ import {UserDto} from "../../../../dtos/auth/UserDto";
 })
 export class ManageOrganizationsComponent implements OnInit {
   organizations: OrganizationDto[] = [];
-  isLoading: boolean = true;
+  isLoadingMap = new Map<string, boolean>();
+  readonly manageOrganizationsOrganizationsLoading = 'manage-organizations-organizations-loading';
   currentUser: UserDto = AuthService.DEFAULT_USER;
 
   constructor(
@@ -23,13 +24,14 @@ export class ManageOrganizationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadingService.isLoadingObservable().subscribe((isLoading) => {
-      this.isLoading = isLoading;
+    this.loadingService.isLoadingMapObservable().subscribe((isLoadingMap) => {
+      this.isLoadingMap = isLoadingMap;
     });
+    this.loadingService.onKeyLoadingStart(this.manageOrganizationsOrganizationsLoading);
     this.currentUser = this.authService.getCurrentUserInfo();
     this.organizationService.getOrganizationsWhereInvolved().subscribe((organizations) => {
       this.organizations = organizations;
-      this.loadingService.onLoadingFinished();
+      this.loadingService.onKeyLoadingFinished(this.manageOrganizationsOrganizationsLoading);
     });
   }
 }
