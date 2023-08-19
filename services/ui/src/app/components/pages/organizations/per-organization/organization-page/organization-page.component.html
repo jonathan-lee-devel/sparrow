@@ -1,6 +1,6 @@
 <div class="w-full bg-gray-200 dark:bg-gray-900 py-10">
     <div class="container mx-auto px-6 flex items-center justify-center">
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{{organization.name}}</h1>
+        <h1 *ngIf="!isLoadingMap.get(organizationIsLoadingKey)" class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{{organization.name}}</h1>
     </div>
     <app-loading-spinner *ngIf="isLoadingMap.get(organizationIsLoadingKey)" class="flex justify-center pt-5"></app-loading-spinner>
     <div class="container mx-auto px-6 flex items-center justify-center py-10">
