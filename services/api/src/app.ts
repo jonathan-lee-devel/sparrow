@@ -1,17 +1,17 @@
 import compression from 'compression';
 import express from 'express';
-import createError from 'http-errors';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
-import passport from 'passport';
 import routes from './routes';
-import logger from './logger';
 import {environment} from './environment';
 import {logResponseTime} from './lib/log-response-time';
 import {configurePassport} from './lib/configure-passport';
 import {errorResponseHandler} from './lib/error-response-handler';
+import {registerGoogleAuthRoute, registerGoogleRedirectRoute} from './lib/register-google-login-routes';
+import passport from 'passport';
+import {notFoundCallback} from './lib/not-found-callback';
 
 const app = express();
 
@@ -30,21 +30,9 @@ const configuredPassport = configurePassport();
 app.use(configuredPassport.initialize());
 app.use(configuredPassport.session());
 app.use(routes);
-
-app.get('/auth/google', passport.authenticate('google', {
-  scope: ['email', 'profile'],
-}));
-
-app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
-  // @ts-ignore
-  logger.info(`Successful Google authentication for: <${req.user.email}>`);
-  res.redirect(`${environment.FRONT_END_URL}/google-login-success`);
-});
-
-app.use((_req, _res, next) => {
-  next(createError(404));
-});
-
+registerGoogleAuthRoute(app, passport);
+registerGoogleRedirectRoute(app, passport);
+app.use(notFoundCallback);
 app.use(errorResponseHandler);
 
 export default app;
