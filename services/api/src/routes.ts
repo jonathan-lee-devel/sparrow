@@ -2,6 +2,7 @@ import {Router} from 'express';
 import * as ProductController from './controllers/products';
 import {
   createOrganizationHandler,
+  getOrganizationHandler,
   getOrganizationSnippetHandler,
   getOrganizationsWhereInvolvedHandler,
   searchOrganizationsHandler,
@@ -26,6 +27,7 @@ router.get('/profile', getProfileHandler);
 router.get('/products/:productId', ProductController.get);
 
 // Organization Routes
+router.get('/organizations/:organizationId', getOrganizationHandler);
 router.get('/organizations/:organizationId/snippet', getOrganizationSnippetHandler);
 router.get('/organizations/search/:searchString', searchOrganizationsHandler);
 router.post('/organizations', createOrganizationHandler);

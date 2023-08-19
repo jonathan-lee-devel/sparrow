@@ -19,6 +19,15 @@ import {
   GetOrganizationsWhereInvolvedRequestQuerySchema,
 } from './schemas/get-organizations-where-involved';
 import {makeGetOrganizationsWhereInvolvedCallback} from './callbacks/get-organizations-where-involved';
+import {makeMakeGetOrganizationEndpoint} from './endpoints/get-organization';
+import {GetOrganizationRequestBodySchema, GetOrganizationRequestQuerySchema} from './schemas/get-organization';
+import {makeGetOrganizationCallback} from './callbacks/get-organization';
+
+export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
+    GetOrganizationRequestBodySchema,
+    GetOrganizationRequestQuerySchema,
+    makeGetOrganizationCallback(logger, OrganizationModel, defaultModelTransform),
+);
 
 export const getOrganizationSnippetHandler = makeMakeGetOrganizationSnippetEndpoint(returnAnonymouslyBasedOnSafeParseResult)(
     GetOrganizationSnippetRequestBodySchema,
