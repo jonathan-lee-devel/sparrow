@@ -12,15 +12,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
       - name: Cypress Run
         uses: cypress-io/github-action@v5
         with:
           working-directory: ./services/ui
           record: true
-          build: npm run build
-          start: npm run start, npm run api
+          build: yarn run build
+          start: yarn run start, yarn run api
           wait-on: http://localhost:3000
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
