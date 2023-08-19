@@ -40,7 +40,11 @@ export const returnAnonymouslyBasedOnSafeParseResult = <TBody, TQuery>(
   return returnBasedOnSafeParseResult(endpointInformation);
 };
 
-export type AuthenticatedEndpointCallback<TBody, TQuery> = (req: AuthenticatedRequest<any, any, TBody, TQuery>, res: Response, next?: NextFunction) => void;
+export type AuthenticatedEndpointCallback<TBody, TQuery> = (
+  req: AuthenticatedRequest<any, any, TBody, TQuery>,
+  res: Response,
+  next?: NextFunction
+) => void;
 
 export type ReturnBasedOnAuthenticationAndSafeParseResultFunction<TBody, TQuery> = (
   endpointInformation: EndpointInformation<TBody, TQuery>,

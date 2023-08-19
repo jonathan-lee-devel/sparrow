@@ -7,8 +7,12 @@ import {
   searchOrganizationsHandler,
 } from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
+import {cypressHealthCheckHandler} from './controllers/cypress';
 
 const router = Router();
+
+// Cypress Routes
+router.get('/', cypressHealthCheckHandler);
 
 // Auth Routes
 router.post('/auth/login', loginHandler);
