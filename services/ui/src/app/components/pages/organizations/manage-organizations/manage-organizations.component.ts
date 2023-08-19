@@ -27,11 +27,11 @@ export class ManageOrganizationsComponent implements OnInit {
     this.loadingService.isLoadingMapObservable().subscribe((isLoadingMap) => {
       this.isLoadingMap = isLoadingMap;
     });
-    this.loadingService.onKeyLoadingStart(this.manageOrganizationsOrganizationsLoading);
+    this.loadingService.onLoadingStart(this.manageOrganizationsOrganizationsLoading);
     this.currentUser = this.authService.getCurrentUserInfo();
     this.organizationService.getOrganizationsWhereInvolved().subscribe((organizations) => {
       this.organizations = organizations;
-      this.loadingService.onKeyLoadingFinished(this.manageOrganizationsOrganizationsLoading);
+      this.loadingService.onLoadingFinished(this.manageOrganizationsOrganizationsLoading);
     });
   }
 }

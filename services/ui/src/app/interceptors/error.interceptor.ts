@@ -22,7 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse): Observable<HttpEvent<unknown>> {
-    this.loadingService.onLoadingFinished();
+    this.loadingService.onAllLoadingFinished();
     if (error.status === 0) {
       throw error;
     }

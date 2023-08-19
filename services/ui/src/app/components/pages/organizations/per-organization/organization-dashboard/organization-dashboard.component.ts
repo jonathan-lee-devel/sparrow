@@ -36,51 +36,51 @@ export class OrganizationDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadingService.onKeyLoadingStart(this.organizationDashboardInitialOrganizationLoading);
+    this.loadingService.onLoadingStart(this.organizationDashboardInitialOrganizationLoading);
     this.activatedRoute.params.subscribe((params) => {
       this.organizationService.getOrganizationById(params['organizationId'])
           .subscribe((organization) => {
             this.organization = organization;
-            this.loadingService.onKeyLoadingFinished(this.organizationDashboardInitialOrganizationLoading);
+            this.loadingService.onLoadingFinished(this.organizationDashboardInitialOrganizationLoading);
           });
     });
   }
 
   doAddAdministratorToMembers(administratorEmail: string) {
-    this.loadingService.onKeyLoadingStart(this.doAddAdministratorToMembersLoading);
+    this.loadingService.onLoadingStart(this.doAddAdministratorToMembersLoading);
     this.organizationService.addAdministratorAsMember(this.organization.id, administratorEmail)
         .subscribe((organizationMembershipStatus) => {
           if (organizationMembershipStatus.status === 'SUCCESS') {
             this.organization.memberEmails.push(administratorEmail);
           }
-          this.loadingService.onKeyLoadingFinished(this.doAddAdministratorToMembersLoading);
+          this.loadingService.onLoadingFinished(this.doAddAdministratorToMembersLoading);
         });
   }
 
   doAddMemberToAdministrators(memberEmail: string) {
-    this.loadingService.onKeyLoadingStart(this.doAddMemberToAdministratorsLoading);
+    this.loadingService.onLoadingStart(this.doAddMemberToAdministratorsLoading);
     this.organizationService.addMemberAsAdministrator(this.organization.id, memberEmail)
         .subscribe((organization) => {
           this.organization = organization;
-          this.loadingService.onKeyLoadingFinished(this.doAddMemberToAdministratorsLoading);
+          this.loadingService.onLoadingFinished(this.doAddMemberToAdministratorsLoading);
         });
   }
 
   doRemoveOrganizationAdministrator(administratorEmail: string) {
-    this.loadingService.onKeyLoadingStart(this.doRemoveOrganizationAdministratorLoading);
+    this.loadingService.onLoadingStart(this.doRemoveOrganizationAdministratorLoading);
     this.organizationService.removeOrganizationAdministrator(this.organization.id, administratorEmail)
         .subscribe((organization) => {
           this.organization = organization;
-          this.loadingService.onKeyLoadingFinished(this.doRemoveOrganizationAdministratorLoading);
+          this.loadingService.onLoadingFinished(this.doRemoveOrganizationAdministratorLoading);
         });
   }
 
   doRemoveOrganizationMember(memberEmail: string) {
-    this.loadingService.onKeyLoadingStart(this.doRemoveOrganizationMemberLoading);
+    this.loadingService.onLoadingStart(this.doRemoveOrganizationMemberLoading);
     this.organizationService.removeOrganizationMember(this.organization.id, memberEmail)
         .subscribe((organization) => {
           this.organization = organization;
-          this.loadingService.onKeyLoadingFinished(this.doRemoveOrganizationMemberLoading);
+          this.loadingService.onLoadingFinished(this.doRemoveOrganizationMemberLoading);
         });
   }
 

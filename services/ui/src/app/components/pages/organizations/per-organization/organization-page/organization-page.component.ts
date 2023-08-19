@@ -16,31 +16,37 @@ export class OrganizationPageComponent implements OnInit {
     id: 'Loading...',
     name: 'Loading...',
   };
-  isLoading = true;
+  isLoadingMap = new Map<string, boolean>();
+  readonly organizationIsLoadingKey = 'organization-page-organization-is-loading';
+  readonly productsIsLoadingKey = 'organization-page-products-is-loading';
   products: ProductDto[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private organizationService: OrganizationService,
               private productService: ProductService,
               private loadingService: LoadingService) {
-    this.loadingService.isLoadingObservable()
-        .subscribe((isLoading) => {
-          this.isLoading = isLoading;
+    this.loadingService.isLoadingMapObservable()
+        .subscribe((isLoadingMap) => {
+          this.isLoadingMap = isLoadingMap;
         });
   }
   ngOnInit() {
-    this.loadingService.onLoadingStart();
+    this.loadingService.onLoadingStart(this.organizationIsLoadingKey);
+    this.loadingService.onLoadingStart(this.productsIsLoadingKey);
     this.activatedRoute.params.subscribe((params) => {
       this.organizationService.getOrganizationSnippetById(params['organizationId'])
           .subscribe((organization) => {
             this.organization = organization;
-            this.productService.getProducts(params['organizationId'])
-                .subscribe((products) => {
-                  setTimeout(() => {
-                    this.products = products;
-                    this.loadingService.onLoadingFinished();
-                  }, 1000);
-                });
+            setTimeout(() => {
+              this.loadingService.onLoadingFinished(this.organizationIsLoadingKey);
+            }, 500);
+          });
+      this.productService.getProducts(params['organizationId'])
+          .subscribe((products) => {
+            setTimeout(() => {
+              this.products = products;
+              this.loadingService.onLoadingFinished(this.productsIsLoadingKey);
+            }, 1000);
           });
     });
   }

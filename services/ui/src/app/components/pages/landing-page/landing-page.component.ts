@@ -34,7 +34,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   search(queryParams: string) {
-    this.loadingService.onKeyLoadingStart(this.landingPageSearchResultsLoadingKey);
+    this.loadingService.onLoadingStart(this.landingPageSearchResultsLoadingKey);
     this.isEmptySearchResults = false;
     this.organizationService.searchOrganizations(queryParams, this.landingPageSearchResultsLoadingKey)
         .subscribe((organizationSearchResults) => {
@@ -43,7 +43,7 @@ export class LandingPageComponent implements OnInit {
             if (this.searchResults.length === 0) {
               this.isEmptySearchResults = true;
             }
-            this.loadingService.onKeyLoadingFinished(this.landingPageSearchResultsLoadingKey);
+            this.loadingService.onLoadingFinished(this.landingPageSearchResultsLoadingKey);
           }, 1000);
         });
   }
