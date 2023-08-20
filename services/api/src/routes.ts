@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import * as ProductController from './controllers/products';
 import {
   createOrganizationHandler,
+  deleteOrganizationHandler,
   getOrganizationHandler,
   getOrganizationSnippetHandler,
   getOrganizationsWhereInvolvedHandler,
@@ -23,14 +23,12 @@ router.post('/auth/logout', logoutHandler);
 // User Routes
 router.get('/profile', getProfileHandler);
 
-// Product Routes
-router.get('/products/:productId', ProductController.get);
-
 // Organization Routes
 router.get('/organizations/:organizationId', getOrganizationHandler);
 router.get('/organizations/:organizationId/snippet', getOrganizationSnippetHandler);
 router.get('/organizations/search/:searchString', searchOrganizationsHandler);
 router.post('/organizations', createOrganizationHandler);
 router.get('/organizations/where-involved', getOrganizationsWhereInvolvedHandler);
+router.delete('/organizations/:organizationId', deleteOrganizationHandler);
 
 export default router;
