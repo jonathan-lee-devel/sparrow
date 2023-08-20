@@ -3,7 +3,6 @@ FROM --platform=linux/x86_64 node:20.5.1-bookworm-slim as base
 # Add package file
 COPY package.json ./
 COPY yarn.lock ./
-COPY scripts/dev.sh ./scripts/dev.sh
 
 # Install deps
 RUN yarn install
