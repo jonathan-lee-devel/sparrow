@@ -51,7 +51,7 @@ export class OrganizationService {
   }
 
   getOrganizationsWhereInvolved(): Observable<OrganizationDto[]> {
-    return this.httpClient.get<OrganizationDto[]>(`${environment.MAIN_API_URL}/organizations/where-involved`);
+    return this.httpClient.get<OrganizationDto[]>(`${environment.MAIN_API_URL}/organizations/get/where-involved`);
   }
 
   searchOrganizations(

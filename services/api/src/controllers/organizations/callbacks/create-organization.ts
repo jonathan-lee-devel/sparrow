@@ -1,10 +1,10 @@
 import winston from 'winston';
+import {Model} from 'mongoose';
 import {AuthenticatedEndpointCallback} from '../../../lib/endpoint-util';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {CreateOrganizationRequestBody, CreateOrganizationRequestQuery} from '../schemas/create-organization';
 import {GenerateIdFunction} from '../../../lib/generate-id';
 import {Organization} from '../../../models/organizations/Organization';
-import {Model} from 'mongoose';
 import {ModelTransformFunction} from '../../../lib/model-transform/default-model-transform';
 
 export const makeCreateOrganizationCallback = (

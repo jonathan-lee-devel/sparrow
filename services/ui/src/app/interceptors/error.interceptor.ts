@@ -42,7 +42,13 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
         this.modalService.showDefaultModal('Request Error', message);
       } else {
-        this.modalService.showDefaultModal('Request Error', JSON.stringify(error.error.errors[0].msg));
+        if (error.error.errors && error.error.errors[0].msg) {
+          this.modalService.showDefaultModal('Request Error', JSON.stringify(error.error.errors[0].msg));
+        } else if (error.error.error) {
+          this.modalService.showDefaultModal('Request Error', JSON.stringify(error.error.error));
+        } else {
+          this.modalService.showDefaultModal('Request Error', 'An unknown request error has occurred');
+        }
       }
     }
 
