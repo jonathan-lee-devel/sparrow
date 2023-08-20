@@ -21,9 +21,6 @@ FROM --platform=linux/x86_64 node:20.5.1-bookworm-slim
 COPY --from=base ./node_modules ./node_modules
 COPY --from=base /dist /dist
 
-# Copy static files
-COPY src/public dist/src/public
-
 # Expose port 3000
 EXPOSE 3000
 CMD ["dist/server.js"]
