@@ -4,6 +4,9 @@ FROM --platform=linux/x86_64 node:20.5.1-bookworm-slim as base
 COPY package.json ./
 COPY yarn.lock ./
 
+# Add custom types
+COPY @types ./
+
 # Install deps
 RUN yarn install
 
