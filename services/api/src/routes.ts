@@ -5,6 +5,7 @@ import {
   getOrganizationHandler,
   getOrganizationSnippetHandler,
   getOrganizationsWhereInvolvedHandler,
+  removeOrganizationAdministratorHandler,
   searchOrganizationsHandler,
 } from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
@@ -28,7 +29,8 @@ router.get('/organizations/:organizationId', getOrganizationHandler);
 router.get('/organizations/:organizationId/snippet', getOrganizationSnippetHandler);
 router.get('/organizations/search/:searchString', searchOrganizationsHandler);
 router.post('/organizations', createOrganizationHandler);
-router.get('/organizations/where-involved', getOrganizationsWhereInvolvedHandler);
+router.get('/organizations/get/where-involved', getOrganizationsWhereInvolvedHandler);
 router.delete('/organizations/:organizationId', deleteOrganizationHandler);
+router.patch('/organizations/:organizationId/administrators/remove', removeOrganizationAdministratorHandler);
 
 export default router;
