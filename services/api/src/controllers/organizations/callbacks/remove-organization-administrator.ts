@@ -40,8 +40,7 @@ export const makeRemoveOrganizationAdministratorCallback = (
     return res.status(HttpStatus.BAD_REQUEST).json({error: `Organization with ID: ${organizationId} requires at least one administrator`});
   }
 
-  organization.administratorEmails
-      .splice(organization.administratorEmails.indexOf(administratorEmailToRemove, 0), 1);
+  organization.administratorEmails.splice(organization.administratorEmails.indexOf(administratorEmailToRemove, 0), 1);
   await organization.markModified(ADMINISTRATOR_EMAILS_FIELD);
   await organization.save();
   return res.status(HttpStatus.OK).json(organization.toJSON({transform}));
