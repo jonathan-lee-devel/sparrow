@@ -1,5 +1,6 @@
 import {makeRemoveOrganizationAdministratorCallback} from '../remove-organization-administrator';
 import {HttpStatus} from '../../../../lib/enums/HttpStatus';
+import {ADMINISTRATOR_EMAILS_FIELD} from '../../../../constants/organizations/field-names';
 
 describe('Remove Organization Administrator Callback Unit Tests', () => {
   const organizationId = '12345';
@@ -75,7 +76,7 @@ describe('Remove Organization Administrator Callback Unit Tests', () => {
 
     expect(returnedCode).toStrictEqual(HttpStatus.OK);
     expect(result).toStrictEqual(organization);
-    expect(fieldModified).toStrictEqual('administratorEmails');
+    expect(fieldModified).toStrictEqual(ADMINISTRATOR_EMAILS_FIELD);
     expect(isSaveCalled).toBeTruthy();
   });
   it('When remove organization administrator on non-existent organization Then organization administrator not removed with correct status', async () => {
