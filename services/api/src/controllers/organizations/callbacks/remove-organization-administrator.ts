@@ -8,6 +8,7 @@ import {
   RemoveOrganizationAdministratorRequestQuery,
 } from '../schemas/remove-organization-administrator';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
+import {ADMINISTRATOR_EMAILS_FIELD} from '../../../constants/organizations/field-names';
 
 export const makeRemoveOrganizationAdministratorCallback = (
     logger: winston.Logger,
@@ -41,7 +42,7 @@ export const makeRemoveOrganizationAdministratorCallback = (
 
   organization.administratorEmails
       .splice(organization.administratorEmails.indexOf(administratorEmailToRemove, 0), 1);
-  await organization.markModified('administratorEmails');
+  await organization.markModified(ADMINISTRATOR_EMAILS_FIELD);
   await organization.save();
   return res.status(HttpStatus.OK).json(organization.toJSON({transform}));
 };
