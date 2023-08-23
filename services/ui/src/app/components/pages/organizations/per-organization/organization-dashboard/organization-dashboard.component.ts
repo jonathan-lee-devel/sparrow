@@ -49,10 +49,8 @@ export class OrganizationDashboardComponent implements OnInit {
   doAddAdministratorToMembers(administratorEmail: string) {
     this.loadingService.onLoadingStart(this.doAddAdministratorToMembersLoading);
     this.organizationService.addAdministratorAsMember(this.organization.id, administratorEmail)
-        .subscribe((organizationMembershipStatus) => {
-          if (organizationMembershipStatus.status === 'SUCCESS') {
-            this.organization.memberEmails.push(administratorEmail);
-          }
+        .subscribe((organization) => {
+          this.organization = organization;
           this.loadingService.onLoadingFinished(this.doAddAdministratorToMembersLoading);
         });
   }

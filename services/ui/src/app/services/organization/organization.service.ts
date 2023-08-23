@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {OrganizationDto} from '../../dtos/organization/OrganizationDto';
 import {EMPTY, Observable} from 'rxjs';
-import {OrganizationMembershipStatusDto} from '../../dtos/organization/OrganizationMembershipStatusDto';
 import {OrganizationSnippetDto} from '../../dtos/organization/OrganizationSnippetDto';
 import {ModalService} from '../modal/modal.service';
 import {LoadingService} from '../loading/loading.service';
@@ -34,8 +33,8 @@ export class OrganizationService {
   addAdministratorAsMember(
       organizationId: string,
       administratorEmail: string,
-  ): Observable<OrganizationMembershipStatusDto> {
-    return this.httpClient.patch<OrganizationMembershipStatusDto>(`${environment.MAIN_API_URL}/organizations/update-admin-join-as-member/${organizationId}`, {administratorEmailToUpdate: administratorEmail});
+  ): Observable<OrganizationDto> {
+    return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/update-admin-join-as-member/${organizationId}`, {administratorEmailToUpdate: administratorEmail});
   }
 
   addMemberAsAdministrator(organizationId: string, memberEmail: string): Observable<OrganizationDto> {
