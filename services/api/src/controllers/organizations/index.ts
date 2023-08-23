@@ -31,6 +31,12 @@ import {
   RemoveOrganizationAdministratorRequestQuerySchema,
 } from './schemas/remove-organization-administrator';
 import {makeRemoveOrganizationAdministratorCallback} from './callbacks/remove-organization-administrator';
+import {makeMakeRemoveOrganizationMemberEndpoint} from './endpoints/remove-organization-member';
+import {
+  RemoveOrganizationMemberRequestBodySchema,
+  RemoveOrganizationMemberRequestQuerySchema,
+} from './schemas/remove-organization-member';
+import {makeRemoveOrganizationMemberCallback} from './callbacks/remove-organization-member';
 
 export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
     GetOrganizationRequestBodySchema,
@@ -75,4 +81,11 @@ export const removeOrganizationAdministratorHandler = makeMakeRemoveOrganization
     RemoveOrganizationAdministratorRequestBodySchema,
     RemoveOrganizationAdministratorRequestQuerySchema,
     makeRemoveOrganizationAdministratorCallback(logger, OrganizationModel, defaultModelTransform),
+);
+
+export const removeOrganizationMemberHandler = makeMakeRemoveOrganizationMemberEndpoint(
+    returnBasedOnAuthenticationAndSafeParseResult)(
+    RemoveOrganizationMemberRequestBodySchema,
+    RemoveOrganizationMemberRequestQuerySchema,
+    makeRemoveOrganizationMemberCallback(logger, OrganizationModel, defaultModelTransform),
 );
