@@ -8,6 +8,7 @@ import {
   removeOrganizationAdministratorHandler,
   removeOrganizationMemberHandler,
   searchOrganizationsHandler,
+  updateOrganizationAdministratorJoinAsMemberHandler,
 } from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
 import {cypressHealthCheckHandler} from './controllers/cypress';
@@ -34,5 +35,6 @@ router.get('/organizations/get/where-involved', getOrganizationsWhereInvolvedHan
 router.delete('/organizations/:organizationId', deleteOrganizationHandler);
 router.patch('/organizations/:organizationId/administrators/remove', removeOrganizationAdministratorHandler);
 router.patch('/organizations/:organizationId/members/remove', removeOrganizationMemberHandler);
+router.patch('/organizations/update-admin-join-as-member/:organizationId', updateOrganizationAdministratorJoinAsMemberHandler);
 
 export default router;

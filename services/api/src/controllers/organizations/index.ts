@@ -37,6 +37,12 @@ import {
   RemoveOrganizationMemberRequestQuerySchema,
 } from './schemas/remove-organization-member';
 import {makeRemoveOrganizationMemberCallback} from './callbacks/remove-organization-member';
+import {makeMakeUpdateOrganizationAdministratorJoinAsMemberEndpoint} from './endpoints/update-organization-administrator-join-as-member';
+import {
+  UpdateOrganizationAdministratorJoinAsMemberRequestBodySchema,
+  UpdateOrganizationAdministratorJoinAsMemberRequestQuerySchema,
+} from './schemas/update-organization-administrator-join-as-member';
+import {makeUpdateOrganizationAdministratorJoinAsMemberCallback} from './callbacks/update-organization-administrator-join-as-member';
 
 export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
     GetOrganizationRequestBodySchema,
@@ -88,4 +94,11 @@ export const removeOrganizationMemberHandler = makeMakeRemoveOrganizationMemberE
     RemoveOrganizationMemberRequestBodySchema,
     RemoveOrganizationMemberRequestQuerySchema,
     makeRemoveOrganizationMemberCallback(logger, OrganizationModel, defaultModelTransform),
+);
+
+export const updateOrganizationAdministratorJoinAsMemberHandler = makeMakeUpdateOrganizationAdministratorJoinAsMemberEndpoint(
+    returnBasedOnAuthenticationAndSafeParseResult)(
+    UpdateOrganizationAdministratorJoinAsMemberRequestBodySchema,
+    UpdateOrganizationAdministratorJoinAsMemberRequestQuerySchema,
+    makeUpdateOrganizationAdministratorJoinAsMemberCallback(logger, OrganizationModel, defaultModelTransform),
 );
