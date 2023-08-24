@@ -12,7 +12,6 @@ import {errorResponseHandler} from './lib/error-response-handler';
 import passport from 'passport';
 import {notFoundCallback} from './lib/not-found-callback';
 import logger from './logger';
-import {sendMail} from './util';
 
 const app = express();
 
@@ -39,10 +38,5 @@ app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => 
 });
 app.use(notFoundCallback);
 app.use(errorResponseHandler);
-
-const main = async () => {
-  await sendMail('test-not-valid', 'Test', 'This is a test');
-};
-main().catch((err) => logger.error(`Mail main error: ${err}`));
 
 export default app;
