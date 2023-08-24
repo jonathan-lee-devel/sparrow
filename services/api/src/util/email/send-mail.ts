@@ -57,4 +57,5 @@ export const makeSendMail = (
     await emailSendAttemptModel.save();
     return;
   }
+  logger.error(`Unable to send e-mail to: <${to}> with attempt ID: ${emailSendAttempt.id}`);
 };
