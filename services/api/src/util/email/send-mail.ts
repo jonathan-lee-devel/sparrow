@@ -1,7 +1,7 @@
 import winston from 'winston';
 import {Transporter} from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import {environment} from '../../environment';
+import {Environment} from '../../environment';
 import {Model} from 'mongoose';
 import {EmailSendAttempt} from '../../models/email/EmailSendAttempt';
 import {GenerateIdFunction} from '../../lib/generate-id';
@@ -13,6 +13,7 @@ export type SendMailFunction = (
 ) => Promise<void>;
 
 export const makeSendMail = (
+    environment: Environment,
     logger: winston.Logger,
     EmailSendAttempt: Model<EmailSendAttempt>,
     generateId: GenerateIdFunction,
@@ -56,5 +57,4 @@ export const makeSendMail = (
     await emailSendAttemptModel.save();
     return;
   }
-  logger.error(`Failed to send e-mail to: <${to}> (response: ${response.response}) with attempt ID: ${emailSendAttempt.id}`);
 };
