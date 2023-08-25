@@ -17,9 +17,7 @@ export const makeHandleExistingUser = (
     logger.info(`No user found for e-mail: <${email}>, deleting any possible associated tokens`);
     await RegistrationVerificationToken.deleteOne({userEmail: email}).exec();
     await PasswordResetVerificationToken.deleteOne({userEmail: email}).exec();
-  }
-  if (existingUser?.emailVerified && existingUser.googleId && existingUser.password) {
-    return true;
+    return false;
   }
   if (existingUser && !existingUser.emailVerified && !existingUser.googleId) {
     logger.info(`Existing user: <${email}> detected without verified e-mail or Google ID, deleting user and any possible associated tokens`);
@@ -28,5 +26,5 @@ export const makeHandleExistingUser = (
     await PasswordResetVerificationToken.deleteOne({userEmail: email});
     return false;
   }
-  return false;
+  return true;
 };
