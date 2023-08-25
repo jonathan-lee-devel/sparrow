@@ -5,7 +5,7 @@ import {RegistrationVerificationToken} from '../../../models/users/registration/
 import {AnonymousEndpointCallback} from '../../../lib/endpoint-util';
 import {ConfirmRegistrationRequestBody, ConfirmRegistrationRequestQuery} from '../schemas/confirm-registration';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
-import {RegistrationStatus} from '../../../../enums/registration/RegistrationStatus';
+import {RegistrationStatus} from '../../../lib/enums/registration/RegistrationStatus';
 
 export const makeConfirmRegistrationCallback = (
     logger: winston.Logger,

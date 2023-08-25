@@ -9,9 +9,9 @@ import {GenerateRegistrationVerificationTokenFunction} from '../../../util/regis
 import {SendMailFunction} from '../../../util/email/send-mail';
 import {Environment} from '../../../environment';
 import {REGISTRATION_CONFIRMATION_EMAIL_SUBJECT} from '../../../constants/registration/registration';
-import {RegistrationStatus} from '../../../../enums/registration/RegistrationStatus';
 import {EncodePasswordFunction} from '../../../util/password/encode-password';
 import {GeneratePasswordResetVerificationTokenFunction} from '../../../util/password/generate-password-reset-verification-token';
+import {RegistrationStatus} from '../../../lib/enums/registration/RegistrationStatus';
 
 export const makeRegisterUserCallback = (
     logger: winston.Logger,
