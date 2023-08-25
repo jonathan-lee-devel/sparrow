@@ -10,7 +10,7 @@ describe('Encode Password Unit Tests', () => {
     expect(encodePassword).toBeInstanceOf(Function);
   });
   it('When encode password Then generate salt called and hash returned', async () => {
-    const salt = 'salt';
+    const salt = '$2b$10$OKx4ZY1nibxs4DrolaY2lu';
     let isGenerateSaltCalled = false;
     const encodePassword = makeEncodePassword(async () => {
       isGenerateSaltCalled = true;
