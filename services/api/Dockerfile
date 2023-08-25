@@ -26,4 +26,4 @@ COPY --from=base /dist /dist
 
 # Expose port 3000
 EXPOSE 3000
-CMD ["dist/src/server.js"]
+CMD ["dist/server.js"]
