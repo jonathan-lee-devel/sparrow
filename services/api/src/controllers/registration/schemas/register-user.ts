@@ -7,8 +7,7 @@ export const RegisterUserRequestBodySchema = z.object({
   lastName: z.string().min(MIN_NAME_LENGTH).max(MAX_NAME_LENGTH),
   password: z.string().min(MIN_PASSWORD_LENGTH).max(MAX_PASSWORD_LENGTH),
   confirmPassword: z.string().min(MIN_PASSWORD_LENGTH).max(MAX_PASSWORD_LENGTH), // Confirm password must match password, this validation is performed in the callback
-  // acceptTermsAndConditions: z.boolean(), // Boolean but must be true, this validation is performed in the callback
-  acceptTermsAndConditions: z.literal<boolean>(true),
+  acceptTermsAndConditions: z.literal<boolean>(true), // Boolean but must be true
 });
 
 export type RegisterUserRequestBody = z.infer<typeof RegisterUserRequestBodySchema>;
