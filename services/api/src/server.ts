@@ -6,6 +6,12 @@ import {environment} from './environment';
 
 const PORT = environment.PORT || 3000;
 
+app._router.stack.forEach(function(r: { route: { path: any; }; }) {
+  if (r.route && r.route.path) {
+    console.log(r.route.path);
+  }
+});
+
 let debugCallback;
 if (environment.NODE_ENV === 'development') {
   debugCallback = (collectionName: string, method: string, query: any, doc: string): void => {

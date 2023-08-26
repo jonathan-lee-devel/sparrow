@@ -14,6 +14,7 @@ import {loginHandler, logoutHandler} from './controllers/auth';
 import {cypressHealthCheckHandler} from './controllers/cypress';
 import {getProfileHandler} from './controllers/profile';
 import {confirmRegistrationHandler, registerUserHandler} from './controllers/registration';
+import {confirmPasswordResetHandler, resetPasswordHandler} from './controllers/password';
 
 const router = Router();
 
@@ -30,6 +31,10 @@ router.get('/profile', getProfileHandler);
 // Registration Routes
 router.post('/register', registerUserHandler);
 router.post('/register/confirm', confirmRegistrationHandler);
+
+// Password Routes
+router.post('/password/reset', resetPasswordHandler);
+router.post('/password/reset/confirm', confirmPasswordResetHandler);
 
 // Organization Routes
 router.get('/organizations/:organizationId', getOrganizationHandler);
