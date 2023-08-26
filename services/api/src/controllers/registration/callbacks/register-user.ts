@@ -23,12 +23,9 @@ export const makeRegisterUserCallback = (
     sendMail: SendMailFunction,
     environment: Environment,
 ): AnonymousEndpointCallback<RegisterUserRequestBody, RegisterUserRequestQuery> => async (req, res) => {
-  const {email, firstName, lastName, password, confirmPassword, acceptTermsAndConditions} = req.body;
+  const {email, firstName, lastName, password, confirmPassword} = req.body;
   if (await handleExistingUser(email)) {
     return res.status(HttpStatus.CONFLICT).send();
-  }
-  if (!acceptTermsAndConditions) {
-    return res.status(HttpStatus.BAD_REQUEST).json({error: 'You must accept the terms and conditions'});
   }
   if (password !== confirmPassword) {
     return res.status(HttpStatus.BAD_REQUEST).json({error: 'Passwords do not match'});
