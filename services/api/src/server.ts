@@ -4,7 +4,7 @@ import SafeMongooseConnection from './lib/safe-mongoose-connection';
 import logger from './logger';
 import {environment} from './environment';
 
-const PORT = environment.PORT || 3000;
+const PORT = environment.PORT;
 
 let debugCallback;
 if (environment.NODE_ENV === 'development') {
@@ -19,7 +19,7 @@ if (environment.NODE_ENV === 'development') {
 }
 
 const safeMongooseConnection = new SafeMongooseConnection({
-  mongoUrl: environment.MONGO_URL ?? '',
+  mongoUrl: environment.DATABASE_URL,
   debugCallback,
   onStartConnection: (mongoUrl) => logger.info(`Connecting to MongoDB at ${mongoUrl}`),
   onConnectionError: (error, mongoUrl) => logger.log({
@@ -34,7 +34,7 @@ const serve = () => app.listen(PORT, () => {
   logger.info(`🌏 Express server started at http://localhost:${PORT}`);
 });
 
-if (environment.MONGO_URL == null) {
+if (environment.DATABASE_URL == null) {
   logger.error(
       'MONGO_URL not specified in environment',
       new Error('MONGO_URL not specified in environment'),
