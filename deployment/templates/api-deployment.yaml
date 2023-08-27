@@ -37,6 +37,11 @@ spec:
         image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
         imagePullPolicy: "{{ .Values.api.image.pullPolicy }}"
         env:
+          - name: NODE_ENV
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-node-env
+                key: NODE_ENV
           - name: SESSION_SECRET
             valueFrom:
               secretKeyRef:
@@ -47,6 +52,11 @@ spec:
               secretKeyRef:
                 name: sparrow-database-url
                 key: DATABASE_URL
+          - name: PORT
+            valueFrom:
+              secretKeyRef:
+                name: sparrow-port
+                key: PORT
           - name: FRONT_END_URL
             valueFrom:
               secretKeyRef:

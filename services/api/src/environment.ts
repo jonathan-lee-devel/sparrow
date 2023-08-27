@@ -9,7 +9,7 @@ if (result.error) {
 const environmentVariables = z.object({
   NODE_ENV: z.string(),
   PORT: z.string(),
-  MONGO_URL: z.string(),
+  DATABASE_URL: z.string(),
   SESSION_SECRET: z.string(),
   FRONT_END_URL: z.string(),
   EMAIL_USER: z.string().email(),
