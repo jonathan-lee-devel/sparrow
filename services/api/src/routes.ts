@@ -15,7 +15,7 @@ import {cypressHealthCheckHandler} from './controllers/cypress';
 import {getProfileHandler} from './controllers/profile';
 import {confirmRegistrationHandler, registerUserHandler} from './controllers/registration';
 import {confirmPasswordResetHandler, resetPasswordHandler} from './controllers/password';
-import {createProductHandler} from './controllers/products';
+import {createProductHandler, getProductsHandler} from './controllers/products';
 
 const router = Router();
 
@@ -49,6 +49,7 @@ router.patch('/organizations/:organizationId/members/remove', removeOrganization
 router.patch('/organizations/update-admin-join-as-member/:organizationId', updateOrganizationAdministratorJoinAsMemberHandler);
 
 // Product Routes
+router.get('/products/:organizationId', getProductsHandler);
 router.post('/products', createProductHandler);
 
 export default router;
