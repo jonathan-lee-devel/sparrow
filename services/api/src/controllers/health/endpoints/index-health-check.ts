@@ -2,7 +2,7 @@ import {Request, Response} from 'express';
 import {z} from 'zod';
 import {AnonymousEndpointCallback, ReturnAnonymouslyBasedOnSafeParseResultFunction} from '../../../lib/endpoint-util';
 
-export const makeMakeCypressHealthCheckEndpoint = <TBody, TQuery>(
+export const makeMakeIndexHealthCheckEndpoint = <TBody, TQuery>(
   returnAnonymouslyBasedOnSafeParseResult: ReturnAnonymouslyBasedOnSafeParseResultFunction<TBody, TQuery>,
 ) =>
     (

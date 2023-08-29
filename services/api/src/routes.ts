@@ -11,7 +11,7 @@ import {
   updateOrganizationAdministratorJoinAsMemberHandler,
 } from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
-import {cypressHealthCheckHandler} from './controllers/cypress';
+import {indexHealthCheckHandler} from './controllers/health';
 import {getProfileHandler} from './controllers/profile';
 import {confirmRegistrationHandler, registerUserHandler} from './controllers/registration';
 import {confirmPasswordResetHandler, resetPasswordHandler} from './controllers/password';
@@ -19,8 +19,8 @@ import {createProductHandler, getProductsHandler} from './controllers/products';
 
 const router = Router();
 
-// Cypress Routes
-router.get('/', cypressHealthCheckHandler);
+// Health Check Routes
+router.get('/', indexHealthCheckHandler);
 
 // Auth Routes
 router.post('/auth/login', loginHandler);
