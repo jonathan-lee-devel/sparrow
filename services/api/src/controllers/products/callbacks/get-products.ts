@@ -19,7 +19,7 @@ export const makeGetProductsCallback = (
   for (const product of products) {
     // Using mongoose with timestamps enabled
     // @ts-ignore
-    productDtos.push({id: product.id, name: product.name, createdAt: product.createdAt, updatedAt: product.updatedAt});
+    productDtos.push({id: product.id, name: product.name, organizationId, createdAt: product.createdAt, updatedAt: product.updatedAt});
   }
 
   return res.status(HttpStatus.OK).json(productDtos);
