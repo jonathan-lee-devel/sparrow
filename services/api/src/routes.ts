@@ -5,6 +5,7 @@ import {
   getOrganizationHandler,
   getOrganizationSnippetHandler,
   getOrganizationsWhereInvolvedHandler,
+  inviteToJoinOrganizationHandler,
   removeOrganizationAdministratorHandler,
   removeOrganizationMemberHandler,
   searchOrganizationsHandler,
@@ -47,6 +48,7 @@ router.delete('/organizations/:organizationId', deleteOrganizationHandler);
 router.patch('/organizations/:organizationId/administrators/remove', removeOrganizationAdministratorHandler);
 router.patch('/organizations/:organizationId/members/remove', removeOrganizationMemberHandler);
 router.patch('/organizations/update-admin-join-as-member/:organizationId', updateOrganizationAdministratorJoinAsMemberHandler);
+router.post('/organizations/:organizationId/invite-to-join', inviteToJoinOrganizationHandler);
 
 // Product Routes
 router.get('/products/:organizationId', getProductsHandler);
