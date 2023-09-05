@@ -39,12 +39,13 @@ export const makeInviteToJoinOrganizationCallback = (
   }
 
   const organizationInvitation = await OrganizationInvitation.findOne({organizationId, emailToInvite}).exec();
-  if (organizationInvitation && organizationInvitation.expiryDate.getTime() < new Date().getTime()) {
+  if (organizationInvitation && organizationInvitation.expiryDate.getTime() >= new Date().getTime()) {
     return res.status(HttpStatus.CONFLICT).send();
   }
 
   const newOrganizationInvitation: OrganizationInvitation = {
     id: await generateId(),
+
     organizationId,
     requestingUserEmail,
     isAccepted: false,
