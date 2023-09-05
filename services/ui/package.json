@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "api": "cd ../api-old && npm install && npm run start",
+    "api": "cd ../api && yarn install && yarn run start",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
     "build:stage": "ng build --configuration stage",
