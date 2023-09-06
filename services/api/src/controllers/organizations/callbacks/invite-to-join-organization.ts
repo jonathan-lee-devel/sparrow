@@ -11,6 +11,7 @@ import {HttpStatus} from '../../../lib/enums/HttpStatus';
 import {DEFAULT_TOKEN_EXPIRY_TIME_DAYS, DEFAULT_TOKEN_SIZE} from '../../../constants/token/token';
 import {Environment} from '../../../environment';
 import {ORGANIZATION_INVITATION_EMAIL_SUBJECT} from '../../../constants/organizations/email-constants';
+import {OrganizationInvitationStatus} from '../../../lib/enums/organization/OrganizationInvitationStatus';
 
 export const makeInviteToJoinOrganizationCallback = (
     logger: winston.Logger,
@@ -61,5 +62,5 @@ export const makeInviteToJoinOrganizationCallback = (
         logger.error(`Error sending e-mail to ${emailToInvite}: ${err}`);
       });
   logger.info(`Organization invitation sent to e-mail: <${emailToInvite}>`);
-  return res.status(HttpStatus.OK).json({status: 'AWAITING_APPROVAL'});
+  return res.status(HttpStatus.OK).json({status: OrganizationInvitationStatus[OrganizationInvitationStatus.AWAITING_RESPONSE]});
 };

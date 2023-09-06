@@ -2,6 +2,7 @@ import {makeInviteToJoinOrganizationCallback} from '../invite-to-join-organizati
 import {User} from '../../../../models/users/User';
 import {HttpStatus} from '../../../../lib/enums/HttpStatus';
 import {ORGANIZATION_INVITATION_EMAIL_SUBJECT} from '../../../../constants/organizations/email-constants';
+import {OrganizationInvitationStatus} from '../../../../lib/enums/organization/OrganizationInvitationStatus';
 
 describe('Invite to Join Organization Callback Unit Tests', () => {
   const user: User = {
@@ -280,7 +281,7 @@ describe('Invite to Join Organization Callback Unit Tests', () => {
     });
 
     expect(returnedCode).toStrictEqual(HttpStatus.OK);
-    expect(returnedBody).toStrictEqual({status: 'AWAITING_APPROVAL'});
+    expect(returnedBody).toStrictEqual({status: OrganizationInvitationStatus[OrganizationInvitationStatus.AWAITING_RESPONSE]});
     expect(sentTo).toStrictEqual(emailToInvite);
     expect(sentSubject).toStrictEqual(ORGANIZATION_INVITATION_EMAIL_SUBJECT);
     expect(sentHtml).toStrictEqual(`<h3>You have been invited to join an organization</h3>
@@ -365,7 +366,7 @@ describe('Invite to Join Organization Callback Unit Tests', () => {
     });
 
     expect(returnedCode).toStrictEqual(HttpStatus.OK);
-    expect(returnedBody).toStrictEqual({status: 'AWAITING_APPROVAL'});
+    expect(returnedBody).toStrictEqual({status: OrganizationInvitationStatus[OrganizationInvitationStatus.AWAITING_RESPONSE]});
     expect(loggedMessages[0]).toStrictEqual(`Request from <${user.email}> to invite: ${emailToInvite} to organization with ID: ${organizationId}`);
     expect(loggedMessages[1]).toStrictEqual(`Organization invitation sent to e-mail: <${emailToInvite}>`);
     expect(createdBody.id).toStrictEqual(generatedId);
