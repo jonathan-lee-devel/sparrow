@@ -8,7 +8,7 @@ RUN yarn install
 
 COPY . /app
 
-RUN yarnß run build:stage
+RUN yarn run build:stage
 
 FROM --platform=linux/x86_64 nginx:1.25.1-alpine3.17
 
