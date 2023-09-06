@@ -1,14 +1,14 @@
-FROM --platform=linux/x86_64 node:20-alpine3.18 as build
+FROM --platform=linux/x86_64 node:18.17.1-alpine3.18 as build
 
 WORKDIR /app
 
 COPY package.json /app
 
-RUN npm install
+RUN yarn install
 
 COPY . /app
 
-RUN npm run build:prod
+RUN yarn run build:prod
 
 FROM --platform=linux/x86_64 nginx:1.25.1-alpine3.17
 
