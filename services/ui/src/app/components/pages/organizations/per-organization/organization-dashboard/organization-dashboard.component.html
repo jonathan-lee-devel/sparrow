@@ -1,5 +1,7 @@
-<app-loading-spinner *ngIf="isLoadingMap.get(organizationDashboardInitialOrganizationLoading)" class="flex justify-center"></app-loading-spinner>
-<h1 *ngIf="!isLoadingMap.get(organizationDashboardInitialOrganizationLoading)" class="flex justify-center mb-4 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{{organization.name}}</h1>
+<app-loading-spinner *ngIf="isLoadingMap.get(organizationDashboardInitialOrganizationLoading)"
+                     class="flex justify-center"></app-loading-spinner>
+<h1 *ngIf="!isLoadingMap.get(organizationDashboardInitialOrganizationLoading)"
+    class="flex justify-center mb-4 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">{{organization.name}}</h1>
 <div class="px-4 pt-6">
     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         <!-- Card header -->
@@ -17,13 +19,16 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     E-mail
                                 </th>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     Member Status
                                 </th>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     Administrator Status
                                 </th>
                             </tr>
@@ -45,11 +50,19 @@
                                     {{administratorEmail}}
                                 </td>
                                 <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                    <button (click)="doAddAdministratorToMembers(administratorEmail)" *ngIf="!organization.memberEmails.includes(administratorEmail)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Make Member</button>
-                                    <p *ngIf="organization.memberEmails.includes(administratorEmail)" class="font-semibold italic">Already is a member</p>
+                                    <button (click)="doAddAdministratorToMembers(administratorEmail)"
+                                            *ngIf="!organization.memberEmails.includes(administratorEmail)"
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Make Member
+                                    </button>
+                                    <p *ngIf="organization.memberEmails.includes(administratorEmail)"
+                                       class="font-semibold italic">Already is a member</p>
                                 </td>
                                 <td class="p-4 text-sm font-semibold text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    <button (click)="doRemoveOrganizationAdministrator(administratorEmail)" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Remove</button>
+                                    <button (click)="doRemoveOrganizationAdministrator(administratorEmail)"
+                                            class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Remove
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
@@ -75,14 +88,17 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     E-mail
                                 </th>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     Administrator Status
                                 </th>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
-                                     Member Status
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
+                                    Member Status
                                 </th>
                             </tr>
                             </thead>
@@ -103,11 +119,56 @@
                                     {{memberEmail}}
                                 </td>
                                 <td class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                    <button (click)="doAddMemberToAdministrators(memberEmail)" *ngIf="!organization.administratorEmails.includes(memberEmail)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Make Administrator</button>
-                                    <p *ngIf="organization.administratorEmails.includes(memberEmail)" class="font-semibold italic">Already is an administrator</p>
+                                    <button (click)="doAddMemberToAdministrators(memberEmail)"
+                                            *ngIf="!organization.administratorEmails.includes(memberEmail)"
+                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Make Administrator
+                                    </button>
+                                    <p *ngIf="organization.administratorEmails.includes(memberEmail)"
+                                       class="font-semibold italic">Already is an administrator</p>
                                 </td>
                                 <td class="p-4 text-sm font-semibold text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    <button (click)="doRemoveOrganizationMember(memberEmail)" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Remove</button>
+                                    <button (click)="doRemoveOrganizationMember(memberEmail)"
+                                            class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+        <!-- Card header -->
+        <div class="items-center justify-between lg:flex">
+            <div class="mb-4 lg:mb-0">
+                <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">New Members</h3>
+                <span class="text-base font-normal text-gray-500 dark:text-gray-400">This is where you invite new members to the organization via e-mail</span>
+            </div>
+        </div>
+        <!-- Table -->
+        <div class="flex flex-col mt-6">
+            <div class="overflow-x-auto rounded-lg">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden shadow sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                            <thead class="bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
+                                    Invite New Members
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800">
+                            <tr>
+                                <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/organizations/dashboard/{{organization.id}}/invite-member">
+                                        Invite Member
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -133,7 +194,8 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     Products
                                 </th>
                             </tr>
@@ -141,7 +203,9 @@
                             <tbody class="bg-white dark:bg-gray-800">
                             <tr>
                                 <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/organizations/dashboard/{{organization.id}}/create-product">Create Product</a>
+                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                       routerLink="/organizations/dashboard/{{organization.id}}/create-product">Create
+                                        Product</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -167,7 +231,8 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white" scope="col">
+                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                                    scope="col">
                                     Action
                                 </th>
                             </tr>
@@ -180,7 +245,10 @@
                             </tr>
                             <tr>
                                 <td class="p-4 text-sm font-semibold text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    <button (click)="doDeleteOrganization(organization)" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete Organization</button>
+                                    <button (click)="doDeleteOrganization(organization)"
+                                            class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Delete Organization
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
