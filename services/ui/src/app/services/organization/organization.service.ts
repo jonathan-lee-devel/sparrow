@@ -8,6 +8,8 @@ import {ModalService} from '../modal/modal.service';
 import {LoadingService} from '../loading/loading.service';
 import {Router} from '@angular/router';
 import {RoutePaths} from '../../app-routing.module';
+import {OrganizationInvitationStatus} from '../../common/enums/organization/OrganizationInvitationStatus';
+import {OrganizationInvitationStatusDto} from '../../dtos/organization/OrganizationInvitationStatusDto';
 
 @Injectable({
   providedIn: 'root',
@@ -84,5 +86,15 @@ export class OrganizationService {
           this.modalService.hidePopupModal();
         },
     );
+  }
+
+  inviteToJoinOrganization(organizationId: string, emailToInvite: string) {
+    this.httpClient.post<OrganizationInvitationStatusDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}/invite-to-join`, {emailToInvite})
+        .subscribe((dto) => {
+          if (dto.status === OrganizationInvitationStatus[OrganizationInvitationStatus.AWAITING_RESPONSE]) {
+            this.modalService.showDefaultModal('Organization Invitation', `Successfully invited ${emailToInvite} to join organization with ID: ${organizationId}`);
+            this.router.navigate([`/organizations/dashboard/${organizationId}`]).catch((reason) => window.alert(reason));
+          }
+        });
   }
 }

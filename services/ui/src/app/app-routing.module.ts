@@ -3,19 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {LandingPageComponent} from './components/pages/landing-page/landing-page.component';
 import {DashboardComponent} from './components/pages/dashboard/dashboard.component';
 import {AuthGuard} from './guards/auth.guard';
-import {
-  CreateOrganizationComponent,
-} from './components/pages/organizations/create-organization/create-organization.component';
-import {
-  ManageOrganizationsComponent,
-} from './components/pages/organizations/manage-organizations/manage-organizations.component';
+import {CreateOrganizationComponent} from './components/pages/organizations/create-organization/create-organization.component';
+import {ManageOrganizationsComponent} from './components/pages/organizations/manage-organizations/manage-organizations.component';
 import {LoginComponent} from './components/pages/login/login.component';
 import {ResetPasswordComponent} from './components/pages/reset-password/reset-password.component';
 import {RegisterComponent} from './components/pages/register/register.component';
 import {RegisterConfirmComponent} from './components/pages/register-confirm/register-confirm.component';
-import {
-  ResetPasswordConfirmComponent,
-} from './components/pages/reset-password-confirm/reset-password-confirm.component';
+import {ResetPasswordConfirmComponent} from './components/pages/reset-password-confirm/reset-password-confirm.component';
 import {
   OrganizationDashboardComponent,
 } from './components/pages/organizations/per-organization/organization-dashboard/organization-dashboard.component';
@@ -26,9 +20,8 @@ import {ErrorNotFoundComponent} from './components/pages/error/error-not-found/e
 import {
   OrganizationPageComponent,
 } from './components/pages/organizations/per-organization/organization-page/organization-page.component';
-import {
-  CreateProductComponent,
-} from './components/pages/organizations/per-organization/create-product/create-product.component';
+import {CreateProductComponent} from './components/pages/organizations/per-organization/create-product/create-product.component';
+import {InviteMemberComponent} from './components/pages/organizations/per-organization/invite-member/invite-member.component';
 
 export enum RoutePaths {
   /* ANONYMOUS ROUTES */
@@ -52,6 +45,7 @@ export enum RoutePaths {
   ORGANIZATIONS_MANAGE = 'organizations/manage',
   ORGANIZATIONS_DASHBOARD_ID = 'organizations/dashboard/:organizationId',
   ORGANIZATIONS_PAGE_ID = 'organizations/:organizationId',
+  ORGANIZATIONS_INVITE_MEMBER = 'organizations/dashboard/:organizationId/invite-member',
   /* PRODUCT ROUTES */
   ORGANIZATIONS_PRODUCT_CREATE = 'organizations/dashboard/:organizationId/create-product',
 }
@@ -78,6 +72,7 @@ const routes: Routes = [
   {path: RoutePaths.ORGANIZATIONS_MANAGE, component: ManageOrganizationsComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_DASHBOARD_ID, component: OrganizationDashboardComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_PAGE_ID, component: OrganizationPageComponent},
+  {path: RoutePaths.ORGANIZATIONS_INVITE_MEMBER, component: InviteMemberComponent},
   /* PRODUCT ROUTES */
   {path: RoutePaths.ORGANIZATIONS_PRODUCT_CREATE, component: CreateProductComponent, canActivate: [AuthGuard]},
 ];
