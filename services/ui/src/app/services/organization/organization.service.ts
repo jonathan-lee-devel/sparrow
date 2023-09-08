@@ -102,8 +102,8 @@ export class OrganizationService {
     return this.httpClient.get<OrganizationSnippetDto>(`${environment.MAIN_API_URL}/organizations/invitations/${organizationInvitationId}/snippet`);
   }
 
-  acceptOrganizationInvitation(organizationInvitationId: string, organizationId: string) {
-    this.httpClient.patch<OrganizationInvitationStatusDto>(`${environment.MAIN_API_URL}/organizations/invitations/accept`, {organizationInvitationId})
+  acceptOrganizationInvitation(organizationInvitationValue: string, organizationId: string) {
+    this.httpClient.patch<OrganizationInvitationStatusDto>(`${environment.MAIN_API_URL}/organizations/invitations/accept`, {organizationInvitationValue})
         .subscribe((invitationStatusDto) => {
           if (invitationStatusDto.status === OrganizationInvitationStatus[OrganizationInvitationStatus.SUCCESS]) {
             this.modalService.showDefaultModal('Organization Invitation', 'Organization invitation accepted successfully');
