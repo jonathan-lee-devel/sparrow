@@ -38,6 +38,7 @@ import { ErrorNotFoundComponent } from './components/pages/error/error-not-found
 import { OrganizationPageComponent } from './components/pages/organizations/per-organization/organization-page/organization-page.component';
 import { CreateProductComponent } from './components/pages/organizations/per-organization/create-product/create-product.component';
 import { InviteMemberComponent } from './components/pages/organizations/per-organization/invite-member/invite-member.component';
+import { ViewOrganizationInvitationComponent } from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -65,6 +66,7 @@ import { InviteMemberComponent } from './components/pages/organizations/per-orga
     OrganizationPageComponent,
     CreateProductComponent,
     InviteMemberComponent,
+    ViewOrganizationInvitationComponent,
   ],
   imports: [
     BrowserModule,

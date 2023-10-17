@@ -1,8 +1,10 @@
 import {Router} from 'express';
 import {
+  acceptOrganizationInvitationHandler,
   createOrganizationHandler,
   deleteOrganizationHandler,
   getOrganizationHandler,
+  getOrganizationSnippetFromOrganizationInvitationHandler,
   getOrganizationSnippetHandler,
   getOrganizationsWhereInvolvedHandler,
   inviteToJoinOrganizationHandler,
@@ -49,6 +51,8 @@ router.patch('/organizations/:organizationId/administrators/remove', removeOrgan
 router.patch('/organizations/:organizationId/members/remove', removeOrganizationMemberHandler);
 router.patch('/organizations/update-admin-join-as-member/:organizationId', updateOrganizationAdministratorJoinAsMemberHandler);
 router.post('/organizations/:organizationId/invite-to-join', inviteToJoinOrganizationHandler);
+router.get('/organizations/invitations/:organizationInvitationValue/snippet', getOrganizationSnippetFromOrganizationInvitationHandler);
+router.patch('/organizations/invitations/accept', acceptOrganizationInvitationHandler);
 
 // Product Routes
 router.get('/products/:organizationId', getProductsHandler);

@@ -97,4 +97,18 @@ export class OrganizationService {
           }
         });
   }
+
+  getOrganizationSnippetByInvitationId(organizationInvitationId: string): Observable<OrganizationSnippetDto> {
+    return this.httpClient.get<OrganizationSnippetDto>(`${environment.MAIN_API_URL}/organizations/invitations/${organizationInvitationId}/snippet`);
+  }
+
+  acceptOrganizationInvitation(organizationInvitationValue: string, organizationId: string) {
+    this.httpClient.patch<OrganizationInvitationStatusDto>(`${environment.MAIN_API_URL}/organizations/invitations/accept`, {organizationInvitationValue})
+        .subscribe((invitationStatusDto) => {
+          if (invitationStatusDto.status === OrganizationInvitationStatus[OrganizationInvitationStatus.SUCCESS]) {
+            this.modalService.showDefaultModal('Organization Invitation', 'Organization invitation accepted successfully');
+            this.router.navigate([RoutePaths.ORGANIZATIONS_DASHBOARD_ID.replace(':organizationId', organizationId)]).catch((reason) => window.alert(reason));
+          }
+        });
+  }
 }
