@@ -71,7 +71,7 @@ export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBase
 export const getOrganizationSnippetHandler = makeMakeGetOrganizationSnippetEndpoint(returnAnonymouslyBasedOnSafeParseResult)(
     GetOrganizationSnippetRequestBodySchema,
     GetOrganizationSnippetRequestQuerySchema,
-    makeGetOrganizationSnippetCallback(logger, OrganizationModel, defaultModelTransform),
+    makeGetOrganizationSnippetCallback(logger, OrganizationModel, organizationSnippetModelTransform),
 );
 
 export const createOrganizationHandler = makeMakeCreateOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
