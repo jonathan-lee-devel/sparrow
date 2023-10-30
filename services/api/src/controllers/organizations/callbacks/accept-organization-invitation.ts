@@ -38,6 +38,7 @@ export const makeAcceptOrganizationInvitationCallback = (
 
   if (!organization.memberEmails.includes(organizationInvitation.emailToInvite)) {
     organization.memberEmails.push(organizationInvitation.emailToInvite);
+    organization.markModified('memberEmails');
     await organization.save();
   } else {
     logger.info(`Organization with ID: ${organization.id} already had member: ${organizationInvitation.emailToInvite}, no action taken`);
