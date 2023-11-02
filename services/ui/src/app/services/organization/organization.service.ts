@@ -40,7 +40,7 @@ export class OrganizationService {
   }
 
   addMemberAsAdministrator(organizationId: string, memberEmail: string): Observable<OrganizationDto> {
-    return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/update-member-join-as-admin/${organizationId}`, {email: memberEmail});
+    return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/update-member-join-as-admin/${organizationId}`, {memberEmailToUpdate: memberEmail});
   }
 
   removeOrganizationAdministrator(organizationId: string, administratorEmail: string): Observable<OrganizationDto> {
