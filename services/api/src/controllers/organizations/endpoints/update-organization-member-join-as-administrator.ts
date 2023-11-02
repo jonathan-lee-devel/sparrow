@@ -2,7 +2,7 @@ import {Request, Response} from 'express';
 import {z} from 'zod';
 import {AuthenticatedEndpointCallback, ReturnBasedOnAuthenticationAndSafeParseResultFunction} from '../../../lib/endpoint-util';
 
-export const makeMakeUpdateOrganizationAdministratorJoinAsMemberEndpoint =
+export const makeMakeUpdateOrganizationMemberJoinAsAdministratorEndpoint =
   <TBody, TQuery>(
     returnBasedOnAuthenticationAndSafeParseResult: ReturnBasedOnAuthenticationAndSafeParseResultFunction<TBody, TQuery>,
   ) =>

@@ -12,6 +12,7 @@ import {
   removeOrganizationMemberHandler,
   searchOrganizationsHandler,
   updateOrganizationAdministratorJoinAsMemberHandler,
+  updateOrganizationMemberJoinAsAdministratorHandler,
 } from './controllers/organizations';
 import {loginHandler, logoutHandler} from './controllers/auth';
 import {indexHealthCheckHandler} from './controllers/health';
@@ -50,6 +51,7 @@ router.delete('/organizations/:organizationId', deleteOrganizationHandler);
 router.patch('/organizations/:organizationId/administrators/remove', removeOrganizationAdministratorHandler);
 router.patch('/organizations/:organizationId/members/remove', removeOrganizationMemberHandler);
 router.patch('/organizations/update-admin-join-as-member/:organizationId', updateOrganizationAdministratorJoinAsMemberHandler);
+router.patch('/organizations/update-member-join-as-admin/:organizationId', updateOrganizationMemberJoinAsAdministratorHandler);
 router.post('/organizations/:organizationId/invite-to-join', inviteToJoinOrganizationHandler);
 router.get('/organizations/invitations/:organizationInvitationValue/snippet', getOrganizationSnippetFromOrganizationInvitationHandler);
 router.patch('/organizations/invitations/accept', acceptOrganizationInvitationHandler);

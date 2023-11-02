@@ -61,6 +61,12 @@ import {
 } from './schemas/get-organization-snippet-from-invitation';
 import {makeMakeGetOrganizationSnippetFromOrganizationInvitationEndpoint} from './endpoints/get-organization-snippet-from-invitation';
 import {makeGetOrganizationSnippetFromOrganizationInvitationCallback} from './callbacks/get-organization-snippet-from-invitation';
+import {makeMakeUpdateOrganizationMemberJoinAsAdministratorEndpoint} from './endpoints/update-organization-member-join-as-administrator';
+import {
+  UpdateOrganizationMemberJoinAsAdministratorRequestBodySchema,
+  UpdateOrganizationMemberJoinAsAdministratorRequestQuerySchema,
+} from './schemas/update-organization-member-join-as-administrator';
+import {makeUpdateOrganizationMemberJoinAsAdministratorCallback} from './callbacks/update-organization-member-join-as-administrator';
 
 export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
     GetOrganizationRequestBodySchema,
@@ -119,6 +125,13 @@ export const updateOrganizationAdministratorJoinAsMemberHandler = makeMakeUpdate
     UpdateOrganizationAdministratorJoinAsMemberRequestBodySchema,
     UpdateOrganizationAdministratorJoinAsMemberRequestQuerySchema,
     makeUpdateOrganizationAdministratorJoinAsMemberCallback(logger, OrganizationModel, defaultModelTransform),
+);
+
+export const updateOrganizationMemberJoinAsAdministratorHandler = makeMakeUpdateOrganizationMemberJoinAsAdministratorEndpoint(
+    returnBasedOnAuthenticationAndSafeParseResult)(
+    UpdateOrganizationMemberJoinAsAdministratorRequestBodySchema,
+    UpdateOrganizationMemberJoinAsAdministratorRequestQuerySchema,
+    makeUpdateOrganizationMemberJoinAsAdministratorCallback(logger, OrganizationModel, defaultModelTransform),
 );
 
 export const inviteToJoinOrganizationHandler = makeMakeInviteToJoinOrganizationEndpoint(
