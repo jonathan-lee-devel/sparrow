@@ -41,6 +41,10 @@ import { InviteMemberComponent } from './components/pages/organizations/per-orga
 import { ViewOrganizationInvitationComponent } from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
 import { RightArrowComponent } from './components/right-arrow/right-arrow.component';
 import { CardWithLinkComponent } from './components/card-with-link/card-with-link.component';
+import { OrganizationSearchResultComponent } from './components/organization-search-result/organization-search-result.component';
+import { FullWidthSearchBarComponent } from './components/full-width-search-bar/full-width-search-bar.component';
+import { EmptySearchResultsComponent } from './components/empty-search-results/empty-search-results.component';
+import { LandingPageSplashTextComponent } from './components/landing-page-splash-text/landing-page-splash-text.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -71,6 +75,10 @@ import { CardWithLinkComponent } from './components/card-with-link/card-with-lin
     ViewOrganizationInvitationComponent,
     RightArrowComponent,
     CardWithLinkComponent,
+    OrganizationSearchResultComponent,
+    FullWidthSearchBarComponent,
+    EmptySearchResultsComponent,
+    LandingPageSplashTextComponent,
   ],
   imports: [
     BrowserModule,
