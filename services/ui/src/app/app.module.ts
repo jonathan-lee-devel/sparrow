@@ -39,6 +39,7 @@ import { OrganizationPageComponent } from './components/pages/organizations/per-
 import { CreateProductComponent } from './components/pages/organizations/per-organization/create-product/create-product.component';
 import { InviteMemberComponent } from './components/pages/organizations/per-organization/invite-member/invite-member.component';
 import { ViewOrganizationInvitationComponent } from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
+import { RightArrowComponent } from './components/right-arrow/right-arrow.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -67,6 +68,7 @@ import { ViewOrganizationInvitationComponent } from './components/pages/organiza
     CreateProductComponent,
     InviteMemberComponent,
     ViewOrganizationInvitationComponent,
+    RightArrowComponent,
   ],
   imports: [
     BrowserModule,
