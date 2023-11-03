@@ -1,19 +1,39 @@
-<div class="container pt-32 max-w-7xl mx-auto">
-  <div class="grid grid-cols-1 gap-y-10">
-    <div>
-      <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/account/manage">
-        Manage Account
-      </a>
+<div class="flex justify-center mx-auto dashboard-container">
+    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Welcome to the Dashboard</h1>
+    <div class="mt-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dashboard-card">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Create an Organization</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here you can create a new organization which you and anyone you add as an administrator will control.</p>
+        <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/organizations/create">
+            Create Organization
+            <svg aria-hidden="true" class="w-3.5 h-3.5 ml-2" fill="none" viewBox="0 0 14 10"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"/>
+            </svg>
+        </a>
     </div>
-    <div>
-      <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/organizations/create">
-        Create Organization
-      </a>
+    <div class="mt-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dashboard-card">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Manage Existing Organizations</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here you can manage an organization where you are an administrator and create products etc.</p>
+        <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/organizations/manage">
+            Manage Organizations
+            <svg aria-hidden="true" class="w-3.5 h-3.5 ml-2" fill="none" viewBox="0 0 14 10"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"/>
+            </svg>
+        </a>
     </div>
-    <div>
-      <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/organizations/manage">
-        Manage Organizations
-      </a>
+    <div class="mt-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dashboard-card">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Manage your User Account</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Soon this page will allow you to manage your user account settings.</p>
+        <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/account/manage">
+            Manage Account
+            <svg aria-hidden="true" class="w-3.5 h-3.5 ml-2" fill="none" viewBox="0 0 14 10"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"/>
+            </svg>
+        </a>
     </div>
-  </div>
 </div>
