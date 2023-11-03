@@ -14,10 +14,6 @@ spec:
     - name: http
       port: 80
       targetPort: 80
-{{- if eq .Values.environment.name "development" }}
-      nodePort: {{ .Values.ui.service.nodePort }}
-  type: NodePort
-{{- end }}
   selector:
     app: {{ template "sparrow.fullname" . }}
     component: "{{ .Values.ui.name }}"
