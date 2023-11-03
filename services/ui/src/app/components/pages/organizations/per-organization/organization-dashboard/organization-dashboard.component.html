@@ -154,25 +154,12 @@
             <div class="overflow-x-auto rounded-lg">
                 <div class="inline-block min-w-full align-middle">
                     <div class="overflow-hidden shadow sm:rounded-lg">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
-                                    scope="col">
-                                    Invite New Members
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-gray-800">
-                            <tr>
-                                <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/organizations/dashboard/{{organization.id}}/invite-member">
-                                        Invite Member
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="pt-5 pb-5">
+                            <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                               routerLink="/organizations/dashboard/{{organization.id}}/invite-member">
+                                Invite Member
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,6 +178,11 @@
             <div class="overflow-x-auto rounded-lg">
                 <div class="inline-block min-w-full align-middle">
                     <div class="overflow-hidden shadow sm:rounded-lg">
+                        <div class="pt-5 pb-5">
+                            <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                               routerLink="/organizations/dashboard/{{organization.id}}/create-product">Create
+                                Product</a>
+                        </div>
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
@@ -201,11 +193,10 @@
                             </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800">
-                            <tr>
+                            <app-loading-spinner *ngIf="isLoadingMap.get(organizationDashboardProductsLoading)" class="pt-3"></app-loading-spinner>
+                            <tr *ngFor="let product of products">
                                 <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                       routerLink="/organizations/dashboard/{{organization.id}}/create-product">Create
-                                        Product</a>
+                                    {{product.name}}
                                 </td>
                             </tr>
                             </tbody>
@@ -228,31 +219,12 @@
             <div class="overflow-x-auto rounded-lg">
                 <div class="inline-block min-w-full align-middle">
                     <div class="overflow-hidden shadow sm:rounded-lg">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
-                                    scope="col">
-                                    Action
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-gray-800">
-                            <tr *ngIf="isLoadingMap.get(doDeleteOrganizationLoading)">
-                                <td class="p-4 text-sm font-semibold text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    <app-loading-spinner class="flex justify-center"></app-loading-spinner>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 text-sm font-semibold text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    <button (click)="doDeleteOrganization(organization)"
-                                            class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                        Delete Organization
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="pt-5 pb-5">
+                            <button (click)="doDeleteOrganization(organization)"
+                                    class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Delete Organization
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
