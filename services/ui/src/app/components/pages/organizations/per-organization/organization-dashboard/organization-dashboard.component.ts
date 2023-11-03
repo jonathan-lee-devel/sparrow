@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {OrganizationService} from '../../../../../services/organization/organization.service';
 import {OrganizationDto} from '../../../../../dtos/organization/OrganizationDto';
 import {LoadingService} from '../../../../../services/loading/loading.service';
+import {ProductDto} from '../../../../../dtos/products/ProductDto';
+import {ProductService} from '../../../../../services/product/product.service';
 
 @Component({
   selector: 'app-organization-dashboard',
@@ -10,14 +12,17 @@ import {LoadingService} from '../../../../../services/loading/loading.service';
   styleUrls: ['./organization-dashboard.component.css'],
 })
 export class OrganizationDashboardComponent implements OnInit {
+  readonly ORGANIZATION_ID_PARAM = 'organizationId';
   organization: OrganizationDto = {
     id: 'Loading...',
     name: 'Loading...',
     administratorEmails: [],
     memberEmails: [],
   };
+  products: ProductDto[] = [];
   isLoadingMap = new Map<string, boolean>();
   readonly organizationDashboardInitialOrganizationLoading = 'organization-dashboard-initial-organization-loading';
+  readonly organizationDashboardProductsLoading = 'organization-dashboard-products-loading';
   readonly doAddAdministratorToMembersLoading = 'do-add-administrator-to-members-loading';
   readonly doAddMemberToAdministratorsLoading = 'do-add-member-to-administrators-loading';
   readonly doRemoveOrganizationAdministratorLoading = 'do-remove-organization-administrator-loading';
@@ -27,6 +32,7 @@ export class OrganizationDashboardComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private organizationService: OrganizationService,
+    private productService: ProductService,
     private loadingService: LoadingService,
   ) {
     this.loadingService.isLoadingMapObservable()
@@ -37,11 +43,17 @@ export class OrganizationDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.loadingService.onLoadingStart(this.organizationDashboardInitialOrganizationLoading);
+    this.loadingService.onLoadingStart(this.organizationDashboardProductsLoading);
     this.activatedRoute.params.subscribe((params) => {
-      this.organizationService.getOrganizationById(params['organizationId'])
+      this.organizationService.getOrganizationById(params[this.ORGANIZATION_ID_PARAM])
           .subscribe((organization) => {
             this.organization = organization;
             this.loadingService.onLoadingFinished(this.organizationDashboardInitialOrganizationLoading);
+          });
+      this.productService.getProducts(params[this.ORGANIZATION_ID_PARAM])
+          .subscribe((products) => {
+            this.products = products;
+            this.loadingService.onLoadingFinished(this.organizationDashboardProductsLoading);
           });
     });
   }
