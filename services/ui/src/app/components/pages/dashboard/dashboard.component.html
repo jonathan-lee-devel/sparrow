@@ -1,27 +1,22 @@
 <div class="flex justify-center mx-auto dashboard-container">
-    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Welcome to the Dashboard</h1>
-    <div class="mt-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dashboard-card">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Create an Organization</h5>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here you can create a new organization which you and anyone you add as an administrator will control.</p>
-        <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/organizations/create">
-            Create Organization
-            <app-right-arrow></app-right-arrow>
-        </a>
-    </div>
-    <div class="mt-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dashboard-card">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Manage Existing Organizations</h5>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here you can manage an organization where you are an administrator and create products etc.</p>
-        <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/organizations/manage">
-            Manage Organizations
-            <app-right-arrow></app-right-arrow>
-        </a>
-    </div>
-    <div class="mt-5 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dashboard-card">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Manage your User Account</h5>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Soon this page will allow you to manage your user account settings.</p>
-        <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" routerLink="/account/manage">
-            Manage Account
-            <app-right-arrow></app-right-arrow>
-        </a>
-    </div>
+    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        Welcome to the Dashboard</h1>
+    <app-card-with-link
+            [linkDescription]="'Here you can manage an organization where you are an administrator and create products etc.'"
+            [linkDestination]="'/organizations/manage'"
+            [linkText]="'Manage Organizations'"
+            [linkTitle]="'Manage Existing Organizations'">
+    </app-card-with-link>
+    <app-card-with-link
+            [linkDescription]="'Here you can create a new organization which you and anyone you add as an administrator will control.'"
+            [linkDestination]="'/organizations/create'"
+            [linkText]="'Create Organization'"
+            [linkTitle]="'Create an Organization'">
+    </app-card-with-link>
+    <app-card-with-link
+            [linkDescription]="'Soon this page will allow you to manage your user account settings.'"
+            [linkDestination]="'/account/manage'"
+            [linkText]="'Manage User Account'"
+            [linkTitle]="'Manage your User Account'">
+    </app-card-with-link>
 </div>
