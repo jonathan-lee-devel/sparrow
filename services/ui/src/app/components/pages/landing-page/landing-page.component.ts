@@ -10,14 +10,12 @@ import {OrganizationSnippetDto} from '../../../dtos/organization/OrganizationSni
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
-  queryParams = '';
   searchResults: OrganizationSnippetDto[] = [];
   isLoadingMap = new Map<string, boolean>();
-  readonly landingPageSearchResultsLoadingKey = 'landing-page-search-results-loading';
   isEmptySearchResults = false;
+  readonly landingPageSearchResultsLoadingKey = 'landing-page-search-results-loading';
   readonly allCategories: string = 'All Categories';
   readonly restaurants: string = 'Restaurants';
-  currentSearchCategory = this.allCategories;
 
   constructor(private cookiesNoticeService: CookiesNoticeService,
               private loadingService: LoadingService,
@@ -27,7 +25,6 @@ export class LandingPageComponent implements OnInit {
           this.isLoadingMap = isLoadingMap;
         });
   }
-
 
   ngOnInit() {
     this.cookiesNoticeService.triggerIfNotAccepted();
@@ -46,9 +43,5 @@ export class LandingPageComponent implements OnInit {
             this.loadingService.onLoadingFinished(this.landingPageSearchResultsLoadingKey);
           }, 1000);
         });
-  }
-
-  setSearchCategory(searchCategory: string) {
-    this.currentSearchCategory = searchCategory;
   }
 }
