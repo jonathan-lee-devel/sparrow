@@ -15,10 +15,6 @@ spec:
     protocol: TCP
     port: {{ .Values.api.port }}
     targetPort: {{ .Values.api.port }}
-{{- if eq .Values.environment.name "development" }}
-    nodePort: {{ .Values.api.service.nodePort }}
-  type: NodePort
-{{- end }}
   selector:
     app: {{ template "sparrow.fullname" . }}
     component: "{{ .Values.api.name }}"
