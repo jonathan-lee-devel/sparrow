@@ -45,6 +45,7 @@ import { OrganizationSearchResultComponent } from './components/organization-sea
 import { FullWidthSearchBarComponent } from './components/full-width-search-bar/full-width-search-bar.component';
 import { EmptySearchResultsComponent } from './components/empty-search-results/empty-search-results.component';
 import { LandingPageSplashTextComponent } from './components/landing-page-splash-text/landing-page-splash-text.component';
+import { ProductWithImageComponent } from './components/product-with-image/product-with-image.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -79,6 +80,7 @@ import { LandingPageSplashTextComponent } from './components/landing-page-splash
     FullWidthSearchBarComponent,
     EmptySearchResultsComponent,
     LandingPageSplashTextComponent,
+    ProductWithImageComponent,
   ],
   imports: [
     BrowserModule,
