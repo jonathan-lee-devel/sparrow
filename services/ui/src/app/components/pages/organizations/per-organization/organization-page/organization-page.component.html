@@ -5,30 +5,24 @@
     </div>
     <app-loading-spinner *ngIf="isLoadingMap.get(organizationIsLoadingKey)"
                          class="flex justify-center pt-5"></app-loading-spinner>
-    <app-loading-spinner *ngIf="isLoadingMap.get(productsIsLoadingKey)" class="flex justify-center pt-10"></app-loading-spinner>
+    <app-loading-spinner *ngIf="isLoadingMap.get(productsIsLoadingKey)"
+                         class="flex justify-center pt-10"></app-loading-spinner>
     <div class="container mx-auto px-6 flex items-center justify-center py-10">
     </div>
-    <div class="container mx-auto px-6 flex items-start justify-center">
-        <ng-container *ngIf="!isLoadingMap.get(productsIsLoadingKey)">
-            <div *ngIf="products.length === 0 && !isLoadingMap.get(productsIsLoadingKey)">
-                <h3 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                    No products currently available from {{organization.name}}</h3>
-            </div>
-            <div *ngFor="let product of products"
-                 class="bg-white dark:bg-gray-800 shadow rounded xl:flex lg:flex w-full">
-                <div class="w-full bg-gray-100 dark:bg-gray-800 py-8 flex justify-center items-center grid-cols-5">
-                    <div class="flex flex-col items-center">
-                        <div class="h-24 w-24 rounded-full mb-3">
-                            <img [ngSrc]="'favicon.ico'" alt="" class="h-full w-full object-cover rounded-full shadow"
-                                 height="32" width="32"/>
-                        </div>
-                        <p class="mb-2 text-lg font-bold text-gray-900 dark:text-gray-100">{{product.name}}</p>
-                        <button class="bg-white font-medium transition duration-150 ease-in-out hover:bg-gray-200 rounded text-gray-800 px-6 py-2 text-sm border border-gray-300 dark:border-gray-200 focus:outline-none">
-                            Add to Cart
-                        </button>
-                    </div>
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <ng-container *ngIf="!isLoadingMap.get(productsIsLoadingKey)">
+                <div *ngIf="products.length === 0 && !isLoadingMap.get(productsIsLoadingKey)">
+                    <h3 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                        No products currently available from {{organization.name}}</h3>
                 </div>
-            </div>
-        </ng-container>
+                <div *ngFor="let product of products">
+                    <app-product-with-image
+                            [productImageUrl]="'https://picsum.photos/200'"
+                            [productName]="product.name"
+                    ></app-product-with-image>
+                </div>
+            </ng-container>
+        </div>
     </div>
 </div>
