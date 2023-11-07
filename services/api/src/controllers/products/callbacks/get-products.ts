@@ -5,6 +5,7 @@ import {Model} from 'mongoose';
 import {Product} from '../../../models/products/Product';
 import {ProductDto} from '../../../dtos/products/ProductDto';
 import {HttpStatus} from '../../../lib/enums/HttpStatus';
+import Dinero from 'dinero.js';
 
 export const makeGetProductsCallback = (
     logger: winston.Logger,
@@ -17,9 +18,16 @@ export const makeGetProductsCallback = (
 
   const productDtos: ProductDto[] = [];
   for (const product of products) {
-    // Using mongoose with timestamps enabled
-    // @ts-ignore
-    productDtos.push({id: product.id, name: product.name, organizationId, createdAt: product.createdAt, updatedAt: product.updatedAt});
+    productDtos.push({
+      id: product.id,
+      name: product.name,
+      organizationId,
+      price: Dinero({amount: product.priceAmount, currency: product.priceCurrency}).toFormat(),
+      // Using mongoose with timestamps enabled
+      // @ts-ignore
+      createdAt: product.createdAt,
+      // @ts-ignore
+      updatedAt: product.updatedAt});
   }
 
   return res.status(HttpStatus.OK).json(productDtos);

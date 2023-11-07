@@ -1,6 +1,6 @@
 {
   "name": "sparrow-express-api",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "description": "API for food delivery service application",
   "scripts": {
     "eslint": "eslint src/server.ts",
@@ -31,12 +31,14 @@
   },
   "homepage": "https://github.com/jonathan-lee-devel/sparrow#readme",
   "dependencies": {
+    "@types/dinero.js": "^1.9.2",
     "bcrypt": "^5.1.1",
     "body-parser": "1.20.2",
     "compression": "1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
+    "dinero.js": "^1.9.1",
     "dotenv": "16.3.1",
     "express": "4.18.2",
     "express-session": "^1.17.3",
