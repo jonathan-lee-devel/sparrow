@@ -18,6 +18,7 @@ const app = express();
 app.use(helmet.hidePoweredBy());
 app.use(logResponseTime);
 app.use(compression() as any);
+logger.info(`Configuring CORS origin to: ${environment.FRONT_END_URL}`);
 app.use(cors({credentials: true, optionsSuccessStatus: 200, origin: environment.FRONT_END_URL}));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
