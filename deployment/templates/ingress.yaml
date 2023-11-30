@@ -10,6 +10,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.environment.hostPrefix }}sparrow.express
+      - api.{{ .Values.environment.hostPrefix }}sparrow.express
       secretName: sparrow-tls-{{ .Values.environment.name }}
   rules:
     - host: api.{{ .Values.environment.hostPrefix }}sparrow.express
