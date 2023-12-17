@@ -1,6 +1,6 @@
 {
   "name": "sparrow-express-api",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "description": "API for food delivery service application",
   "scripts": {
     "eslint": "eslint src/server.ts",
