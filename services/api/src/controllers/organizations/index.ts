@@ -49,6 +49,24 @@ import {makeInviteToJoinOrganizationCallback} from './callbacks/invite-to-join-o
 import {OrganizationInvitationModel} from '../../models/organizations/OrganizationInvitation';
 import {sendMail} from '../../util';
 import {environment} from '../../environment';
+import {makeMakeAcceptOrganizationInvitationEndpoint} from './endpoints/accept-organization-invitation';
+import {
+  AcceptOrganizationInvitationRequestBodySchema,
+  AcceptOrganizationInvitationRequestQuerySchema,
+} from './schemas/accept-organization-invitation';
+import {makeAcceptOrganizationInvitationCallback} from './callbacks/accept-organization-invitation';
+import {
+  GetOrganizationSnippetFromOrganizationInvitationRequestBodySchema,
+  GetOrganizationSnippetFromOrganizationInvitationRequestQuerySchema,
+} from './schemas/get-organization-snippet-from-invitation';
+import {makeMakeGetOrganizationSnippetFromOrganizationInvitationEndpoint} from './endpoints/get-organization-snippet-from-invitation';
+import {makeGetOrganizationSnippetFromOrganizationInvitationCallback} from './callbacks/get-organization-snippet-from-invitation';
+import {makeMakeUpdateOrganizationMemberJoinAsAdministratorEndpoint} from './endpoints/update-organization-member-join-as-administrator';
+import {
+  UpdateOrganizationMemberJoinAsAdministratorRequestBodySchema,
+  UpdateOrganizationMemberJoinAsAdministratorRequestQuerySchema,
+} from './schemas/update-organization-member-join-as-administrator';
+import {makeUpdateOrganizationMemberJoinAsAdministratorCallback} from './callbacks/update-organization-member-join-as-administrator';
 
 export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
     GetOrganizationRequestBodySchema,
@@ -59,7 +77,7 @@ export const getOrganizationHandler = makeMakeGetOrganizationEndpoint(returnBase
 export const getOrganizationSnippetHandler = makeMakeGetOrganizationSnippetEndpoint(returnAnonymouslyBasedOnSafeParseResult)(
     GetOrganizationSnippetRequestBodySchema,
     GetOrganizationSnippetRequestQuerySchema,
-    makeGetOrganizationSnippetCallback(logger, OrganizationModel, defaultModelTransform),
+    makeGetOrganizationSnippetCallback(logger, OrganizationModel, organizationSnippetModelTransform),
 );
 
 export const createOrganizationHandler = makeMakeCreateOrganizationEndpoint(returnBasedOnAuthenticationAndSafeParseResult)(
@@ -109,10 +127,39 @@ export const updateOrganizationAdministratorJoinAsMemberHandler = makeMakeUpdate
     makeUpdateOrganizationAdministratorJoinAsMemberCallback(logger, OrganizationModel, defaultModelTransform),
 );
 
+export const updateOrganizationMemberJoinAsAdministratorHandler = makeMakeUpdateOrganizationMemberJoinAsAdministratorEndpoint(
+    returnBasedOnAuthenticationAndSafeParseResult)(
+    UpdateOrganizationMemberJoinAsAdministratorRequestBodySchema,
+    UpdateOrganizationMemberJoinAsAdministratorRequestQuerySchema,
+    makeUpdateOrganizationMemberJoinAsAdministratorCallback(logger, OrganizationModel, defaultModelTransform),
+);
+
 export const inviteToJoinOrganizationHandler = makeMakeInviteToJoinOrganizationEndpoint(
     returnBasedOnAuthenticationAndSafeParseResult,
 )(
     InviteToJoinOrganizationRequestBodySchema,
     InviteToJoinOrganizationQuerySchema,
     makeInviteToJoinOrganizationCallback(logger, OrganizationModel, OrganizationInvitationModel, generateId, sendMail, environment),
+);
+
+export const getOrganizationSnippetFromOrganizationInvitationHandler =
+  makeMakeGetOrganizationSnippetFromOrganizationInvitationEndpoint(
+      returnAnonymouslyBasedOnSafeParseResult,
+  )(
+      GetOrganizationSnippetFromOrganizationInvitationRequestBodySchema,
+      GetOrganizationSnippetFromOrganizationInvitationRequestQuerySchema,
+      makeGetOrganizationSnippetFromOrganizationInvitationCallback(
+          logger,
+          OrganizationInvitationModel,
+          OrganizationModel,
+          organizationSnippetModelTransform,
+      ),
+  );
+
+export const acceptOrganizationInvitationHandler = makeMakeAcceptOrganizationInvitationEndpoint(
+    returnAnonymouslyBasedOnSafeParseResult,
+)(
+    AcceptOrganizationInvitationRequestBodySchema,
+    AcceptOrganizationInvitationRequestQuerySchema,
+    makeAcceptOrganizationInvitationCallback(logger, OrganizationInvitationModel, OrganizationModel),
 );

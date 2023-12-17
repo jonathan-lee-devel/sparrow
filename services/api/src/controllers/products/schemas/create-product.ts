@@ -5,6 +5,8 @@ import {MAX_PRODUCT_NAME_LENGTH, MIN_PRODUCT_NAME_LENGTH} from '../../../constan
 export const CreateProductRequestBodySchema = z.object({
   name: z.string().min(MIN_PRODUCT_NAME_LENGTH).max(MAX_PRODUCT_NAME_LENGTH),
   organizationId: z.string().min(DEFAULT_ID_LENGTH).max(DEFAULT_ID_LENGTH),
+  priceAmount: z.number().int(),
+  priceCurrency: z.string(),
 });
 
 export type CreateProductRequestBody = z.infer<typeof CreateProductRequestBodySchema>;

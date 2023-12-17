@@ -38,6 +38,14 @@ import { ErrorNotFoundComponent } from './components/pages/error/error-not-found
 import { OrganizationPageComponent } from './components/pages/organizations/per-organization/organization-page/organization-page.component';
 import { CreateProductComponent } from './components/pages/organizations/per-organization/create-product/create-product.component';
 import { InviteMemberComponent } from './components/pages/organizations/per-organization/invite-member/invite-member.component';
+import { ViewOrganizationInvitationComponent } from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
+import { RightArrowComponent } from './components/right-arrow/right-arrow.component';
+import { CardWithLinkComponent } from './components/card-with-link/card-with-link.component';
+import { OrganizationSearchResultComponent } from './components/organization-search-result/organization-search-result.component';
+import { FullWidthSearchBarComponent } from './components/full-width-search-bar/full-width-search-bar.component';
+import { EmptySearchResultsComponent } from './components/empty-search-results/empty-search-results.component';
+import { LandingPageSplashTextComponent } from './components/landing-page-splash-text/landing-page-splash-text.component';
+import { ProductWithImageComponent } from './components/product-with-image/product-with-image.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -65,6 +73,14 @@ import { InviteMemberComponent } from './components/pages/organizations/per-orga
     OrganizationPageComponent,
     CreateProductComponent,
     InviteMemberComponent,
+    ViewOrganizationInvitationComponent,
+    RightArrowComponent,
+    CardWithLinkComponent,
+    OrganizationSearchResultComponent,
+    FullWidthSearchBarComponent,
+    EmptySearchResultsComponent,
+    LandingPageSplashTextComponent,
+    ProductWithImageComponent,
   ],
   imports: [
     BrowserModule,

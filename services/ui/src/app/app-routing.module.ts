@@ -22,6 +22,9 @@ import {
 } from './components/pages/organizations/per-organization/organization-page/organization-page.component';
 import {CreateProductComponent} from './components/pages/organizations/per-organization/create-product/create-product.component';
 import {InviteMemberComponent} from './components/pages/organizations/per-organization/invite-member/invite-member.component';
+import {
+  ViewOrganizationInvitationComponent,
+} from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
 
 export enum RoutePaths {
   /* ANONYMOUS ROUTES */
@@ -46,6 +49,7 @@ export enum RoutePaths {
   ORGANIZATIONS_DASHBOARD_ID = 'organizations/dashboard/:organizationId',
   ORGANIZATIONS_PAGE_ID = 'organizations/:organizationId',
   ORGANIZATIONS_INVITE_MEMBER = 'organizations/dashboard/:organizationId/invite-member',
+  ORGANIZATIONS_INVITATION = 'organizations/invitations/:organizationInvitationId',
   /* PRODUCT ROUTES */
   ORGANIZATIONS_PRODUCT_CREATE = 'organizations/dashboard/:organizationId/create-product',
 }
@@ -73,6 +77,7 @@ const routes: Routes = [
   {path: RoutePaths.ORGANIZATIONS_DASHBOARD_ID, component: OrganizationDashboardComponent, canActivate: [AuthGuard]},
   {path: RoutePaths.ORGANIZATIONS_PAGE_ID, component: OrganizationPageComponent},
   {path: RoutePaths.ORGANIZATIONS_INVITE_MEMBER, component: InviteMemberComponent},
+  {path: RoutePaths.ORGANIZATIONS_INVITATION, component: ViewOrganizationInvitationComponent},
   /* PRODUCT ROUTES */
   {path: RoutePaths.ORGANIZATIONS_PRODUCT_CREATE, component: CreateProductComponent, canActivate: [AuthGuard]},
 ];

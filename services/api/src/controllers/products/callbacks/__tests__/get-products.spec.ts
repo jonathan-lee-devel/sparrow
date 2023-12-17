@@ -1,6 +1,8 @@
 import {makeGetProductsCallback} from '../get-products';
 import {HttpStatus} from '../../../../lib/enums/HttpStatus';
 import {Product} from '../../../../models/products/Product';
+import Dinero from 'dinero.js';
+import {DEFAULT_PRECISION} from '../../../../constants/products/dinero-constants';
 
 describe('Get Products Callback Unit Tests', () => {
   const organizationId = '12345';
@@ -57,6 +59,8 @@ describe('Get Products Callback Unit Tests', () => {
       id: '12345',
       organizationId,
       name: 'Test',
+      priceAmount: 299,
+      priceCurrency: 'EUR',
     }];
     const getProducts = makeGetProductsCallback({
       // @ts-ignore
@@ -91,7 +95,10 @@ describe('Get Products Callback Unit Tests', () => {
 
     expect(returnedCode).toStrictEqual(HttpStatus.OK);
     expect(returnedBody).toStrictEqual([{
-      ...products[0],
+      id: products[0].id,
+      name: products[0].name,
+      organizationId: products[0].organizationId,
+      price: Dinero({amount: products[0].priceAmount, currency: products[0].priceCurrency, precision: DEFAULT_PRECISION}).toFormat(),
       createdAt: undefined,
       updatedAt: undefined,
     }]);

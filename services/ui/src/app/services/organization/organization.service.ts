@@ -40,7 +40,7 @@ export class OrganizationService {
   }
 
   addMemberAsAdministrator(organizationId: string, memberEmail: string): Observable<OrganizationDto> {
-    return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/update-member-join-as-admin/${organizationId}`, {email: memberEmail});
+    return this.httpClient.patch<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/update-member-join-as-admin/${organizationId}`, {memberEmailToUpdate: memberEmail});
   }
 
   removeOrganizationAdministrator(organizationId: string, administratorEmail: string): Observable<OrganizationDto> {
@@ -94,6 +94,20 @@ export class OrganizationService {
           if (dto.status === OrganizationInvitationStatus[OrganizationInvitationStatus.AWAITING_RESPONSE]) {
             this.modalService.showDefaultModal('Organization Invitation', `Successfully invited ${emailToInvite} to join organization with ID: ${organizationId}`);
             this.router.navigate([`/organizations/dashboard/${organizationId}`]).catch((reason) => window.alert(reason));
+          }
+        });
+  }
+
+  getOrganizationSnippetByInvitationId(organizationInvitationId: string): Observable<OrganizationSnippetDto> {
+    return this.httpClient.get<OrganizationSnippetDto>(`${environment.MAIN_API_URL}/organizations/invitations/${organizationInvitationId}/snippet`);
+  }
+
+  acceptOrganizationInvitation(organizationInvitationValue: string, organizationId: string) {
+    this.httpClient.patch<OrganizationInvitationStatusDto>(`${environment.MAIN_API_URL}/organizations/invitations/accept`, {organizationInvitationValue})
+        .subscribe((invitationStatusDto) => {
+          if (invitationStatusDto.status === OrganizationInvitationStatus[OrganizationInvitationStatus.SUCCESS]) {
+            this.modalService.showDefaultModal('Organization Invitation', 'Organization invitation accepted successfully');
+            this.router.navigate([RoutePaths.ORGANIZATIONS_DASHBOARD_ID.replace(':organizationId', organizationId)]).catch((reason) => window.alert(reason));
           }
         });
   }

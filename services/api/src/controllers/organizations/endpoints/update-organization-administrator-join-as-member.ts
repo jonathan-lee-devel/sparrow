@@ -1,6 +1,6 @@
-import {AuthenticatedEndpointCallback, ReturnBasedOnAuthenticationAndSafeParseResultFunction} from '../../../lib/endpoint-util';
-import {z} from 'zod';
 import {Request, Response} from 'express';
+import {z} from 'zod';
+import {AuthenticatedEndpointCallback, ReturnBasedOnAuthenticationAndSafeParseResultFunction} from '../../../lib/endpoint-util';
 
 export const makeMakeUpdateOrganizationAdministratorJoinAsMemberEndpoint =
   <TBody, TQuery>(

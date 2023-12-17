@@ -1,4 +1,3 @@
-{{- if or (eq .Values.environment.name "staging") (eq .Values.environment.name "production") -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -11,6 +10,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.environment.hostPrefix }}sparrow.express
+      - api.{{ .Values.environment.hostPrefix }}sparrow.express
       secretName: sparrow-tls-{{ .Values.environment.name }}
   rules:
     - host: api.{{ .Values.environment.hostPrefix }}sparrow.express
@@ -33,4 +33,3 @@ spec:
                 name: {{ .Values.applicationName }}-ui-service
                 port:
                   number: 80
-{{- end -}}

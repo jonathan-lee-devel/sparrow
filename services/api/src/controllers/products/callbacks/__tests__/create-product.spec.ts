@@ -6,6 +6,8 @@ describe('Create Product Callback Unit Tests', () => {
   const email = 'test@example.com';
   const organizationId = '12345';
   const name = 'Test';
+  const priceAmount = 299;
+  const priceCurrency = 'EUR';
   it('When make create product Then defined function', async () => {
     const createProduct = makeCreateProductCallback(
         // @ts-ignore
@@ -42,7 +44,7 @@ describe('Create Product Callback Unit Tests', () => {
     let returnedBody: any;
     await createProduct(
         // @ts-ignore
-        {user: {email, emailVerified: true}, params: {organizationId}, body: {name, organizationId}},
+        {user: {email, emailVerified: true}, params: {organizationId}, body: {name, organizationId, priceAmount, priceCurrency}},
         {status: (code) => {
           returnedCode = code;
           return {
@@ -82,7 +84,7 @@ describe('Create Product Callback Unit Tests', () => {
     let returnedCode: number | undefined;
     await createProduct(
         // @ts-ignore
-        {user: {email, emailVerified: true}, params: {organizationId}, body: {name, organizationId}},
+        {user: {email, emailVerified: true}, params: {organizationId}, body: {name, organizationId, priceAmount, priceCurrency}},
         {status: (code) => {
           returnedCode = code;
           return {send: () => {}};
@@ -99,6 +101,8 @@ describe('Create Product Callback Unit Tests', () => {
       id,
       name,
       organizationId,
+      priceAmount,
+      priceCurrency,
     };
     const createProduct = makeCreateProductCallback(
         // @ts-ignore
@@ -135,7 +139,7 @@ describe('Create Product Callback Unit Tests', () => {
     let returnedBody: any;
     await createProduct(
         // @ts-ignore
-        {user: {email, emailVerified: true}, params: {organizationId}, body: {name, organizationId}},
+        {user: {email, emailVerified: true}, params: {organizationId}, body: {name, organizationId, priceAmount, priceCurrency}},
         {status: (code) => {
           returnedCode = code;
           return {
