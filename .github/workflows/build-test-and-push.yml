@@ -83,7 +83,7 @@ jobs:
           context: "{{defaultContext}}:./services/ui/"
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-ui:${{ steps.package-version.outputs.current-version}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sparrow-express-ui:stage-${{ steps.package-version.outputs.current-version}}
 
   build-and-push-ui-production:
     runs-on: ubuntu-22.04
