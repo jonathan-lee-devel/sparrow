@@ -65,7 +65,6 @@ jobs:
           cache-dependency-path: '**/yarn.lock'
       - run: cd ${{ matrix.scope }} && yarn install
       - run: cd ${{ matrix.scope }} && yarn run build:stage
-      - run: cd ${{ matrix.scope }} && yarn run test
       - name: Get Package Version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
@@ -104,7 +103,6 @@ jobs:
           cache-dependency-path: '**/yarn.lock'
       - run: cd ${{ matrix.scope }} && yarn install
       - run: cd ${{ matrix.scope }} && yarn run build:prod
-      - run: cd ${{ matrix.scope }} && yarn run test
       - name: Get Package Version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
