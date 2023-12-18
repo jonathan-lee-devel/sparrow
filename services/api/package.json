@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/jonathan-lee-devel/sparrow#readme",
   "dependencies": {
-    "@types/dinero.js": "^1.9.2",
+    "@types/dinero.js": "^1.9.4",
     "bcrypt": "^5.1.1",
     "body-parser": "1.20.2",
     "compression": "1.7.4",
