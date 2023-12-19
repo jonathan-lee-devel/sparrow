@@ -46,7 +46,7 @@
     "http-errors": "^2.0.0",
     "mongoose": "7.6.3",
     "nodemailer": "^6.9.6",
-    "passport": "^0.6.0",
+    "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "winston": "3.10.0",
