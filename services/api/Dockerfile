@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 node:20.8-bookworm-slim as base
+FROM --platform=linux/x86_64 node:20.11.0-bookworm-slim as base
 
 # Add package file
 COPY package.json ./
@@ -18,7 +18,7 @@ COPY tsconfig.json ./tsconfig.json
 RUN yarn build
 
 # Start production image build
-FROM --platform=linux/x86_64 node:20.8-bookworm-slim
+FROM --platform=linux/x86_64 node:20.11.0-bookworm-slim
 
 # Copy node modules and build directory
 COPY --from=base ./node_modules ./node_modules
